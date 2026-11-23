@@ -1,0 +1,21 @@
+# Environments and secrets
+.env*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Production builds
+dist/
+build/
+.cache/
+
+# Temporary test artifacts
+test_*.png
+verify_*.png
+scratch/
+
+# System and editor
+.DS_Store
+Thumbs.db
+*.log

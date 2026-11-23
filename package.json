@@ -1,0 +1,8 @@
+{
+  "name": "moldin-exact-visual-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node server.js --port 3232"
+  }
+}
