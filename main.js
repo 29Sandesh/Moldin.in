@@ -71,7 +71,6 @@ class HeroSection extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <section class="hero" id="top">
-        <div class="left-blobs" aria-hidden="true"><i></i><b></b></div>
         <div class="hero-blue" aria-hidden="true"></div>
         <div class="hero-pink" aria-hidden="true"></div>
 
@@ -91,8 +90,9 @@ class HeroSection extends HTMLElement {
           <p class="hero-subline-packed">That's it.</p>
         </div>
 
-        <!-- CREATOR TRIO (2 GIRLS BEHIND GUY) -->
+        <!-- CREATOR TRIO (WITH BIG WHITE CIRCLE AS BACKGROUND) -->
         <div class="hero-creators-trio">
+          <div class="hero-trio-circle" aria-hidden="true"></div>
           <img class="hero-girl hero-girl-left" src="assets/characters/hero-creator-girl-left.png" alt="Creator girl in cyan hoodie facing left">
           <creator-image class="hero-person" person="hero"></creator-image>
           <img class="hero-girl hero-girl-right" src="assets/characters/hero-creator-girl-right.png" alt="Creator girl in pink sweatshirt facing right">
@@ -106,89 +106,6 @@ class HeroSection extends HTMLElement {
         </svg>
       </section>
     `;
-    this.initWaveFlow();
-  }
-
-  initWaveFlow() {
-    const pink = this.querySelector('.ribbon-pink');
-    const blue = this.querySelector('.ribbon-blue');
-    const peach = this.querySelector('.ribbon-peach');
-    if (!pink || !blue || !peach) return;
-
-    let start = null;
-    const animate = (timestamp) => {
-      if (!start) start = timestamp;
-      const t = (timestamp - start) * 0.001;
-
-      // Harmonic sine phases for realistic liquid flow
-      const s1 = Math.sin(t * 0.75);
-      const c1 = Math.cos(t * 0.55);
-      const s2 = Math.sin(t * 0.95 + 1.2);
-      const c2 = Math.cos(t * 0.65 + 2.1);
-      const s3 = Math.sin(t * 0.82 + 3.4);
-
-      // Pink ribbon subtle breathing flow
-      const pP0y = (9 + s1 * 2.2).toFixed(1);
-      const pCp1y = (-25 + c1 * 4.5).toFixed(1);
-      const pCp2y = (23 + s2 * 3.8).toFixed(1);
-      const pP1y = (54 + c2 * 3.2).toFixed(1);
-      const pCp3y = (33 + s3 * 3.0).toFixed(1);
-      const pCp4y = (-8 + c1 * 3.6).toFixed(1);
-      const pP2y = (-3 + s2 * 3.2).toFixed(1);
-      const pCp5y = (7 + c2 * 2.8).toFixed(1);
-      const pCp6y = (62 + s1 * 4.2).toFixed(1);
-      const pP3y = (26 + c1 * 3.0).toFixed(1);
-
-      pink.setAttribute('d', 
-        `M0 ${pP0y}C123 ${pCp1y} 180 ${pCp2y} 282 ${pP1y}c109 ${pCp3y} 202 ${pCp4y} 310 ${pP2y}c142 ${pCp5y} 189 ${pCp6y} 432 ${pP3y}v70H0Z`
-      );
-
-      // Blue ribbon differential fluid flow
-      const bP0y = (42 + c2 * 2.4).toFixed(1);
-      const bCp1y = (-34 + s1 * 3.8).toFixed(1);
-      const bCp2y = (-6 + c1 * 3.2).toFixed(1);
-      const bP1y = (34 + s3 * 3.6).toFixed(1);
-      const bCp3y = (45 + c2 * 3.2).toFixed(1);
-      const bCp4y = (13 + s2 * 2.8).toFixed(1);
-      const bP2y = (-2 + c1 * 3.2).toFixed(1);
-      const bCp5y = (-21 + s1 * 2.8).toFixed(1);
-      const bCp6y = (-63 + c2 * 4.2).toFixed(1);
-      const bP3y = (-23 + s3 * 3.2).toFixed(1);
-
-      const bB1 = (-38 + s2 * 2.8).toFixed(1);
-      const bB2 = (58 + c1 * 3.8).toFixed(1);
-      const bBP = (46 + s1 * 3.2).toFixed(1);
-      const bB3 = (-9 + c2 * 2.4).toFixed(1);
-      const bB4 = (28 + s3 * 3.2).toFixed(1);
-      const bBP2 = (-10 + c1 * 2.8).toFixed(1);
-      const bB5 = (82 + s2 * 3.2).toFixed(1);
-      const bB6 = (12 + c2 * 2.8).toFixed(1);
-      const bBEnd = (74 + s1 * 2.4).toFixed(1);
-
-      blue.setAttribute('d',
-        `M0 ${bP0y}c91 ${bCp1y} 175 ${bCp2y} 278 ${bP1y}c118 ${bCp3y} 217 ${bCp4y} 323 ${bP2y}c155 ${bCp5y} 269 ${bCp6y} 423 ${bP3y}v33c-168 ${bB1} -273 ${bB2} -432 ${bBP}c-109 ${bB3} -202 ${bB4} -314 ${bBP2}C174 ${bB5} 91 ${bB6} 0 ${bBEnd}Z`
-      );
-
-      // Peach ribbon supporting flow
-      const peP0y = (75 + s2 * 2.0).toFixed(1);
-      const peCp1y = (-57 + c1 * 3.2).toFixed(1);
-      const peCp2y = (3 + s3 * 2.8).toFixed(1);
-      const peP1y = (31 + c2 * 3.2).toFixed(1);
-      const peCp3y = (34 + s1 * 2.8).toFixed(1);
-      const peCp4y = (1 + c1 * 2.4).toFixed(1);
-      const peP2y = (-10 + s2 * 2.8).toFixed(1);
-      const peCp5y = (-16 + c2 * 2.8).toFixed(1);
-      const peCp6y = (-64 + s1 * 3.8).toFixed(1);
-      const peP3y = (-28 + c1 * 2.8).toFixed(1);
-
-      peach.setAttribute('d',
-        `M0 ${peP0y}c116 ${peCp1y} 205 ${peCp2y} 302 ${peP1y}c115 ${peCp3y} 194 ${peCp4y} 297 ${peP2y}c152 ${peCp5y} 282 ${peCp6y} 425 ${peP3y}v80H0Z`
-      );
-
-      requestAnimationFrame(animate);
-    };
-
-    requestAnimationFrame(animate);
   }
 }
 
@@ -859,33 +776,6 @@ customElements.define('faq-section', FaqSection);
 customElements.define('dual-cta-section', DualCtaSection);
 customElements.define('site-footer-modern', SiteFooterModern);
 customElements.define('moldin-page', MoldinPage);
-
-document.addEventListener('pointerdown', (event) => {
-  const blobChild = event.target.closest('.left-blobs i, .left-blobs b');
-  const movable = blobChild || event.target.closest('.left-blobs, .footer-blobs, .creator-frame, .collab-card, .hero-person, .hero-girl, .creator-person');
-  if (!movable || event.button !== 0) return;
-  const bounds = movable.getBoundingClientRect();
-  const parentBounds = movable.parentElement.getBoundingClientRect();
-  movable.classList.add('is-moving');
-  movable.setPointerCapture?.(event.pointerId);
-  const startX = event.clientX;
-  const startY = event.clientY;
-  const originLeft = bounds.left - parentBounds.left;
-  const originTop = bounds.top - parentBounds.top;
-  const move = (pointerEvent) => {
-    movable.style.left = `${originLeft + pointerEvent.clientX - startX}px`;
-    movable.style.top = `${originTop + pointerEvent.clientY - startY}px`;
-    movable.style.right = 'auto';
-    movable.style.bottom = 'auto';
-  };
-  const stop = () => {
-    movable.classList.remove('is-moving');
-    window.removeEventListener('pointermove', move);
-    window.removeEventListener('pointerup', stop);
-  };
-  window.addEventListener('pointermove', move);
-  window.addEventListener('pointerup', stop, { once: true });
-});
 
 /* ==============================================================
    GLOBAL MOLDIN POPUP MODAL (CREATOR APPLICATION & BRAND CAMPAIGN)
