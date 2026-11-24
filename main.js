@@ -76,49 +76,28 @@ class HeroSection extends HTMLElement {
         <div class="hero-pink" aria-hidden="true"></div>
 
         <div class="hero-heading-wrap">
-          <h1 class="hero-heading-v2">
-            <!-- ROW 1: WE CONNECT + RAYS -->
-            <div class="heading-row heading-row--connect">
-              <span class="heading-text-connect">WE CONNECT</span>
-              <span class="heading-burst-rays" aria-hidden="true">
-                <svg viewBox="0 0 54 44" width="48" height="38" fill="none">
-                  <line x1="10" y1="34" x2="20" y2="10" stroke="#090909" stroke-width="5.5" stroke-linecap="round"/>
-                  <line x1="26" y1="36" x2="38" y2="8" stroke="#9e0655" stroke-width="5.5" stroke-linecap="round"/>
-                  <line x1="42" y1="38" x2="50" y2="18" stroke="#090909" stroke-width="5.5" stroke-linecap="round"/>
-                </svg>
-              </span>
+          <h1 class="hero-title-packed">
+            <div class="hero-row-1">
+              <span class="word-we">WE</span>
+              <span class="word-connect">CONNECT</span>
+              <span class="word-brands">BRANDS</span>
+              <span class="heading-slashes" aria-hidden="true">///</span>
             </div>
-
-            <!-- ROW 2: [BRANDS] WITH -->
-            <div class="heading-row heading-row--brands">
-              <div class="pill-badge pill-badge--cyan">
-                <span class="pill-badge-text">BRANDS</span>
-              </div>
-              <span class="heading-text-with">WITH</span>
-            </div>
-
-            <!-- ROW 3: [CREATORS] ● + UNDERLINE SWOOSH -->
-            <div class="heading-row heading-row--creators">
-              <div class="pill-badge pill-badge--pink">
-                <span class="pill-badge-text">CREATORS</span>
-              </div>
-              <span class="heading-dot-black" aria-hidden="true"></span>
-              <svg class="creators-swoosh-arc" viewBox="0 0 260 26" fill="none" aria-hidden="true">
-                <path d="M4 18C70 4 190 4 256 16" stroke="#f60292" stroke-width="6.5" stroke-linecap="round"/>
-              </svg>
+            <div class="hero-row-2">
+              <span class="word-with">WITH</span>
+              <span class="word-creators">CREATORS<span class="dot-black">.</span></span>
             </div>
           </h1>
-
-          <!-- THAT'S IT. + SWOOSH -->
-          <div class="thats-it-wrap">
-            <p class="thats-it-label">That's it.</p>
-            <svg class="thats-it-swoosh-arc" viewBox="0 0 110 16" fill="none" aria-hidden="true">
-              <path d="M4 12C36 7 76 6 106 5" stroke="#f60292" stroke-width="4.5" stroke-linecap="round"/>
-            </svg>
-          </div>
+          <p class="hero-subline-packed">That's it.</p>
         </div>
 
-        <creator-image class="hero-person" person="hero"></creator-image>
+        <!-- CREATOR TRIO (2 GIRLS BEHIND GUY) -->
+        <div class="hero-creators-trio">
+          <img class="hero-girl hero-girl-left" src="assets/characters/hero-creator-girl-left.png" alt="Creator girl in cyan hoodie facing left">
+          <creator-image class="hero-person" person="hero"></creator-image>
+          <img class="hero-girl hero-girl-right" src="assets/characters/hero-creator-girl-right.png" alt="Creator girl in pink sweatshirt facing right">
+        </div>
+
         <moldin-button class="hero-button" label="Join as Creator" href="https://forms.gle/CUitj8LUdULQovqw7" light></moldin-button>
         <svg class="hero-bottom-ribbon" viewBox="0 -8 1024 152" preserveAspectRatio="none" aria-hidden="true">
           <path class="ribbon-pink" d="M0 9C123-25 180 23 282 54c109 33 202-8 310-3 142 7 189 62 432 26v70H0Z"/>
@@ -883,7 +862,7 @@ customElements.define('moldin-page', MoldinPage);
 
 document.addEventListener('pointerdown', (event) => {
   const blobChild = event.target.closest('.left-blobs i, .left-blobs b');
-  const movable = blobChild || event.target.closest('.left-blobs, .footer-blobs, .creator-frame, .collab-card, .hero-person, .creator-person');
+  const movable = blobChild || event.target.closest('.left-blobs, .footer-blobs, .creator-frame, .collab-card, .hero-person, .hero-girl, .creator-person');
   if (!movable || event.button !== 0) return;
   const bounds = movable.getBoundingClientRect();
   const parentBounds = movable.parentElement.getBoundingClientRect();
