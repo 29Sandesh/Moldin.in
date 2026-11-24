@@ -69,7 +69,64 @@ class SiteHeader extends HTMLElement {
 
 class HeroSection extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `<section class="hero" id="top"><div class="left-blobs" aria-hidden="true"><i></i><b></b></div><div class="hero-blue" aria-hidden="true"></div><div class="hero-pink" aria-hidden="true"></div><div class="hero-heading-wrap"><h1><span class="hero-line-1">WE CONNECT <span class="brand-text">BRANDS</span></span><span class="hero-line-2"><span class="with-text">WITH</span> <span class="creator-text">CREATORS<span class="dot-accent">.</span></span></span></h1><p class="hero-subline">That's it.</p></div><creator-image class="hero-person" person="hero"></creator-image><div class="rays hero-rays" aria-hidden="true"><i></i><i></i><i></i></div><moldin-button class="hero-button" label="Join as Creator" href="https://forms.gle/CUitj8LUdULQovqw7" light></moldin-button><svg class="hero-bottom-ribbon" viewBox="0 -8 1024 152" preserveAspectRatio="none" aria-hidden="true"><path class="ribbon-pink" d="M0 9C123-25 180 23 282 54c109 33 202-8 310-3 142 7 189 62 432 26v70H0Z"/><path class="ribbon-blue" d="M0 42c91-34 175-6 278 34 118 45 217 13 323-2 155-21 269-63 423-23v33c-168-38-273 58-432 46-109-9-202 28-314-10C174 82 91 12 0 74Z"/><path class="ribbon-peach" d="M0 75c116-57 205 3 302 31 115 34 194 1 297-10 152-16 282-64 425-28v80H0Z"/></svg></section>`;
+    this.innerHTML = `
+      <section class="hero" id="top">
+        <div class="left-blobs" aria-hidden="true"><i></i><b></b></div>
+        <div class="hero-blue" aria-hidden="true"></div>
+        <div class="hero-pink" aria-hidden="true"></div>
+
+        <div class="hero-heading-wrap">
+          <h1 class="hero-heading-v2">
+            <!-- ROW 1: WE CONNECT + RAYS -->
+            <div class="heading-row heading-row--connect">
+              <span class="heading-text-connect">WE CONNECT</span>
+              <span class="heading-burst-rays" aria-hidden="true">
+                <svg viewBox="0 0 54 44" width="48" height="38" fill="none">
+                  <line x1="10" y1="34" x2="20" y2="10" stroke="#090909" stroke-width="5.5" stroke-linecap="round"/>
+                  <line x1="26" y1="36" x2="38" y2="8" stroke="#9e0655" stroke-width="5.5" stroke-linecap="round"/>
+                  <line x1="42" y1="38" x2="50" y2="18" stroke="#090909" stroke-width="5.5" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </div>
+
+            <!-- ROW 2: [BRANDS] WITH -->
+            <div class="heading-row heading-row--brands">
+              <div class="pill-badge pill-badge--cyan">
+                <span class="pill-badge-text">BRANDS</span>
+              </div>
+              <span class="heading-text-with">WITH</span>
+            </div>
+
+            <!-- ROW 3: [CREATORS] ● + UNDERLINE SWOOSH -->
+            <div class="heading-row heading-row--creators">
+              <div class="pill-badge pill-badge--pink">
+                <span class="pill-badge-text">CREATORS</span>
+              </div>
+              <span class="heading-dot-black" aria-hidden="true"></span>
+              <svg class="creators-swoosh-arc" viewBox="0 0 260 26" fill="none" aria-hidden="true">
+                <path d="M4 18C70 4 190 4 256 16" stroke="#f60292" stroke-width="6.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </h1>
+
+          <!-- THAT'S IT. + SWOOSH -->
+          <div class="thats-it-wrap">
+            <p class="thats-it-label">That's it.</p>
+            <svg class="thats-it-swoosh-arc" viewBox="0 0 110 16" fill="none" aria-hidden="true">
+              <path d="M4 12C36 7 76 6 106 5" stroke="#f60292" stroke-width="4.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <creator-image class="hero-person" person="hero"></creator-image>
+        <moldin-button class="hero-button" label="Join as Creator" href="https://forms.gle/CUitj8LUdULQovqw7" light></moldin-button>
+        <svg class="hero-bottom-ribbon" viewBox="0 -8 1024 152" preserveAspectRatio="none" aria-hidden="true">
+          <path class="ribbon-pink" d="M0 9C123-25 180 23 282 54c109 33 202-8 310-3 142 7 189 62 432 26v70H0Z"/>
+          <path class="ribbon-blue" d="M0 42c91-34 175-6 278 34 118 45 217 13 323-2 155-21 269-63 423-23v33c-168-38-273 58-432 46-109-9-202 28-314-10C174 82 91 12 0 74Z"/>
+          <path class="ribbon-peach" d="M0 75c116-57 205 3 302 31 115 34 194 1 297-10 152-16 282-64 425-28v80H0Z"/>
+        </svg>
+      </section>
+    `;
     this.initWaveFlow();
   }
 
