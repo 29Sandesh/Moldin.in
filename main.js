@@ -77,7 +77,7 @@ class SiteHeader extends HTMLElement {
 
 class HeroSection extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `<section class="hero" id="top"><div class="left-blobs" aria-hidden="true"><i></i><b></b></div><div class="hero-blue" aria-hidden="true"></div><div class="hero-pink" aria-hidden="true"></div><h1>WE CONNECT<br><span class="brand-text">BRANDS</span> <span class="with-text">WITH</span> <span class="creator-text">CREATORS<span class="dot-accent">.</span></span></h1><p class="hero-copy">A simple platform<br>that connects<br>creators with<br>brands.</p><creator-image class="hero-person" person="hero"></creator-image><div class="rays hero-rays" aria-hidden="true"><i></i><i></i><i></i></div><moldin-button class="hero-button" label="Join as Creator" light></moldin-button><svg class="hero-bottom-ribbon" viewBox="0 -8 1024 152" preserveAspectRatio="none" aria-hidden="true"><path class="ribbon-pink" d="M0 9C123-25 180 23 282 54c109 33 202-8 310-3 142 7 189 62 432 26v70H0Z"/><path class="ribbon-blue" d="M0 42c91-34 175-6 278 34 118 45 217 13 323-2 155-21 269-63 423-23v33c-168-38-273 58-432 46-109-9-202 28-314-10C174 82 91 12 0 74Z"/><path class="ribbon-peach" d="M0 75c116-57 205 3 302 31 115 34 194 1 297-10 152-16 282-64 425-28v80H0Z"/></svg></section>`;
+    this.innerHTML = `<section class="hero" id="top"><div class="left-blobs" aria-hidden="true"><i></i><b></b></div><div class="hero-blue" aria-hidden="true"></div><div class="hero-pink" aria-hidden="true"></div><div class="hero-heading-wrap"><h1><span class="hero-line-1">WE CONNECT <span class="brand-text">BRANDS</span></span><span class="hero-line-2"><span class="with-text">WITH</span> <span class="creator-text">CREATORS<span class="dot-accent">.</span></span></span></h1><p class="hero-subline">That's it.</p></div><creator-image class="hero-person" person="hero"></creator-image><div class="rays hero-rays" aria-hidden="true"><i></i><i></i><i></i></div><moldin-button class="hero-button" label="Join as Creator" light></moldin-button><svg class="hero-bottom-ribbon" viewBox="0 -8 1024 152" preserveAspectRatio="none" aria-hidden="true"><path class="ribbon-pink" d="M0 9C123-25 180 23 282 54c109 33 202-8 310-3 142 7 189 62 432 26v70H0Z"/><path class="ribbon-blue" d="M0 42c91-34 175-6 278 34 118 45 217 13 323-2 155-21 269-63 423-23v33c-168-38-273 58-432 46-109-9-202 28-314-10C174 82 91 12 0 74Z"/><path class="ribbon-peach" d="M0 75c116-57 205 3 302 31 115 34 194 1 297-10 152-16 282-64 425-28v80H0Z"/></svg></section>`;
     this.initWaveFlow();
   }
 
@@ -406,7 +406,7 @@ const creatorsRosterData = [
     name: "Sandesh Agrawal",
     handle: "@sandeshyaar",
     link: "https://www.instagram.com/sandeshyaar/",
-    img: "assets/creators_real/sandeshyaar_hd.jpg",
+    img: "assets/creators_real/sandeshyaar.jpg",
     isStar: true,
     gender: "male",
     nicheBadge: "Tech & AI",
@@ -416,7 +416,7 @@ const creatorsRosterData = [
     name: "Varnika",
     handle: "@v4rnikaa",
     link: "https://www.instagram.com/v4rnikaa/reels/",
-    img: "assets/creators_real/v4rnikaa_hd.jpg",
+    img: "assets/creators_real/v4rnikaa.jpg",
     isStar: false,
     gender: "female",
     nicheBadge: "Fashion",
@@ -426,7 +426,7 @@ const creatorsRosterData = [
     name: "Amlendra Kumar",
     handle: "@amlendra.in",
     link: "https://www.instagram.com/amlendra.in/",
-    img: "assets/creators_real/amlendra.in_hd.jpg",
+    img: "assets/creators_real/amlendra.in.jpg",
     isStar: true,
     gender: "male",
     nicheBadge: "AI & Apps",
@@ -436,7 +436,7 @@ const creatorsRosterData = [
     name: "Shubham Joshi",
     handle: "@shubham_joshii",
     link: "https://www.instagram.com/shubham_joshii/",
-    img: "assets/creators_real/shubham_joshii_hd.jpg",
+    img: "assets/creators_real/shubham_joshii.jpg",
     isStar: false,
     gender: "male",
     nicheBadge: "Travel",
@@ -446,7 +446,7 @@ const creatorsRosterData = [
     name: "Aryan H Choudharry",
     handle: "@aryann.aesthetics",
     link: "https://www.instagram.com/aryann.aesthetics/",
-    img: "assets/creators_real/aryann.aesthetics_hd.jpg",
+    img: "assets/creators_real/aryann.aesthetics.jpg",
     isStar: false,
     gender: "male",
     nicheBadge: "Fitness",
@@ -456,7 +456,7 @@ const creatorsRosterData = [
     name: "Shree",
     handle: "@shrey_.aaaa",
     link: "https://www.instagram.com/shrey_.aaaa/",
-    img: "assets/creators_real/shrey_.aaaa_hd.jpg",
+    img: "assets/creators_real/shrey_.aaaa.jpg",
     isStar: false,
     gender: "female",
     nicheBadge: "Beauty",
@@ -466,7 +466,7 @@ const creatorsRosterData = [
     name: "Param Jain",
     handle: "@paraamjain",
     link: "https://www.instagram.com/paraamjain/",
-    img: "assets/creators_real/paraamjain_hd.jpg",
+    img: "assets/creators_real/paraamjain.jpg",
     isStar: false,
     gender: "male",
     nicheBadge: "Travel",
@@ -476,7 +476,7 @@ const creatorsRosterData = [
     name: "Divya Vashishtha",
     handle: "@d1vyya._",
     link: "https://www.instagram.com/d1vyya._/",
-    img: "assets/creators_real/d1vyya.__hd.jpg",
+    img: "assets/creators_real/d1vyya._.jpg",
     isStar: false,
     gender: "female",
     nicheBadge: "Model",
