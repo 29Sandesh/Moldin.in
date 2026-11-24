@@ -45,35 +45,24 @@ class SiteHeader extends HTMLElement {
     const isCampaigns = active === 'campaigns' ? ' active' : '';
     const isBrands = active === 'brands' ? ' active' : '';
     const isCreators = active === 'creators' ? ' active' : '';
-    const isSubpage = !!active;
 
     this.innerHTML = `
-      <header class="header ${isSubpage ? 'header--subpage' : ''}">
+      <header class="header">
         <a class="wordmark" href="index.html">MOLDIN<span>.</span></a>
         <nav aria-label="Primary navigation">
           <a class="${isCampaigns}" href="campaigns.html">Campaigns</a>
           <a class="${isBrands}" href="brands.html">Brands</a>
           <a class="${isCreators}" href="creators.html">Creators</a>
         </nav>
-        <button class="button button--header ${isSubpage ? 'button--header-small' : ''} open-brand-modal-btn" type="button">Let’s Talk <b aria-hidden="true">→</b></button>
+        <button class="button button--header open-brand-modal-btn" type="button">Let’s Talk <b aria-hidden="true">→</b></button>
       </header>
     `;
 
-    const header = this.querySelector('.header');
     const talkBtn = this.querySelector('.open-brand-modal-btn');
     if (talkBtn) {
       talkBtn.addEventListener('click', () => {
         window.openMoldinModal?.('brand');
       });
-    }
-
-    if (!isSubpage && header) {
-      const handleScroll = () => {
-        const scrolled = window.scrollY > 40;
-        header.classList.toggle('is-scrolled', scrolled);
-      };
-      window.addEventListener('scroll', handleScroll, { passive: true });
-      handleScroll();
     }
   }
 }
