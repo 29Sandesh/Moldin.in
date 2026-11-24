@@ -49,8 +49,8 @@ class SiteHeader extends HTMLElement {
         <a class="wordmark" href="index.html">MOLDIN<span>.</span></a>
         <nav aria-label="Primary navigation">
           <a class="${isCampaigns}" href="campaigns.html">Campaigns</a>
-          <a class="${isBrands}" href="brands.html">For Brands</a>
-          <a class="${isCreators}" href="creators.html">For Creators</a>
+          <a class="${isBrands}" href="brands.html">Brands</a>
+          <a class="${isCreators}" href="creators.html">Creators</a>
         </nav>
         <button class="button button--header ${isSubpage ? 'button--header-small' : ''} open-brand-modal-btn" type="button">Let’s Talk <b aria-hidden="true">→</b></button>
       </header>
@@ -720,7 +720,7 @@ class FaqSection extends HTMLElement {
                 <div class="cta-cool-buttons">
                   <button class="cta-cool-btn cta-cool-btn--creator" type="button" id="cta-btn-creator">
                     <div class="cool-btn-top">
-                      <span class="cool-role-label">FOR CREATORS</span>
+                      <span class="cool-role-label">CREATORS</span>
                       <span class="cool-arrow">→</span>
                     </div>
                     <span class="cool-action-text">JOIN AS CREATOR</span>
@@ -728,7 +728,7 @@ class FaqSection extends HTMLElement {
 
                   <button class="cta-cool-btn cta-cool-btn--brand" type="button" id="cta-btn-brand">
                     <div class="cool-btn-top">
-                      <span class="cool-role-label">FOR BRANDS</span>
+                      <span class="cool-role-label">BRANDS</span>
                       <span class="cool-arrow">→</span>
                     </div>
                     <span class="cool-action-text">PARTNER AS BRAND</span>
@@ -767,8 +767,8 @@ class SiteFooterModern extends HTMLElement {
 
             <nav class="footer-nav-compact" aria-label="Footer links">
               <a href="campaigns.html">Campaigns</a>
-              <a href="brands.html">For Brands</a>
-              <a href="creators.html">For Creators</a>
+              <a href="brands.html">Brands</a>
+              <a href="creators.html">Creators</a>
               <a href="index.html#faq">FAQ</a>
             </nav>
 
@@ -872,10 +872,10 @@ function initGlobalModal() {
         
         <div class="modal-tab-header">
           <button class="modal-tab-btn modal-tab-btn--creator active" type="button" data-modal-tab="creator">
-            <span>⚡</span> For Creators
+            <span>⚡</span> Creators
           </button>
           <button class="modal-tab-btn modal-tab-btn--brand" type="button" data-modal-tab="brand">
-            <span>💼</span> For Brands
+            <span>💼</span> Brands
           </button>
         </div>
 
