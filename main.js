@@ -11,7 +11,10 @@ class MoldinButton extends HTMLElement {
   connectedCallback() {
     const label = this.getAttribute('label') || 'Get started';
     const light = this.hasAttribute('light') ? ' button--light' : '';
-    this.innerHTML = `<a class="button${light}" href="#demo-note">${label} <b aria-hidden="true">→</b></a>`;
+    const isCreator = label.toLowerCase().includes('creator');
+    const href = this.getAttribute('href') || (isCreator ? 'https://forms.gle/CUitj8LUdULQovqw7' : '#demo-note');
+    const target = href.startsWith('http') ? ' target="_blank" rel="noopener"' : '';
+    this.innerHTML = `<a class="button${light}" href="${href}"${target}>${label} <b aria-hidden="true">→</b></a>`;
   }
 }
 
@@ -77,7 +80,7 @@ class SiteHeader extends HTMLElement {
 
 class HeroSection extends HTMLElement {
   connectedCallback() {
-    this.innerHTML = `<section class="hero" id="top"><div class="left-blobs" aria-hidden="true"><i></i><b></b></div><div class="hero-blue" aria-hidden="true"></div><div class="hero-pink" aria-hidden="true"></div><div class="hero-heading-wrap"><h1><span class="hero-line-1">WE CONNECT <span class="brand-text">BRANDS</span></span><span class="hero-line-2"><span class="with-text">WITH</span> <span class="creator-text">CREATORS<span class="dot-accent">.</span></span></span></h1><p class="hero-subline">That's it.</p></div><creator-image class="hero-person" person="hero"></creator-image><div class="rays hero-rays" aria-hidden="true"><i></i><i></i><i></i></div><moldin-button class="hero-button" label="Join as Creator" light></moldin-button><svg class="hero-bottom-ribbon" viewBox="0 -8 1024 152" preserveAspectRatio="none" aria-hidden="true"><path class="ribbon-pink" d="M0 9C123-25 180 23 282 54c109 33 202-8 310-3 142 7 189 62 432 26v70H0Z"/><path class="ribbon-blue" d="M0 42c91-34 175-6 278 34 118 45 217 13 323-2 155-21 269-63 423-23v33c-168-38-273 58-432 46-109-9-202 28-314-10C174 82 91 12 0 74Z"/><path class="ribbon-peach" d="M0 75c116-57 205 3 302 31 115 34 194 1 297-10 152-16 282-64 425-28v80H0Z"/></svg></section>`;
+    this.innerHTML = `<section class="hero" id="top"><div class="left-blobs" aria-hidden="true"><i></i><b></b></div><div class="hero-blue" aria-hidden="true"></div><div class="hero-pink" aria-hidden="true"></div><div class="hero-heading-wrap"><h1><span class="hero-line-1">WE CONNECT <span class="brand-text">BRANDS</span></span><span class="hero-line-2"><span class="with-text">WITH</span> <span class="creator-text">CREATORS<span class="dot-accent">.</span></span></span></h1><p class="hero-subline">That's it.</p></div><creator-image class="hero-person" person="hero"></creator-image><div class="rays hero-rays" aria-hidden="true"><i></i><i></i><i></i></div><moldin-button class="hero-button" label="Join as Creator" href="https://forms.gle/CUitj8LUdULQovqw7" light></moldin-button><svg class="hero-bottom-ribbon" viewBox="0 -8 1024 152" preserveAspectRatio="none" aria-hidden="true"><path class="ribbon-pink" d="M0 9C123-25 180 23 282 54c109 33 202-8 310-3 142 7 189 62 432 26v70H0Z"/><path class="ribbon-blue" d="M0 42c91-34 175-6 278 34 118 45 217 13 323-2 155-21 269-63 423-23v33c-168-38-273 58-432 46-109-9-202 28-314-10C174 82 91 12 0 74Z"/><path class="ribbon-peach" d="M0 75c116-57 205 3 302 31 115 34 194 1 297-10 152-16 282-64 425-28v80H0Z"/></svg></section>`;
     this.initWaveFlow();
   }
 
@@ -211,7 +214,7 @@ class CreatorsBrandsSection extends HTMLElement {
             <div class="split-content split-content--creator">
               <h2 class="split-title-single">YOU CREATE. <span class="brand-text">WE CONNECT.</span></h2>
               <p class="split-desc-funny">Dude, it’s literally 100% free. You get real brand collabs handed to you on a silver platter and you still need a REASON? Sign up already.</p>
-              <button class="button modal-trigger-creator" type="button">Join as Creator <b aria-hidden="true">→</b></button>
+              <a class="button modal-trigger-creator" href="https://forms.gle/CUitj8LUdULQovqw7" target="_blank" rel="noopener">Join as Creator <b aria-hidden="true">→</b></a>
             </div>
           </div>
 
@@ -718,13 +721,13 @@ class FaqSection extends HTMLElement {
                 
                 <!-- COOL TWO CREATOR / BRAND ACTION BUTTONS (NO EXTRA TEXT) -->
                 <div class="cta-cool-buttons">
-                  <button class="cta-cool-btn cta-cool-btn--creator" type="button" id="cta-btn-creator">
+                  <a class="cta-cool-btn cta-cool-btn--creator" id="cta-btn-creator" href="https://forms.gle/CUitj8LUdULQovqw7" target="_blank" rel="noopener">
                     <div class="cool-btn-top">
                       <span class="cool-role-label">CREATORS</span>
                       <span class="cool-arrow">→</span>
                     </div>
                     <span class="cool-action-text">JOIN AS CREATOR</span>
-                  </button>
+                  </a>
 
                   <button class="cta-cool-btn cta-cool-btn--brand" type="button" id="cta-btn-brand">
                     <div class="cool-btn-top">
@@ -880,43 +883,19 @@ function initGlobalModal() {
         </div>
 
         <!-- CREATOR APPLICATION FORM -->
-        <form class="moldin-modal-form" id="modal-creator-form">
+        <div class="moldin-modal-form" id="modal-creator-form">
           <div class="modal-title-row">
             <h3 class="modal-heading">Apply For MOLDIN Roster</h3>
             <span class="modal-pill pill-pink">100% Free Forever</span>
           </div>
           <p class="modal-subtext">Join verified brand campaigns with guaranteed escrow payouts and 0% agency cut.</p>
-          <div class="modal-inputs-grid">
-            <div class="modal-group">
-              <label>Full Name</label>
-              <input type="text" placeholder="e.g. Aryan Sharma" required>
-            </div>
-            <div class="modal-group">
-              <label>Instagram Handle / Link</label>
-              <input type="text" placeholder="@yourhandle" required>
-            </div>
-            <div class="modal-group">
-              <label>Primary Content Niche</label>
-              <select required>
-                <option value="">Select Niche</option>
-                <option value="fashion">Fashion &amp; Streetwear</option>
-                <option value="tech">Tech &amp; AI</option>
-                <option value="lifestyle">Lifestyle &amp; UGC</option>
-                <option value="fitness">Fitness &amp; Sports</option>
-                <option value="beauty">Beauty &amp; Skincare</option>
-                <option value="travel">Travel &amp; Culture</option>
-              </select>
-            </div>
-            <div class="modal-group">
-              <label>Email Address</label>
-              <input type="email" placeholder="you@email.com" required>
-            </div>
+          <div style="margin-top:24px; text-align:center;">
+            <a class="modal-submit-btn submit-creator" href="https://forms.gle/CUitj8LUdULQovqw7" target="_blank" rel="noopener" style="display:inline-flex; width:auto; text-decoration:none; justify-content:center; align-items:center; gap:8px; padding:14px 28px; border-radius:999px;">
+              <span>Open Creator Application Form</span> <b aria-hidden="true">→</b>
+            </a>
           </div>
-          <button class="modal-submit-btn submit-creator" type="submit">Submit Profile For Verification →</button>
-          <div class="modal-status-alert alert-success" style="display:none;">
-            🎉 Profile submitted! Our talent directors will verify your account within 24 hours.
-          </div>
-        </form>
+          <p style="margin-top:14px; font-size:12.5px; color:rgba(9,9,9,0.65); text-align:center;">Takes 60 seconds • Escrow protected payouts</p>
+        </div>
 
         <!-- BRAND CAMPAIGN FORM -->
         <form class="moldin-modal-form" id="modal-brand-form" style="display:none;">
@@ -972,19 +951,16 @@ function initGlobalModal() {
   const brandForm = document.getElementById('modal-brand-form');
 
   window.openMoldinModal = (role = 'creator') => {
+    if (role === 'creator') {
+      window.open('https://forms.gle/CUitj8LUdULQovqw7', '_blank', 'noopener,noreferrer');
+      return;
+    }
     modal.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    if (role === 'creator') {
-      creatorTab.classList.add('active');
-      brandTab.classList.remove('active');
-      creatorForm.style.display = 'block';
-      brandForm.style.display = 'none';
-    } else {
-      brandTab.classList.add('active');
-      creatorTab.classList.remove('active');
-      brandForm.style.display = 'block';
-      creatorForm.style.display = 'none';
-    }
+    brandTab.classList.add('active');
+    creatorTab.classList.remove('active');
+    brandForm.style.display = 'block';
+    creatorForm.style.display = 'none';
   };
 
   window.closeMoldinModal = () => {
@@ -1005,10 +981,7 @@ function initGlobalModal() {
   });
 
   creatorTab.addEventListener('click', () => {
-    creatorTab.classList.add('active');
-    brandTab.classList.remove('active');
-    creatorForm.style.display = 'block';
-    brandForm.style.display = 'none';
+    window.open('https://forms.gle/CUitj8LUdULQovqw7', '_blank', 'noopener,noreferrer');
   });
 
   brandTab.addEventListener('click', () => {
@@ -1018,11 +991,11 @@ function initGlobalModal() {
     creatorForm.style.display = 'none';
   });
 
-  [creatorForm, brandForm].forEach(form => {
-    form.addEventListener('submit', (e) => {
+  if (brandForm) {
+    brandForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const submitBtn = form.querySelector('.modal-submit-btn');
-      const alertBox = form.querySelector('.modal-status-alert');
+      const submitBtn = brandForm.querySelector('.modal-submit-btn');
+      const alertBox = brandForm.querySelector('.modal-status-alert');
       submitBtn.disabled = true;
       submitBtn.textContent = 'Submitting...';
       setTimeout(() => {
@@ -1030,7 +1003,7 @@ function initGlobalModal() {
         if (alertBox) alertBox.style.display = 'block';
       }, 500);
     });
-  });
+  }
 }
 
 if (document.readyState === 'loading') {

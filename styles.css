@@ -288,7 +288,7 @@ moldin-button { display:inline-block; }
 
 /* COOL TWO CREATOR / BRAND ACTION BUTTONS */
 .cta-cool-buttons { display:grid; grid-template-columns:1fr; gap:calc(12 * var(--u)); }
-.cta-cool-btn { width:100%; border:none; border-radius:calc(16 * var(--u)); padding:calc(14 * var(--u)) calc(20 * var(--u)); cursor:pointer; text-align:left; transition:all .25s cubic-bezier(.34, 1.56, .64, 1); display:flex; flex-direction:column; gap:calc(2 * var(--u)); position:relative; overflow:hidden; }
+.cta-cool-btn { width:100%; border:none; border-radius:calc(16 * var(--u)); padding:calc(14 * var(--u)) calc(20 * var(--u)); cursor:pointer; text-align:left; text-decoration:none; transition:all .25s cubic-bezier(.34, 1.56, .64, 1); display:flex; flex-direction:column; gap:calc(2 * var(--u)); position:relative; overflow:hidden; }
 .cta-cool-btn:hover { transform:scale(1.025) translateY(-2px); }
 
 .cta-cool-btn--creator { background:var(--pink); color:#fff; box-shadow:0 calc(6 * var(--u)) calc(18 * var(--u)) rgba(246, 0, 158, 0.35); }
