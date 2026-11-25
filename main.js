@@ -90,9 +90,8 @@ class HeroSection extends HTMLElement {
           <p class="hero-subline-packed">That's it.</p>
         </div>
 
-        <!-- CREATOR TRIO (WITH BIG WHITE CIRCLE AS BACKGROUND) -->
+        <!-- CREATOR TRIO -->
         <div class="hero-creators-trio">
-          <div class="hero-trio-circle" aria-hidden="true"></div>
           <img class="hero-girl hero-girl-left" src="assets/characters/hero-creator-girl-left.png" alt="Creator girl in cyan hoodie facing left">
           <creator-image class="hero-person" person="hero"></creator-image>
           <img class="hero-girl hero-girl-right" src="assets/characters/hero-creator-girl-right.png" alt="Creator girl in pink sweatshirt facing right">
