@@ -278,7 +278,7 @@ ol {
 }
 
 .section {
-  padding: clamp(56px, 8vw, 96px) 0;
+  padding: clamp(48px, 5vw, 72px) 0;
   border-bottom: 1px solid var(--line);
 }
 
