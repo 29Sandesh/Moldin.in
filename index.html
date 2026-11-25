@@ -3,18 +3,465 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MOLDIN connects creators with brand opportunities.">
-    <title>MOLDIN — Brand deals for creators</title>
+    <meta name="description" content="MOLDIN — Thoughtful creator-brand matching run personally. Honest coordination, 0% taken from creators, private shortlists for emerging brands.">
+    <title>MOLDIN — Creator &amp; Brand Partnerships, Handled Personally</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,800;0,900;1,800;1,900&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=5.0">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=7.0">
   </head>
   <body>
-    <moldin-page></moldin-page>
-    <script type="module" src="main.js?v=4.0"></script>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="wordmark" href="index.html">moldin<span class="wordmark-dot">.</span></a>
+
+        <nav class="nav-links" id="primary-nav" aria-label="Primary navigation" data-nav-links>
+          <a href="campaigns.html">Formats</a>
+          <a href="brands.html">For Brands</a>
+          <a href="creators.html">For Creators</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="btn btn-sky btn-sm" href="#brief">Start a brief</a>
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="primary-nav"
+            data-nav-toggle
+          >Menu</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="hero-status">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span>Independent creator desk · Open for lean pilots</span>
+            </div>
+
+            <h1 class="hero-title">
+              Brands and creators, matched <span class="serif-accent">by hand.</span>
+            </h1>
+
+            <p class="hero-copy">
+              A quiet, founder-led studio connecting emerging consumer brands with vetted micro-creators. No public directories, no bloated retainers — every collaboration is coordinated personally from brief to live post.
+            </p>
+
+            <div class="hero-cta-row">
+              <a class="btn btn-sky" href="#brief">Brief a pilot campaign</a>
+              <a
+                class="btn btn-beige"
+                href="https://forms.gle/CUitj8LUdULQovqw7"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Join creator roster</a>
+            </div>
+          </div>
+
+          <aside class="hero-desk" aria-label="Operating principles summary">
+            <div class="desk-title">
+              <span>How we operate</span>
+              <span>2026</span>
+            </div>
+            <ul class="desk-list">
+              <li class="desk-item">
+                <span class="desk-key">Creator commission</span>
+                <span class="desk-val">0% cut — talent keeps 100% of agreed fee</span>
+              </li>
+              <li class="desk-item">
+                <span class="desk-key">Brand entry</span>
+                <span class="desk-val">Pilot batches (5–12 creators) before scaling</span>
+              </li>
+              <li class="desk-item">
+                <span class="desk-key">Shortlists &amp; rates</span>
+                <span class="desk-val">Shared privately per brief, never scraped online</span>
+              </li>
+              <li class="desk-item">
+                <span class="desk-key">Execution model</span>
+                <span class="desk-val">Direct human review from script angle to live link</span>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <!-- OPEN BY DEFAULT VS PRIVATE BY DESIGN -->
+      <section class="section" id="transparency">
+        <div class="container">
+          <div class="section-header">
+            <span class="kicker">Radical clarity, quiet discretion</span>
+            <h2 class="section-title">Open where it matters. Private where it protects everyone.</h2>
+            <p class="section-lead">
+              Most marketplaces expose creator contacts to spam or hide behind vague agency markups. We publish how we work openly while keeping people and client data protected.
+            </p>
+          </div>
+
+          <div class="ledger-grid">
+            <div class="ledger-col ledger-col--open">
+              <div class="ledger-col-head">
+                <h3>Shared openly</h3>
+                <span class="ledger-tag">Transparent</span>
+              </div>
+              <ul class="ledger-items">
+                <li>
+                  <strong>No cuts from creator payouts</strong>
+                  <span>Whatever deliverable fee a creator agrees to is what they earn. We never shave margins out of creator invoices.</span>
+                </li>
+                <li>
+                  <strong>Direct brand fee visibility</strong>
+                  <span>Brands receive a clear breakdown showing creator costs separately from our campaign coordination fee.</span>
+                </li>
+                <li>
+                  <strong>Human screening, zero automation</strong>
+                  <span>We inspect comment sections, pacing, and past brand integrations manually before suggesting a profile.</span>
+                </li>
+                <li>
+                  <strong>Test small first</strong>
+                  <span>Start with a lean pilot batch to judge creator quality and workflow fit before any ongoing commitment.</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="ledger-col ledger-col--private">
+              <div class="ledger-col-head">
+                <h3>Kept private</h3>
+                <span class="ledger-tag">Protected</span>
+              </div>
+              <ul class="ledger-items">
+                <li>
+                  <strong>No public searchable roster</strong>
+                  <span>Creator direct links, emails, and phone numbers are never dumped publicly, keeping talent free from spam or bypassing.</span>
+                </li>
+                <li>
+                  <strong>Bespoke quotes, not static rate cards</strong>
+                  <span>Usage rights, exclusivity, and deliverables shift every quote. Actual numbers are shared one-on-one per brief.</span>
+                </li>
+                <li>
+                  <strong>Client confidentiality respected</strong>
+                  <span>Partner budgets, product launch plans, and internal ad results never turn into loud public brag sheets.</span>
+                </li>
+                <li>
+                  <strong>Shared only on active briefs</strong>
+                  <span>Full media kits and sample links are sent directly once we confirm an actual niche and timeline match.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCESS -->
+      <section class="section" id="process">
+        <div class="container">
+          <div class="section-header">
+            <span class="kicker">Simple sequence</span>
+            <h2 class="section-title">From initial brief to live reels in four calm steps.</h2>
+          </div>
+
+          <div class="process-grid">
+            <article class="process-step">
+              <span class="process-num">01</span>
+              <h3>Share a quick brief</h3>
+              <p>Tell us your product, goal, and pilot comfort band. Takes under two minutes with zero obligation.</p>
+            </article>
+            <article class="process-step">
+              <span class="process-num">02</span>
+              <h3>Private shortlist</h3>
+              <p>Within 48 hours, we handpick 5–12 fit-checked creators and share sample work privately.</p>
+            </article>
+            <article class="process-step">
+              <span class="process-num">03</span>
+              <h3>Angles &amp; production</h3>
+              <p>We align talking angles, handle creator coordination, ship samples, and inspect cuts before posting.</p>
+            </article>
+            <article class="process-step">
+              <span class="process-num">04</span>
+              <h3>Clean wrap-up</h3>
+              <p>Live URLs, raw ad cuts if contracted, and direct payouts organized cleanly in one shared sheet.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLLECTIVE NICHE GLIMPSE (DISCREET) -->
+      <section class="section" id="collective">
+        <div class="container">
+          <div class="section-header">
+            <span class="kicker">Sample niches in our desk</span>
+            <h2 class="section-title">Real creators, quietly represented.</h2>
+            <p class="section-lead">
+              A small glimpse of active verticals across our vetted circle. Exact profiles and media kits unlock strictly upon relevant brand brief.
+            </p>
+          </div>
+
+          <div class="niches-grid">
+            <article class="niche-card">
+              <div class="niche-top">
+                <img class="niche-avatar" src="assets/creators_real/sandeshyaar_hd.jpg" alt="Tech & AI creator portrait" width="52" height="52" loading="lazy" decoding="async">
+                <div>
+                  <h3 class="niche-name">Tech &amp; AI Tools</h3>
+                  <span class="niche-band">80K–600K+ reach</span>
+                </div>
+              </div>
+              <p class="niche-desc">60-second software explainers, workflow demos, and founder-led app launches.</p>
+            </article>
+
+            <article class="niche-card">
+              <div class="niche-top">
+                <img class="niche-avatar" src="assets/creators_real/v4rnikaa_hd.jpg" alt="Fashion and UGC creator portrait" width="52" height="52" loading="lazy" decoding="async">
+                <div>
+                  <h3 class="niche-name">Fashion &amp; D2C UGC</h3>
+                  <span class="niche-band">20K–50K+ reach</span>
+                </div>
+              </div>
+              <p class="niche-desc">Clean unboxings, styling routines, and native reels built for both feeds and Meta ads.</p>
+            </article>
+
+            <article class="niche-card">
+              <div class="niche-top">
+                <img class="niche-avatar" src="assets/creators_real/shubham_joshii_hd.jpg" alt="Travel and lifestyle creator portrait" width="52" height="52" loading="lazy" decoding="async">
+                <div>
+                  <h3 class="niche-name">Travel &amp; Everyday</h3>
+                  <span class="niche-band">25K–55K+ reach</span>
+                </div>
+              </div>
+              <p class="niche-desc">Outdoor storytelling, transit accessories, consumer audio, and regional relatability.</p>
+            </article>
+
+            <article class="niche-card">
+              <div class="niche-top">
+                <img class="niche-avatar" src="assets/creators_real/aryann.aesthetics_hd.jpg" alt="Fitness and wellness creator portrait" width="52" height="52" loading="lazy" decoding="async">
+                <div>
+                  <h3 class="niche-name">Fitness &amp; Wellness</h3>
+                  <span class="niche-band">18K–40K+ reach</span>
+                </div>
+              </div>
+              <p class="niche-desc">Daily routine integrations, functional nutrition, recovery gear, and credible reviews.</p>
+            </article>
+          </div>
+
+          <div class="roster-note">
+            <span>Why aren't full handles &amp; rates listed publicly? To protect creator inboxes from scraping and keep pricing accurate per brief.</span>
+            <a class="btn btn-beige btn-sm" href="creators.html">How creators work with us</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- TWO PATHS -->
+      <section class="section">
+        <div class="container paths-grid">
+          <div class="path-card path-card--brand">
+            <div>
+              <span class="kicker">For Brands &amp; Media Buyers</span>
+              <h3>Start with a small pilot, not an expensive retainer.</h3>
+              <p>
+                Built for early-to-growth consumer brands, apps, and lean teams that want authentic content without managing 20 WhatsApp threads themselves.
+              </p>
+              <ul class="path-points">
+                <li>Pilot batch option (5–12 handpicked creators)</li>
+                <li>Script angles &amp; product logistics coordinated</li>
+                <li>Optional paid-ad whitelisting &amp; raw asset rights</li>
+              </ul>
+            </div>
+            <div>
+              <a class="btn btn-sky" href="brands.html">See brand details</a>
+            </div>
+          </div>
+
+          <div class="path-card path-card--creator">
+            <div>
+              <span class="kicker" style="color: var(--ink);">For Creators</span>
+              <h3>Keep 100% of your fee. Leave admin to us.</h3>
+              <p>
+                We never charge creators to join and never take cuts out of agreed deal payouts. Clear creative expectations upfront, respectful timelines, real briefs.
+              </p>
+              <ul class="path-points">
+                <li>0% commission deducted from creator pay</li>
+                <li>Profiles kept private outside matched brand shortlists</li>
+                <li>Apply once via quick Google Form</li>
+              </ul>
+            </div>
+            <div>
+              <a
+                class="btn btn-ink"
+                href="https://forms.gle/CUitj8LUdULQovqw7"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Apply as Creator</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section" id="faq">
+        <div class="container">
+          <div class="section-header">
+            <span class="kicker">Straight answers</span>
+            <h2 class="section-title">Questions brands and creators actually ask.</h2>
+          </div>
+
+          <div class="faq-list">
+            <details class="faq-item" open>
+              <summary>
+                <span>Why work with a small boutique desk instead of a large marketplace?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-body">
+                <p>Large self-serve platforms hand you thousands of unfiltered profiles and leave you doing all the DMing, shipping, and quality checks. Big agencies charge heavy retainers and hand execution down to junior reps. Because we stay small, you work directly with the operators screening every creator and reviewing every draft.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                <span>Why don't you publish a public creator database or fixed rate sheet?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-body">
+                <p>Public directories get scraped immediately, flooding creators with lowball spam and inviting brand bypassing. Static rate cards also ignore variables like paid ad whitelisting, usage duration, and creative complexity. Instead, we explain our commercial rules openly and share curated shortlists privately per brief.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                <span>How small can a first brand collaboration be?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-body">
+                <p>You can start with a focused pilot of 5 to 12 creators (or a compact UGC creative batch for ads). It gives you real evidence of our curation taste, delivery speed, and content performance before expanding.</p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>
+                <span>Is there really 0% cut taken from creators?</span>
+                <span class="faq-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-body">
+                <p>Yes. Creators receive 100% of their agreed collaboration fee. Our coordination fee is scoped transparently on the brand side as a separate line item—never hidden inside a creator's payout.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRAND BRIEF DESK -->
+      <section class="section" id="brief" style="border-bottom: none;">
+        <div class="container brief-wrap">
+          <div>
+            <span class="kicker">Private brief intake</span>
+            <h2 class="section-title">Tell us what you are launching.</h2>
+            <p class="section-lead" style="margin-bottom: 18px;">
+              Share basic parameters below. We review every brief directly and reply with a private creator shortlist match—never automated newsletters.
+            </p>
+            <ul class="path-points">
+              <li>Zero spam or automated sequences</li>
+              <li>Brief details stay strictly confidential</li>
+              <li>Reply with curated fits or honest feedback</li>
+            </ul>
+          </div>
+
+          <div>
+            <form class="brief-form" data-brief-form>
+              <div class="field-row">
+                <div class="field">
+                  <label for="brief-brand">Brand or product name</label>
+                  <input id="brief-brand" name="brand" type="text" placeholder="e.g. Kora Skincare" required>
+                </div>
+                <div class="field">
+                  <label for="brief-website">Website or Instagram link</label>
+                  <input id="brief-website" name="website" type="text" placeholder="yourbrand.in or @brand">
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Primary format needed</label>
+                <div class="brief-chips">
+                  <label class="chip-option">
+                    <input type="checkbox" name="focus" value="Creator Reels Wave">
+                    <span>Creator Reels</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="checkbox" name="focus" value="UGC for Paid Ads">
+                    <span>UGC for Paid Ads</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="checkbox" name="focus" value="Product Seeding Pilot">
+                    <span>Product Seeding</span>
+                  </label>
+                  <label class="chip-option">
+                    <input type="checkbox" name="focus" value="Tech / App Launch">
+                    <span>Tech / App Demo</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="brief-scope">Starting batch size</label>
+                  <select id="brief-scope" name="scope" required>
+                    <option value="">Choose starting comfort</option>
+                    <option value="Lean Pilot (5–10 creators)">Lean Pilot (5–10 creators)</option>
+                    <option value="Focused Wave (15–30 creators)">Focused Wave (15–30 creators)</option>
+                    <option value="UGC Ad Pack (5–15 raw/edited cuts)">UGC Ad Pack (5–15 cuts)</option>
+                    <option value="Unsure — let's discuss options">Not sure yet — suggest fit</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="brief-contact">Work email or WhatsApp</label>
+                  <input id="brief-contact" name="contact" type="text" placeholder="you@brand.in or +91 ..." required>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="brief-notes">Anything else helpful? (optional)</label>
+                <textarea id="brief-notes" name="notes" placeholder="Target audience, launch timeline, or creator style you prefer..."></textarea>
+              </div>
+
+              <button class="btn btn-sky" type="submit">Prepare Brief Summary</button>
+            </form>
+
+            <div class="brief-result" data-brief-result hidden>
+              <strong>Your structured brief is ready</strong>
+              <p style="margin: 0; font-size: 0.92rem; color: var(--ink-soft);">
+                We keep brand briefs off third-party trackers. Copy this clean summary and send it directly via Instagram DM (<a href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: var(--sky-deep); font-weight: 600;">@sandeshyaar</a>) or your existing thread with us.
+              </p>
+              <pre class="brief-summary-box" data-brief-summary></pre>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                <button class="btn btn-sky btn-sm" type="button" data-copy-brief>Copy brief summary</button>
+                <a class="btn btn-ink btn-sm" href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer">Send via DM</a>
+                <button class="btn btn-beige btn-sm" type="button" data-edit-brief>Edit brief</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <a class="wordmark" href="index.html">moldin<span class="wordmark-dot">.</span></a>
+          <p class="footer-meta" style="margin: 6px 0 0;">Boutique creator-brand coordination. Transparent terms, quiet execution.</p>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="campaigns.html">Formats</a>
+          <a href="brands.html">For Brands</a>
+          <a href="creators.html">For Creators</a>
+          <a href="https://forms.gle/CUitj8LUdULQovqw7" target="_blank" rel="noopener noreferrer">Creator Form</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script type="module" src="main.js?v=7.0"></script>
   </body>
 </html>
