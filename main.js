@@ -1,32 +1,72 @@
 /**
- * MOLDIN.IN — Minimal Progressive Enhancement
- * Handles responsive menu disclosure and static brief builder output.
+ * MOLDIN.india — Progressive Enhancement
+ * Handles scroll header state, responsive nav, quick access dialog, and brief desk.
  */
 
-const initNavigation = () => {
+const initHeader = () => {
+  const header = document.querySelector('[data-site-header]');
   const toggle = document.querySelector('[data-nav-toggle]');
   const menu = document.querySelector('[data-nav-links]');
-  if (!toggle || !menu) return;
 
-  const setOpen = (isOpen) => {
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    menu.classList.toggle('is-open', isOpen);
+  if (header && !header.classList.contains('site-header--solid')) {
+    const syncScroll = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 24);
+    };
+    window.addEventListener('scroll', syncScroll, { passive: true });
+    syncScroll();
+  }
+
+  if (toggle && menu) {
+    const setOpen = (isOpen) => {
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      menu.classList.toggle('is-open', isOpen);
+    };
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      setOpen(!open);
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => setOpen(false));
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+  }
+};
+
+const initAccessDialog = () => {
+  const dialog = document.querySelector('[data-access-dialog]');
+  if (!dialog) return;
+
+  const openers = document.querySelectorAll('[data-open-dialog]');
+  const closers = dialog.querySelectorAll('[data-close-dialog]');
+
+  const closeDialog = () => {
+    dialog.hidden = true;
+    document.body.style.overflow = '';
   };
 
-  toggle.addEventListener('click', () => {
-    const currentlyOpen = toggle.getAttribute('aria-expanded') === 'true';
-    setOpen(!currentlyOpen);
+  openers.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      dialog.hidden = false;
+      document.body.style.overflow = 'hidden';
+    });
   });
 
-  menu.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', () => setOpen(false));
+  closers.forEach((btn) => btn.addEventListener('click', closeDialog));
+
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) closeDialog();
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
-      setOpen(false);
-      toggle.focus();
-    }
+    if (event.key === 'Escape' && !dialog.hidden) closeDialog();
   });
 };
 
@@ -49,11 +89,11 @@ const initBriefForm = () => {
       const data = new FormData(form);
       const focusList = data.getAll('focus');
       const lines = [
-        'MOLDIN — Campaign Brief',
+        'MOLDIN.india — Brand Brief',
         `Brand / Product: ${String(data.get('brand') || '').trim()}`,
-        `Website or Social: ${String(data.get('website') || 'Not shared').trim()}`,
-        `Focus: ${focusList.length ? focusList.join(', ') : 'General match'}`,
-        `Starting Scope: ${String(data.get('scope') || '').trim()}`,
+        `Website or @Handle: ${String(data.get('website') || 'Not shared').trim()}`,
+        `Focus: ${focusList.length ? focusList.join(', ') : 'Creator Campaign'}`,
+        `Batch Size: ${String(data.get('scope') || '').trim()}`,
         `Contact: ${String(data.get('contact') || '').trim()}`,
         data.get('notes') ? `Notes: ${String(data.get('notes')).trim()}` : null
       ].filter(Boolean);
@@ -68,13 +108,13 @@ const initBriefForm = () => {
       copyBtn.addEventListener('click', async () => {
         try {
           await navigator.clipboard.writeText(summaryBox.textContent || '');
-          const prevText = copyBtn.textContent;
-          copyBtn.textContent = 'Copied to clipboard';
+          const prev = copyBtn.textContent;
+          copyBtn.textContent = 'Copied Brief';
           setTimeout(() => {
-            copyBtn.textContent = prevText;
+            copyBtn.textContent = prev;
           }, 2200);
         } catch {
-          copyBtn.textContent = 'Select & copy text above';
+          copyBtn.textContent = 'Select text to copy';
         }
       });
     }
@@ -90,10 +130,12 @@ const initBriefForm = () => {
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    initNavigation();
+    initHeader();
+    initAccessDialog();
     initBriefForm();
   });
 } else {
-  initNavigation();
+  initHeader();
+  initAccessDialog();
   initBriefForm();
 }
