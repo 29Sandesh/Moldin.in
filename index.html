@@ -1,52 +1,82 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MOLDIN.india — We connect creators with brands. Curated talent, transparent campaign coordination, 0% taken from creators.">
-    <title>MOLDIN.india® — We Connect Creators With Brands.</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MOLDIN.india® — We Connect Creators With Brands</title>
+    <meta
+      name="description"
+      content="MOLDIN.india® connects consumer brands with curated Indian creators directly. Star talent, 0% creator commission cut, agile pilots, and direct WhatsApp coordination."
+    >
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=9.0">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="site-header">
+      <div class="nav-inner">
+        <a class="brand-logo" href="#top" aria-label="MOLDIN.india home">
+          MOLDIN<span class="brand-dot">.india</span><sup>®</sup>
+        </a>
 
-    <header class="site-header" data-site-header>
-      <div class="header-inner">
-        <a class="wordmark" href="index.html">MOLDIN.india<sup>®</sup></a>
-
-        <nav class="nav-links" id="primary-nav" aria-label="Primary navigation" data-nav-links>
+        <nav class="nav-center" aria-label="Primary Navigation">
           <a href="brands.html">For Brands</a>
           <a href="creators.html">For Creators</a>
           <a href="campaigns.html">Campaigns</a>
           <a href="#how-it-works">How it Works</a>
         </nav>
 
-        <div class="header-actions">
-          <button class="header-login" type="button" data-open-dialog>Log In</button>
-          <button class="btn btn-cyan btn-sm" type="button" data-open-dialog>Get Started ↗</button>
+        <div class="nav-actions">
+          <button class="btn-text" type="button" data-open-access>Log In</button>
+          <a
+            class="btn btn-cyan btn-sm"
+            href="https://forms.gle/CUitj8LUdULQovqw7"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Get Started ↗</a>
           <button
-            class="nav-toggle"
+            class="mobile-toggle"
+            id="mobile-toggle"
             type="button"
+            aria-label="Toggle Menu"
             aria-expanded="false"
-            aria-controls="primary-nav"
-            data-nav-toggle
-          >Menu</button>
+            aria-controls="mobile-drawer"
+          >☰</button>
         </div>
+      </div>
+
+      <div class="mobile-drawer" id="mobile-drawer">
+        <a href="brands.html">For Brands</a>
+        <a href="creators.html">For Creators</a>
+        <a href="campaigns.html">Campaigns</a>
+        <a href="#how-it-works">How it Works</a>
+        <a href="#faq">Straight Answers</a>
+        <a
+          class="btn btn-cyan"
+          href="https://forms.gle/CUitj8LUdULQovqw7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Join as Creator ↗</a>
+        <button class="btn btn-outline" type="button" data-open-access>Log In</button>
       </div>
     </header>
 
-    <main id="main">
-      <!-- EXACT HERO STAGE MATCHING NEON CREATOR-BRAND CONNECTION HERO -->
+    <main>
+      <!-- 1. HERO STAGE: SEPARATED CREATOR CUTOUT + CONFIGURABLE 3D MOVING BRAND STRIPS -->
       <section class="hero-exact" id="top">
-        <div class="hero-stage-exact">
+        <div class="hero-stage-exact" id="hero-stage">
+          <canvas id="hero-bg-canvas" class="hero-canvas-layer hero-canvas-bg" aria-hidden="true"></canvas>
+          <canvas id="hero-rings-canvas" class="hero-canvas-layer hero-canvas-rings" aria-hidden="true"></canvas>
+
           <img
-            class="hero-plate-img"
-            src="assets/optimized/hero-neon-plate.webp"
-            alt="Creator in sunglasses surrounded by glowing neon cyan and pink brand ribbon"
+            class="hero-cutout-img"
+            src="assets/hero/hero-seated-cutout.webp"
+            alt="Creator wearing dark sunglasses seated inside kinetic 3D neon brand rings"
             width="1672"
             height="941"
             fetchpriority="high"
@@ -74,429 +104,253 @@
                 target="_blank"
                 rel="noopener noreferrer"
               >Join as Creator ↗</a>
-              <a class="btn btn-outline" href="#brief">Partner as Brand</a>
+              <a class="btn btn-outline" href="#collab">Partner as Brand</a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- CREATORS ROSTER SHOWCASE (AMLENDRA & SANDESH AS STARS + 6 VERIFIED CREATORS) -->
-      <section class="section section--glow section-divider" id="creators">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow-neon">Verified Talent Collective</span>
-              <h2 class="section-title">Featured <span class="italic-cyan">Creators.</span></h2>
-            </div>
-            <p class="section-lead">
-              Hand-vetted creators across tech, AI, fashion, fitness, travel, and lifestyle—led by our featured star creators.
-            </p>
-          </div>
+      <!-- 2. SMOOTH OBSIDIAN-TO-WHITE GRADIENT BRIDGE -->
+      <div class="obsidian-to-white-bridge" aria-hidden="true"></div>
 
-          <!-- TOP 2 STAR CREATORS: AMLENDRA KUMAR & SANDESH AGRAWAL -->
-          <div class="stars-grid">
-            <article class="star-card">
-              <div class="star-avatar-wrap">
-                <img
-                  class="star-avatar"
-                  src="assets/creators_real/amlendra.in.jpg"
-                  alt="Amlendra Kumar — Star Creator"
-                  width="108"
-                  height="108"
-                >
+      <!-- 3. CLEAN WHITE EDITORIAL CANVAS: PLAYING CARDS CREATOR ROSTER + WORKFLOW -->
+      <div class="light-canvas-stage" data-surface="light">
+        <section class="section" id="creators">
+          <div class="container">
+            <div class="editorial-header">
+              <div class="editorial-title-wrap">
+                <span class="eyebrow-light">
+                  <span class="eyebrow-star" aria-hidden="true">★</span>
+                  Verified Talent Collective
+                </span>
+                <h2>Featured <span class="text-cyan-ink">Creators.</span></h2>
               </div>
-              <div class="star-info">
-                <span class="star-pill"><b>★</b> Star Creator</span>
-                <h3>Amlendra Kumar <span class="verified-badge" title="Verified">✓</span></h3>
-                <a
-                  class="creator-handle"
-                  href="https://www.instagram.com/amlendra.in/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >@amlendra.in ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">626K Followers</span>
-                  <span class="meta-pill">AI &amp; Apps</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="star-card star-card--pink">
-              <div class="star-avatar-wrap">
-                <img
-                  class="star-avatar"
-                  src="assets/creators_real/sandeshyaar.jpg"
-                  alt="Sandesh Agrawal — Star Creator"
-                  width="108"
-                  height="108"
-                >
-              </div>
-              <div class="star-info">
-                <span class="star-pill"><b>★</b> Star Creator</span>
-                <h3>Sandesh Agrawal <span class="verified-badge" title="Verified">✓</span></h3>
-                <a
-                  class="creator-handle"
-                  href="https://www.instagram.com/sandeshyaar/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >@sandeshyaar ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">88K Followers</span>
-                  <span class="meta-pill">Tech &amp; AI</span>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <!-- REMAINING 6 VERIFIED CREATORS -->
-          <div class="roster-grid">
-            <article class="creator-card">
-              <img
-                class="creator-thumb"
-                src="assets/creators_real/shubham_joshii.jpg"
-                alt="Shubham Joshi"
-                width="72"
-                height="72"
-                loading="lazy"
-              >
-              <div class="creator-card-info">
-                <h3>Shubham Joshi <span class="verified-badge" title="Verified">✓</span></h3>
-                <a
-                  class="creator-handle"
-                  href="https://www.instagram.com/shubham_joshii/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >@shubham_joshii ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">50K</span>
-                  <span class="meta-pill">Travel</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="creator-card">
-              <img
-                class="creator-thumb"
-                src="assets/creators_real/v4rnikaa.jpg"
-                alt="Varnika"
-                width="72"
-                height="72"
-                loading="lazy"
-              >
-              <div class="creator-card-info">
-                <h3>Varnika <span class="verified-badge" title="Verified">✓</span></h3>
-                <a
-                  class="creator-handle"
-                  href="https://www.instagram.com/v4rnikaa/reels/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >@v4rnikaa ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">45.3K</span>
-                  <span class="meta-pill">Fashion</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="creator-card">
-              <img
-                class="creator-thumb"
-                src="assets/creators_real/shrey_.aaaa.jpg"
-                alt="Shree"
-                width="72"
-                height="72"
-                loading="lazy"
-              >
-              <div class="creator-card-info">
-                <h3>Shree <span class="verified-badge" title="Verified">✓</span></h3>
-                <a
-                  class="creator-handle"
-                  href="https://www.instagram.com/shrey_.aaaa/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >@shrey_.aaaa ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">30.1K</span>
-                  <span class="meta-pill">Beauty</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="creator-card">
-              <img
-                class="creator-thumb"
-                src="assets/creators_real/paraamjain.jpg"
-                alt="Param Jain"
-                width="72"
-                height="72"
-                loading="lazy"
-              >
-              <div class="creator-card-info">
-                <h3>Param Jain <span class="verified-badge" title="Verified">✓</span></h3>
-                <a
-                  class="creator-handle"
-                  href="https://www.instagram.com/paraamjain/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >@paraamjain ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">28.8K</span>
-                  <span class="meta-pill">Travel</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="creator-card">
-              <img
-                class="creator-thumb"
-                src="assets/creators_real/aryann.aesthetics.jpg"
-                alt="Aryan H Choudharry"
-                width="72"
-                height="72"
-                loading="lazy"
-              >
-              <div class="creator-card-info">
-                <h3>Aryan H Choudharry <span class="verified-badge" title="Verified">✓</span></h3>
-                <a
-                  class="creator-handle"
-                  href="https://www.instagram.com/aryann.aesthetics/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >@aryann.aesthetics ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">24.9K</span>
-                  <span class="meta-pill">Fitness</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="creator-card">
-              <img
-                class="creator-thumb"
-                src="assets/creators_real/d1vyya._.jpg"
-                alt="Divya Vashishtha"
-                width="72"
-                height="72"
-                loading="lazy"
-              >
-              <div class="creator-card-info">
-                <h3>Divya Vashishtha <span class="verified-badge" title="Verified">✓</span></h3>
-                <a
-                  class="creator-handle"
-                  href="https://www.instagram.com/d1vyya._/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >@d1vyya._ ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">18.7K</span>
-                  <span class="meta-pill">Model</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- HOW IT WORKS -->
-      <section class="section section-divider" id="how-it-works">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow-neon eyebrow-neon--pink">Simple Workflow</span>
-              <h2 class="section-title">From brief to live reels <span class="italic-pink">in 3 steps.</span></h2>
-            </div>
-            <p class="section-desc">
-              Human-screened creator matching and clear campaign tracking without clunky software bloat.
-            </p>
-          </div>
-
-          <div class="steps-grid">
-            <article class="glass-card">
-              <div class="step-num-glow">01</div>
-              <h3>Share Your Goal</h3>
-              <p>Brands outline their product, format, and pilot budget comfort. Creators join once via our quick Google Form.</p>
-            </article>
-
-            <article class="glass-card">
-              <div class="step-num-glow">02</div>
-              <h3>Handpicked Matching</h3>
-              <p>We manually check audience engagement and content fit—never auto-blasting unvetted directories.</p>
-            </article>
-
-            <article class="glass-card">
-              <div class="step-num-glow">03</div>
-              <h3>Create &amp; Settle Cleanly</h3>
-              <p>Creative angles, draft reviews, live post URLs, and 0%-cut creator payouts managed cleanly end to end.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- DUAL PATHS: CREATORS VS BRANDS -->
-      <section class="section section--glow section-divider" id="brands">
-        <div class="container paths-grid">
-          <article class="path-panel path-panel--cyan">
-            <div>
-              <span class="eyebrow-neon">For Creators</span>
-              <h3>Keep 100% of your fee. Focus on creating.</h3>
-              <p>No commission shaved off your payout, no paid profile boosts, and real briefs matching your style.</p>
-              <ul class="path-bullets">
-                <li>0% commission taken from creator deals</li>
-                <li>Clear deliverables and timelines upfront</li>
-                <li>Quick 2-minute onboarding via Google Form</li>
-              </ul>
-            </div>
-            <div>
-              <a
-                class="btn btn-cyan"
-                href="https://forms.gle/CUitj8LUdULQovqw7"
-                target="_blank"
-                rel="noopener noreferrer"
-              >Join as Creator ↗</a>
-            </div>
-          </article>
-
-          <article class="path-panel path-panel--pink">
-            <div>
-              <span class="eyebrow-neon eyebrow-neon--pink">For Brands</span>
-              <h3>Run curated creator batches without retainer bloat.</h3>
-              <p>Start with a focused pilot of vetted creators, see line-item costs openly, and review every cut before posting.</p>
-              <ul class="path-bullets">
-                <li>Pilot-friendly campaigns (5–15+ creators)</li>
-                <li>Transparent talent cost vs coordination fee split</li>
-                <li>Live sheet tracking drafts, dates &amp; URLs</li>
-              </ul>
-            </div>
-            <div>
-              <a class="btn btn-outline" href="#brief">Partner as Brand</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- FAQ & BRAND BRIEF DESK -->
-      <section class="section section-divider" id="brief">
-        <div class="container faq-brief-grid">
-          <div>
-            <span class="eyebrow-neon">Questions</span>
-            <h2 class="section-title" style="margin-bottom: 22px;">Straight <span class="italic-cyan">answers.</span></h2>
-
-            <div class="faq-list">
-              <details class="faq-item" open>
-                <summary>
-                  <span>Is MOLDIN really free for creators?</span>
-                  <span class="faq-plus" aria-hidden="true">+</span>
-                </summary>
-                <div class="faq-body">
-                  <p>Yes—0% cut from agreed creator payouts and zero signup fees. Apply once via our Google Form.</p>
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>
-                  <span>How small of a brand campaign can we start with?</span>
-                  <span class="faq-plus" aria-hidden="true">+</span>
-                </summary>
-                <div class="faq-body">
-                  <p>Brands can start with a lean 5–12 creator pilot or a compact UGC ad batch before scaling up.</p>
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>
-                  <span>How do you verify creator quality?</span>
-                  <span class="faq-plus" aria-hidden="true">+</span>
-                </summary>
-                <div class="faq-body">
-                  <p>Real humans inspect engagement comments, content pacing, and audience relevance—zero fake bot pools.</p>
-                </div>
-              </details>
-
-              <details class="faq-item">
-                <summary>
-                  <span>How are custom campaign quotes structured?</span>
-                  <span class="faq-plus" aria-hidden="true">+</span>
-                </summary>
-                <div class="faq-body">
-                  <p>Pricing depends on creator tier, usage/whitelisting rights, and batch size. We share exact line-item quotes privately per brief.</p>
-                </div>
-              </details>
-            </div>
-          </div>
-
-          <div class="brief-panel">
-            <h3>Start a Brand Brief</h3>
-            <p>Share your product and target batch size—we’ll prepare matched creator fits privately.</p>
-
-            <form class="brief-form" data-brief-form>
-              <div class="field-row">
-                <div class="field">
-                  <label for="brief-brand">Brand or Product</label>
-                  <input id="brief-brand" name="brand" type="text" placeholder="e.g. Nonstop / Your Brand" required>
-                </div>
-                <div class="field">
-                  <label for="brief-website">Website or @Handle</label>
-                  <input id="brief-website" name="website" type="text" placeholder="yourbrand.in">
-                </div>
-              </div>
-
-              <div class="field">
-                <label>Campaign Focus</label>
-                <div class="brief-chips">
-                  <label class="chip-option">
-                    <input type="checkbox" name="focus" value="Creator Reels">
-                    <span>Creator Reels</span>
-                  </label>
-                  <label class="chip-option">
-                    <input type="checkbox" name="focus" value="UGC for Ads">
-                    <span>UGC for Ads</span>
-                  </label>
-                  <label class="chip-option">
-                    <input type="checkbox" name="focus" value="Tech / App Demo">
-                    <span>Tech / App Demo</span>
-                  </label>
-                  <label class="chip-option">
-                    <input type="checkbox" name="focus" value="Product Seeding">
-                    <span>Seeding Pilot</span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="field-row">
-                <div class="field">
-                  <label for="brief-scope">Target Scope</label>
-                  <select id="brief-scope" name="scope" required>
-                    <option value="">Select scope</option>
-                    <option value="Lean Pilot (5–10 creators)">Lean Pilot (5–10 creators)</option>
-                    <option value="Focused Wave (15–30 creators)">Focused Wave (15–30 creators)</option>
-                    <option value="50+ Creator Scale">50+ Creator Scale</option>
-                    <option value="UGC Ad Pack (5–15 cuts)">UGC Ad Pack (5–15 cuts)</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="brief-contact">Email or WhatsApp</label>
-                  <input id="brief-contact" name="contact" type="text" placeholder="you@brand.in" required>
-                </div>
-              </div>
-
-              <div class="field">
-                <label for="brief-notes">Quick Notes (optional)</label>
-                <textarea id="brief-notes" name="notes" placeholder="Launch timeline, preferred niches, or usage rights..."></textarea>
-              </div>
-
-              <button class="btn btn-cyan" type="submit">Prepare Brief Summary ↗</button>
-            </form>
-
-            <div class="brief-result" data-brief-result hidden>
-              <strong>Your structured brief is ready</strong>
-              <p style="margin: 0; font-size: 0.9rem; color: var(--text-soft);">
-                Copy your brief below and DM directly to <a href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer" style="color: var(--cyan); text-decoration: underline; font-weight: 700;">@sandeshyaar</a> or send in your existing thread.
+              <p class="editorial-lead">
+                Hand-vetted creators across tech, AI, fashion, fitness, travel, and lifestyle—led by our two Golden Star Creators.
               </p>
-              <pre class="brief-summary-box" data-brief-summary></pre>
-              <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                <button class="btn btn-cyan btn-sm" type="button" data-copy-brief>Copy Brief</button>
-                <a class="btn btn-outline btn-sm" href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer">Send via DM ↗</a>
-                <button class="btn btn-outline btn-sm" type="button" data-edit-brief>Edit</button>
+            </div>
+
+            <!-- TOP ROW: 2 GOLDEN STAR KING PLAYING CARDS (RENDERED FROM BRANDS-CONFIG) -->
+            <div class="stars-deck-grid" id="stars-deck" aria-label="Golden Star Creators"></div>
+
+            <!-- BOTTOM 3x2 GRID: 6 KING & QUEEN PLAYING CARDS (RENDERED FROM BRANDS-CONFIG) -->
+            <div class="roster-deck-grid" id="roster-deck" aria-label="Featured Creators Deck"></div>
+          </div>
+        </section>
+
+        <!-- WORKFLOW ON WHITE EDITORIAL SURFACE -->
+        <section class="section workflow-section-light" id="how-it-works">
+          <div class="container">
+            <div class="editorial-header workflow-header">
+              <div class="editorial-title-wrap">
+                <span class="eyebrow-light eyebrow-pink-ink">Simple Workflow</span>
+                <h2>From brief to live reels <span class="text-pink-underline">in 3 steps.</span></h2>
+              </div>
+              <p class="editorial-lead">
+                Human-screened creator matching and clear campaign coordination without agency markups or clunky software bloat.
+              </p>
+            </div>
+
+            <div class="workflow-track">
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num">01</span>
+                  <span class="step-tag">Intake</span>
+                </div>
+                <h3>Share Your Goal</h3>
+                <p>
+                  Brands drop a fast 2-line collab idea directly on WhatsApp. Creators join once via our quick intake form at 0% fee cut.
+                </p>
+              </article>
+
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num step-num-pink">02</span>
+                  <span class="step-tag">Curation</span>
+                </div>
+                <h3>Handpicked Matching</h3>
+                <p>
+                  We inspect real reel retention, audience comment trust, and niche alignment—never auto-blasting unvetted directories.
+                </p>
+              </article>
+
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num">03</span>
+                  <span class="step-tag">Execution</span>
+                </div>
+                <h3>Create &amp; Settle Cleanly</h3>
+                <p>
+                  Hooks, draft previews, live reel links, and clean direct creator payouts handled start to finish with full clarity.
+                </p>
+              </article>
+            </div>
+
+            <div class="light-cta-strip">
+              <div>
+                <strong>Zero-cut creator model. Lean brand pilots.</strong>
+                <span>Start with 3–12 curated voices or join our next talent intake.</span>
+              </div>
+              <div class="light-cta-actions">
+                <a
+                  class="btn btn-dark-solid"
+                  href="https://forms.gle/CUitj8LUdULQovqw7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Apply via Creator Form ↗</a>
+                <a class="btn btn-cyan-solid" href="#collab">Talk Brand Collab →</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- 4. SMOOTH WHITE-TO-OBSIDIAN GRADIENT BRIDGE -->
+      <div class="white-to-obsidian-bridge" aria-hidden="true"></div>
+
+      <!-- 5. BOTTOM NEON WHATSAPP + STRAIGHT ANSWERS FAQ HERO FINALE -->
+      <section class="neon-faq-finale" id="faq">
+        <div class="finale-glow finale-glow-tl" aria-hidden="true"></div>
+        <div class="finale-glow finale-glow-br" aria-hidden="true"></div>
+
+        <div class="container">
+          <div class="finale-grid" id="collab">
+            <!-- LEFT COLUMN: STRAIGHT ANSWERS ACCORDION -->
+            <div class="finale-faq-col">
+              <span class="eyebrow-neon">QUESTIONS</span>
+              <h2 class="finale-heading">
+                Straight <span class="text-cyan">Answers.</span>
+              </h2>
+
+              <div class="faq-accordion" role="region" aria-label="Frequently Asked Questions">
+                <div class="faq-item is-open" data-faq-item>
+                  <button
+                    class="faq-trigger"
+                    type="button"
+                    aria-expanded="true"
+                    aria-controls="faq-panel-1"
+                    data-faq-trigger
+                  >
+                    <span>Is MOLDIN really free for creators?</span>
+                    <span class="faq-icon" data-faq-symbol aria-hidden="true">−</span>
+                  </button>
+                  <div class="faq-panel" id="faq-panel-1" data-faq-panel>
+                    <p>
+                      Yes—0% cut from agreed creator payouts and zero signup fees. Apply once via our intake and you’re in.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="faq-item" data-faq-item>
+                  <button
+                    class="faq-trigger"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-panel-2"
+                    data-faq-trigger
+                  >
+                    <span>How small of a brand campaign can we start with?</span>
+                    <span class="faq-icon" data-faq-symbol aria-hidden="true">+</span>
+                  </button>
+                  <div class="faq-panel" id="faq-panel-2" data-faq-panel hidden>
+                    <p>
+                      Start lean with a curated pilot batch of 3 to 12 creators so you can validate hooks, click-throughs, and CPA before scaling budget.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="faq-item" data-faq-item>
+                  <button
+                    class="faq-trigger"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-panel-3"
+                    data-faq-trigger
+                  >
+                    <span>How do you verify creator quality?</span>
+                    <span class="faq-icon" data-faq-symbol aria-hidden="true">+</span>
+                  </button>
+                  <div class="faq-panel" id="faq-panel-3" data-faq-panel hidden>
+                    <p>
+                      We audit real engagement rates, comment sentiment, and organic audience demographics by hand—zero inflated bot accounts or auto-scraped databases.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="faq-item" data-faq-item>
+                  <button
+                    class="faq-trigger"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls="faq-panel-4"
+                    data-faq-trigger
+                  >
+                    <span>How are custom campaign quotes structured?</span>
+                    <span class="faq-icon" data-faq-symbol aria-hidden="true">+</span>
+                  </button>
+                  <div class="faq-panel" id="faq-panel-4" data-faq-panel hidden>
+                    <p>
+                      You receive a clean, itemized creator shortlist with deliverables and exact budgets upfront—no recurring SaaS subscription or bloated retainers.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT COLUMN: HAVE A BRAND COLLAB? + 3D NEON WHATSAPP PHONE -->
+            <div class="finale-whatsapp-col" id="brief">
+              <div class="whatsapp-copy-block">
+                <h2 class="collab-title">
+                  Have a<br>
+                  Brand<br>
+                  <span class="text-cyan collab-swoosh-wrap">
+                    Collab?
+                    <svg class="collab-cyan-swoosh" viewBox="0 0 210 18" fill="none" aria-hidden="true">
+                      <path d="M5 13C66 4 148 3 204 11" stroke="#00E8F8" stroke-width="5.5" stroke-linecap="round"/>
+                    </svg>
+                  </span>
+                </h2>
+                <p class="collab-sub">
+                  Skip the form. Just DM us on WhatsApp with your brand, product, and campaign idea.
+                </p>
+
+                <button class="btn btn-cyan btn-wa-hero" type="button" data-open-whatsapp>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M12 2.5C6.75 2.5 2.5 6.64 2.5 11.75c0 1.85.55 3.63 1.59 5.14L2.9 21.3l4.58-1.16A9.58 9.58 0 0 0 12 21c5.25 0 9.5-4.14 9.5-9.25S17.25 2.5 12 2.5Z"
+                      stroke="#03060a"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M9.4 8.7c-.24-.5-.52-.5-.76-.5h-.65c-.22 0-.58.08-.88.41-.3.33-1.15 1.1-1.15 2.68s1.18 3.1 1.34 3.31c.17.21 2.27 3.55 5.6 4.83 2.77 1.07 3.33.86 3.93.8.6-.05 1.94-.77 2.22-1.52.27-.75.27-1.39.19-1.52-.08-.14-.3-.22-.63-.38-.33-.17-1.94-.94-2.24-1.05-.3-.1-.52-.16-.74.16-.22.33-.85 1.05-1.04 1.27-.2.22-.39.25-.72.08-.33-.16-1.38-.5-2.64-1.6-.98-.85-1.63-1.9-1.82-2.23-.19-.33-.02-.5.14-.67.15-.15.33-.38.5-.58.16-.19.22-.33.33-.55.1-.22.05-.41-.03-.58l-.69-1.55Z"
+                      fill="#03060a"
+                    />
+                  </svg>
+                  <span>WhatsApp Me ↗</span>
+                </button>
+
+                <p class="reply-status">
+                  <span class="status-online-dot" aria-hidden="true"></span>
+                  Typically replies in a few minutes
+                </p>
+              </div>
+
+              <div class="whatsapp-phone-stage">
+                <img
+                  class="wa-phone-img"
+                  src="assets/hero/whatsapp-phone.webp"
+                  alt="Neon cyan WhatsApp preview on angled smartphone over dark stone pedestal"
+                  width="896"
+                  height="1200"
+                  loading="lazy"
+                >
+                <button class="wa-speech-bubble" type="button" data-open-whatsapp>
+                  <span>DM us on<br><strong>WhatsApp</strong></span>
+                  <svg class="wa-send-plane" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M21 3L10 14M21 3L14.5 21L10 14L3 9.5L21 3Z" fill="#00E8F8"/>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
@@ -504,43 +358,87 @@
       </section>
     </main>
 
-    <!-- QUICK ACCESS DIALOG (Get Started ↗ / Log In) -->
-    <div class="neon-dialog" data-access-dialog hidden role="dialog" aria-modal="true" aria-labelledby="dialog-title">
-      <div class="neon-dialog-box">
-        <button class="dialog-close" type="button" aria-label="Close modal" data-close-dialog>×</button>
-        <span class="eyebrow-neon">MOLDIN.india®</span>
-        <h2 id="dialog-title" style="font-size: 1.55rem; font-weight: 800; margin-bottom: 10px;">Choose your track</h2>
-        <p style="color: var(--text-soft); font-size: 0.94rem; margin-bottom: 22px;">
-          Creators join directly via our official Google Form. Brands can prepare a quick brief right away.
-        </p>
-        <div style="display: grid; gap: 12px;">
-          <a
-            class="btn btn-cyan"
-            href="https://forms.gle/CUitj8LUdULQovqw7"
-            target="_blank"
-            rel="noopener noreferrer"
-          >I’m a Creator — Join Form ↗</a>
-          <a class="btn btn-outline" href="#brief" data-close-dialog>I’m a Brand — Start a Brief</a>
-        </div>
-      </div>
-    </div>
-
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <div>
-          <a class="wordmark" href="index.html">MOLDIN.india<sup>®</sup></a>
-          <p class="footer-note">Connecting verified creators with modern brands—cleanly and transparently.</p>
+      <div class="container">
+        <div class="footer-row">
+          <div>
+            <a class="brand-logo" href="#top">MOLDIN<span class="brand-dot">.india</span><sup>®</sup></a>
+            <p class="footer-note">
+              Direct brand-creator matchmakers. Editable hero brand strips, vetted stars &amp; 0% creator fee.
+            </p>
+          </div>
+          <nav class="footer-links" aria-label="Footer Links">
+            <a href="brands.html">For Brands</a>
+            <a href="creators.html">For Creators</a>
+            <a href="campaigns.html">Campaigns</a>
+            <a
+              href="https://forms.gle/CUitj8LUdULQovqw7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Join Form ↗</a>
+          </nav>
         </div>
-
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="brands.html">For Brands</a>
-          <a href="creators.html">For Creators</a>
-          <a href="campaigns.html">Campaigns</a>
-          <a href="https://forms.gle/CUitj8LUdULQovqw7" target="_blank" rel="noopener noreferrer">Join Form ↗</a>
-        </nav>
+        <div class="footer-bottom">
+          <span>© 2026 MOLDIN.india — Independent Creator Matchmaking Desk</span>
+          <a href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer">
+            @sandeshyaar ↗
+          </a>
+        </div>
       </div>
     </footer>
 
-    <script type="module" src="main.js?v=9.0"></script>
+    <!-- LOG IN / QUICK ROUTING DIALOG -->
+    <dialog class="moldin-dialog" id="access-modal" aria-labelledby="access-title">
+      <div class="dialog-head">
+        <span class="eyebrow-neon">Direct Access</span>
+        <button class="dialog-close" type="button" data-close-access aria-label="Close">✕</button>
+      </div>
+      <h3 id="access-title">Continue with <span class="text-cyan">MOLDIN.india®</span></h3>
+      <p>
+        We skip bloated creator dashboards. Creators register once via Google Form; brands jump straight to WhatsApp or DM.
+      </p>
+      <div class="dialog-actions">
+        <a
+          class="btn btn-cyan"
+          href="https://forms.gle/CUitj8LUdULQovqw7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Creator Intake Form ↗</a>
+        <a class="btn btn-outline" href="#collab" data-close-access>Message Brand Desk</a>
+      </div>
+    </dialog>
+
+    <!-- WHATSAPP QUICK-COLLAB COMPOSER DIALOG -->
+    <dialog class="moldin-dialog" id="whatsapp-modal" aria-labelledby="wa-modal-title">
+      <div class="dialog-head">
+        <span class="eyebrow-neon">Direct Collab Desk</span>
+        <button class="dialog-close" type="button" data-close-whatsapp aria-label="Close">✕</button>
+      </div>
+      <h3 id="wa-modal-title">DM us on <span class="text-cyan">WhatsApp</span></h3>
+      <p>Drop two lines below and open WhatsApp pre-filled — or copy straight into your thread.</p>
+      <form class="wa-modal-form" id="wa-collab-form">
+        <div class="wa-field">
+          <label for="wa-brand">Brand or Product</label>
+          <input id="wa-brand" type="text" placeholder="e.g. D2C Skincare / SaaS AI tool">
+        </div>
+        <div class="wa-field">
+          <label for="wa-goal">Campaign Idea</label>
+          <textarea id="wa-goal" rows="2" placeholder="e.g. 5 tech creators for product launch reels"></textarea>
+        </div>
+        <div class="dialog-actions">
+          <button class="btn btn-cyan" type="submit">Open WhatsApp ↗</button>
+          <button class="btn btn-outline" type="button" id="wa-copy-btn">Copy Note</button>
+          <a
+            class="btn btn-outline"
+            href="https://www.instagram.com/sandeshyaar/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >IG DM @sandeshyaar ↗</a>
+        </div>
+        <p class="wa-status-msg" id="wa-status-msg" aria-live="polite"></p>
+      </form>
+    </dialog>
+
+    <script type="module" src="main.js"></script>
   </body>
 </html>
