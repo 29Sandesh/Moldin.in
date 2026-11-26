@@ -273,25 +273,25 @@ const drawAmbientNeonArcs = (ctx, w, h, timeSec) => {
   ctx.fillStyle = blAura;
   ctx.fillRect(0, 0, w, h);
 
-  // Melt blurred glow haze seamlessly into pure #02040a at bottom edge before crisp side rails
-  const bottomMelt = ctx.createLinearGradient(0, h - Math.min(130, h * 0.16), 0, h);
+  // Smooth ambient melt along bottom perimeter so Hero blends cleanly into the transition mist
+  const bottomMelt = ctx.createLinearGradient(0, h - Math.min(115, h * 0.14), 0, h);
   bottomMelt.addColorStop(0, 'rgba(2, 4, 10, 0)');
-  bottomMelt.addColorStop(0.6, 'rgba(2, 4, 10, 0.72)');
+  bottomMelt.addColorStop(0.58, 'rgba(2, 4, 10, 0.72)');
   bottomMelt.addColorStop(1, 'rgba(2, 4, 10, 1)');
   ctx.fillStyle = bottomMelt;
-  ctx.fillRect(0, h - Math.min(130, h * 0.16), w, Math.min(130, h * 0.16));
+  ctx.fillRect(0, h - Math.min(115, h * 0.14), w, Math.min(115, h * 0.14));
 
-  // Crisp left cyan & right pink rim rails drawn AFTER melt so strips stay 100% continuous across edge
+  // Crisp left cyan & right pink rim rails curving organically around the Hero frame
   ctx.save();
   ctx.beginPath();
-  ctx.arc(leftCx, leftCy, leftR, -0.45 * Math.PI, 0.44 * Math.PI);
+  ctx.arc(leftCx, leftCy, leftR, -0.45 * Math.PI, 0.34 * Math.PI);
   ctx.strokeStyle = 'rgba(0, 232, 248, 0.88)';
   ctx.lineWidth = 2.8;
   ctx.shadowColor = '#00e8f8';
   ctx.shadowBlur = 20;
   ctx.stroke();
 
-  const cometL = -0.35 * Math.PI + ((timeSec * 0.32) % 0.78) * Math.PI;
+  const cometL = -0.35 * Math.PI + ((timeSec * 0.32) % 0.7) * Math.PI;
   ctx.beginPath();
   ctx.arc(leftCx, leftCy, leftR, cometL, cometL + 0.24);
   ctx.strokeStyle = 'rgba(220, 255, 255, 0.96)';
@@ -300,7 +300,7 @@ const drawAmbientNeonArcs = (ctx, w, h, timeSec) => {
   ctx.stroke();
 
   ctx.beginPath();
-  ctx.arc(rightCx, rightCy, rightR, 0.56 * Math.PI, 1.38 * Math.PI);
+  ctx.arc(rightCx, rightCy, rightR, 0.68 * Math.PI, 1.38 * Math.PI);
   ctx.strokeStyle = 'rgba(250, 4, 156, 0.9)';
   ctx.lineWidth = 2.8;
   ctx.shadowColor = '#fa049c';

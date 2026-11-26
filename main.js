@@ -335,8 +335,8 @@ export const initWhatsappCollab = () => {
 
   const composeText = () => {
     const brand = document.getElementById('wa-brand')?.value.trim() || 'Our Brand';
-    const goal = document.getElementById('wa-goal')?.value.trim() || 'Creator pilot campaign';
-    return `Hi MOLDIN.india! We want to discuss a brand collab.\nBrand / Product: ${brand}\nCampaign Idea: ${goal}`;
+    const goal = document.getElementById('wa-goal')?.value.trim() || 'Full creator campaign takeover';
+    return `Hi MOLDIN.india! We want to discuss a full creator campaign.\nBrand / Product: ${brand}\nCampaign Goal: ${goal}`;
   };
 
   if (waForm) {
@@ -412,16 +412,16 @@ export const initBriefForm = () => {
     const brand = String(data.get('brand') || '').trim();
     const contact = String(data.get('contact') || '').trim();
     const goal = String(data.get('goal') || '').trim();
-    const budget = String(data.get('budget') || '').trim();
+    const scope = String(data.get('budget') || '').trim();
 
     if (!brand || !contact) return;
 
     summaryText.textContent = [
-      'MOLDIN Brand Pilot Brief',
+      'MOLDIN Full-Campaign Brief',
       `Brand: ${brand}`,
       `Contact: ${contact}`,
-      `Pilot Comfort: ${budget || 'Open / Pilot'}`,
-      `Goal: ${goal || 'Handpicked Creator Pilot'}`,
+      `Scale: ${scope || 'Full Multi-Creator Wave'}`,
+      `Goal: ${goal || 'End-to-End Campaign Takeover'}`,
     ].join('\n');
 
     resultBox.hidden = false;

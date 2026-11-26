@@ -444,35 +444,29 @@ h3 {
 }
 
 /* ==========================================================================
-   2. SMOOTH OBSIDIAN -> PURE WHITE GRADIENT BRIDGE (Ultra-Smooth Dissolve)
+   2. SMOOTH OBSIDIAN -> PURE WHITE GRADIENT BRIDGE (Compact & Seamless)
    ========================================================================== */
 
 .obsidian-to-white-bridge {
   position: relative;
-  height: clamp(290px, 28vw, 440px);
+  height: clamp(82px, 8.5vw, 128px);
   margin-top: -2px;
   margin-bottom: -2px;
   background: linear-gradient(
     180deg,
     #02040a 0%,
-    #04070f 10%,
-    #0a0f1b 20%,
-    #141c2d 30%,
-    #253045 41%,
-    #3d4a62 52%,
-    #5f6b82 62%,
-    #8893a7 72%,
-    #b2bac8 81%,
-    #d5dae3 89%,
-    #edf0f5 95%,
-    #fafbfd 98%,
+    #0a101d 18%,
+    #253045 38%,
+    #68758c 60%,
+    #bac2d0 78%,
+    #ebeff5 91%,
     #ffffff 100%
   );
   pointer-events: none;
 }
 
 /* ==========================================================================
-   3. CLEAN WHITE EDITORIAL CANVAS: PLAYING CARD ROSTER + WORKFLOWS
+   3. CLEAN WHITE EDITORIAL CANVAS: PLAYING CARDS + WORKFLOW + PAST CAMPAIGNS
    ========================================================================== */
 
 .light-canvas-stage {
@@ -487,7 +481,11 @@ h3 {
 }
 
 .section {
-  padding: clamp(2.8rem, 5.5vw, 5.2rem) 0;
+  padding: clamp(2.2rem, 4.5vw, 4rem) 0;
+}
+
+#creators {
+  padding-top: clamp(0.85rem, 2vw, 1.65rem);
 }
 
 .editorial-header {
@@ -936,8 +934,8 @@ h3 {
    ========================================================================== */
 
 .workflow-section-light {
-  padding-top: 1.8rem;
-  padding-bottom: clamp(4.2rem, 7vw, 6.2rem);
+  padding-top: 1.4rem;
+  padding-bottom: clamp(1.8rem, 3.5vw, 2.8rem);
 }
 
 .workflow-track {
@@ -1047,28 +1045,138 @@ h3 {
 }
 
 /* ==========================================================================
+   PAST BRAND CAMPAIGNS SHOWCASE
+   ========================================================================== */
+
+.past-campaigns-section {
+  padding-top: 1.5rem;
+  padding-bottom: clamp(2.6rem, 4.5vw, 3.8rem);
+}
+
+.past-campaigns-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.past-campaign-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.45rem;
+  padding: 1.65rem 1.85rem;
+  border-radius: 22px;
+  background: #080b13;
+  color: #ffffff;
+  border: 1.5px solid rgba(15, 23, 42, 0.14);
+  box-shadow: 0 20px 48px rgba(10, 16, 30, 0.12);
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.past-campaign-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 26px 56px rgba(10, 16, 30, 0.18);
+}
+
+.past-campaign-card--pink {
+  border-color: rgba(250, 4, 156, 0.52);
+  background: radial-gradient(circle at 18% 50%, rgba(250, 4, 156, 0.14), transparent 55%), #080b13;
+}
+
+.past-campaign-card--cyan {
+  border-color: rgba(0, 232, 248, 0.48);
+  background: radial-gradient(circle at 18% 50%, rgba(0, 232, 248, 0.14), transparent 55%), #080b13;
+}
+
+.past-logo-wrap {
+  flex-shrink: 0;
+  width: 102px;
+  height: 102px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #04060c;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.past-brand-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.past-brand-logo--inset {
+  transform: scale(1.28);
+}
+
+.past-brand-kicker {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: 0.25rem;
+}
+
+.past-campaign-info h3 {
+  font-size: 1.42rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.past-metric-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-top: 0.42rem;
+}
+
+.past-metric-value {
+  font-family: var(--font-display);
+  font-size: 2.05rem;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--cyan);
+}
+
+.past-campaign-card--pink .past-metric-value {
+  color: #ff44b8;
+}
+
+.past-metric-label {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #f4f6fc;
+}
+
+.past-campaign-sub {
+  margin-top: 0.35rem;
+  font-size: 0.86rem;
+  color: rgba(240, 244, 252, 0.68);
+}
+
+/* ==========================================================================
    4. SMOOTH WHITE -> OBSIDIAN BRIDGE + NEON WHATSAPP FAQ HERO FINALE
    ========================================================================== */
 
 .white-to-obsidian-bridge {
   position: relative;
-  height: clamp(290px, 28vw, 440px);
+  height: clamp(92px, 9.5vw, 145px);
   margin-top: -2px;
   margin-bottom: -2px;
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #fafbfd 3%,
-    #edf0f5 7%,
-    #d5dae3 13%,
-    #b2bac8 21%,
-    #8893a7 30%,
-    #5f6b82 40%,
-    #3d4a62 50%,
-    #253045 61%,
-    #141c2d 71%,
-    #0a0f1b 81%,
-    #04070f 90%,
+    #ebeff5 9%,
+    #bac2d0 22%,
+    #68758c 42%,
+    #253045 64%,
+    #0a101d 84%,
     #02040a 100%
   );
   pointer-events: none;
@@ -1736,6 +1844,7 @@ h3 {
   .stars-deck-grid,
   .finale-grid,
   .brief-layout,
+  .past-campaigns-grid,
   .subpage-main .stars-grid {
     grid-template-columns: 1fr;
   }
