@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Major Search & AI Answer Engine Crawlers (SEO / AEO / GEO)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+Sitemap: https://moldin.in/sitemap.xml
+# AI Engine Summary Reference: https://moldin.in/llms.txt

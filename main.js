@@ -6,7 +6,6 @@
 
 import { FEATURED_CREATORS, MOLDIN_CONTACT } from './brands-config.js';
 import { initHeroRibbons } from './hero-ribbons.js';
-import { initPageLightStrips } from './page-light-strips.js';
 
 /**
  * Generates clean SVG vector crown markup tailored for King (Golden/Charcoal) or Queen cards.
@@ -290,88 +289,61 @@ export const initFaqAccordion = () => {
 };
 
 /**
- * Wires WhatsApp Collab buttons, pre-filled message generator, and quick modal.
+ * Wires WhatsApp Collab buttons directly to native WhatsApp chat / Web intent ("Skip the form").
  */
 export const initWhatsappCollab = () => {
   const waTriggers = document.querySelectorAll('[data-open-whatsapp]');
-  const waModal = document.getElementById('whatsapp-modal');
-  const waForm = document.getElementById('wa-collab-form');
-  const copyBtn = document.getElementById('wa-copy-btn');
-  const statusEl = document.getElementById('wa-status-msg');
+  if (!waTriggers.length) return;
 
-  const openWhatsappTarget = (customText) => {
-    const encoded = encodeURIComponent(customText);
-    const digits = (MOLDIN_CONTACT.whatsappDigits || '').replace(/\D/g, '');
-    const url = digits
-      ? `https://wa.me/${digits}?text=${encoded}`
-      : `https://api.whatsapp.com/send?text=${encoded}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
+  const digits = (MOLDIN_CONTACT.whatsappDigits || '').replace(/\D/g, '');
+  const encoded = encodeURIComponent(MOLDIN_CONTACT.defaultWhatsappGreeting);
+  const waUrl = digits
+    ? `https://wa.me/${digits}?text=${encoded}`
+    : `https://api.whatsapp.com/send?text=${encoded}`;
 
-  for (const btn of waTriggers) {
+  for (const el of waTriggers) {
+    if (el.tagName === 'A') {
+      el.setAttribute('href', waUrl);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener noreferrer');
+    } else {
+      el.addEventListener('click', () => {
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      });
+    }
+  }
+};
+
+/**
+ * Wires interactive category filter tabs on the Blogs & Brand Playbooks hub.
+ */
+export const initBlogFilters = () => {
+  const filterBtns = Array.from(document.querySelectorAll('[data-blog-filter]'));
+  const cards = Array.from(document.querySelectorAll('[data-blog-category]'));
+  if (!filterBtns.length || !cards.length) return;
+
+  for (const btn of filterBtns) {
     btn.addEventListener('click', () => {
-      const digits = (MOLDIN_CONTACT.whatsappDigits || '').replace(/\D/g, '');
-      if (digits && !waModal) {
-        openWhatsappTarget(MOLDIN_CONTACT.defaultWhatsappGreeting);
-        return;
+      const cat = btn.dataset.blogFilter || 'all';
+      for (const b of filterBtns) {
+        const active = b === btn;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', String(active));
       }
-      if (waModal && typeof waModal.showModal === 'function') {
-        waModal.showModal();
-      } else {
-        openWhatsappTarget(MOLDIN_CONTACT.defaultWhatsappGreeting);
-      }
-    });
-  }
-
-  document.querySelectorAll('[data-close-whatsapp]').forEach((btn) => {
-    btn.addEventListener('click', () => waModal?.close());
-  });
-
-  if (waModal) {
-    waModal.addEventListener('click', (e) => {
-      if (e.target === waModal) waModal.close();
-    });
-  }
-
-  const composeText = () => {
-    const brand = document.getElementById('wa-brand')?.value.trim() || 'Our Brand';
-    const goal = document.getElementById('wa-goal')?.value.trim() || 'Full creator campaign takeover';
-    return `Hi MOLDIN.india! We want to discuss a full creator campaign.\nBrand / Product: ${brand}\nCampaign Goal: ${goal}`;
-  };
-
-  if (waForm) {
-    waForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      openWhatsappTarget(composeText());
-      if (statusEl) {
-        statusEl.textContent = 'Opening WhatsApp composer with your collab note ready to send.';
-      }
-    });
-  }
-
-  if (copyBtn) {
-    copyBtn.addEventListener('click', async () => {
-      const msg = composeText();
-      try {
-        await navigator.clipboard.writeText(msg);
-        if (statusEl) {
-          statusEl.textContent = `Copied collab note! Paste directly into WhatsApp or DM ${MOLDIN_CONTACT.instagramHandle}.`;
-        }
-      } catch {
-        if (statusEl) {
-          statusEl.textContent = msg;
-        }
+      for (const card of cards) {
+        const match = cat === 'all' || card.dataset.blogCategory === cat;
+        card.hidden = !match;
       }
     });
   }
 };
 
 /**
- * Binds navigation modal ("Log In / Quick Access") across all pages.
+ * Binds dual Creator & Brand path selector modal across all pages.
  */
 export const initAccessDialog = () => {
   const modal = document.getElementById('access-modal');
-  const openBtns = document.querySelectorAll('[data-open-access]');
+  const openBtns = document.querySelectorAll('[data-open-access], [data-open-start]');
   const closeBtns = document.querySelectorAll('[data-close-access]');
 
   if (!modal) return;
@@ -458,10 +430,10 @@ export const initBriefForm = () => {
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initHeroRibbons();
-  initPageLightStrips();
   initPlayingCardsRoster();
   initFaqAccordion();
   initWhatsappCollab();
   initAccessDialog();
   initBriefForm();
+  initBlogFilters();
 });
