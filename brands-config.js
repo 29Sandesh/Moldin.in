@@ -156,7 +156,7 @@ export const FEATURED_CREATORS = [
     suitColor: 'crimson',
     tier: 'roster',
     portrait: 'assets/creators_cards/shree.webp',
-    fallbackPortrait: 'assets/creators_real/shrey_.aaaa.jpg',
+    fallbackPortrait: 'assets/creators_real/shrey_.aaaa_face.jpg',
     bio: 'Authentic skincare rituals, beauty routines, and Gen-Z product discovery.',
   },
   {
@@ -186,7 +186,7 @@ export const FEATURED_CREATORS = [
     suitColor: 'crimson',
     tier: 'roster',
     portrait: 'assets/creators_cards/aryan.webp',
-    fallbackPortrait: 'assets/creators_real/aryann.aesthetics.jpg',
+    fallbackPortrait: 'assets/creators_real/aryann.aesthetics_face.jpg',
     bio: 'Athletic conditioning, sports nutrition, and high-energy gym transformation reels.',
   },
   {
@@ -201,7 +201,7 @@ export const FEATURED_CREATORS = [
     suitColor: 'ink',
     tier: 'roster',
     portrait: 'assets/creators_cards/divya.webp',
-    fallbackPortrait: 'assets/creators_real/d1vyya._.jpg',
+    fallbackPortrait: 'assets/creators_real/d1vyya._face.jpg',
     bio: 'Campaign stills, luxury accessories, and studio-grade commercial modeling.',
   },
 ];
