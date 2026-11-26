@@ -1,227 +1,243 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MOLDIN.india Creators — Meet our featured star creators Amlendra Kumar & Sandesh Agrawal plus our curated 8-creator collective.">
-    <title>For Creators — MOLDIN.india® | Verified Creator Collective</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Creators — MOLDIN.india® | Managed Creator Collective</title>
+    <meta
+      name="description"
+      content="MOLDIN.india® manages multiple quality-vetted creators and connects strong talent with great brands so both sides get the best deal."
+    >
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=9.0">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="site-header">
+      <div class="nav-inner">
+        <a class="brand-logo" href="index.html" aria-label="MOLDIN.india home">
+          MOLDIN<span class="brand-dot">.india</span><sup>®</sup>
+        </a>
 
-    <header class="site-header site-header--solid" data-site-header>
-      <div class="header-inner">
-        <a class="wordmark" href="index.html">MOLDIN.india<sup>®</sup></a>
-
-        <nav class="nav-links" id="primary-nav" aria-label="Primary navigation" data-nav-links>
+        <nav class="nav-center" aria-label="Primary Navigation">
           <a href="brands.html">For Brands</a>
-          <a href="creators.html" aria-current="page">For Creators</a>
+          <a href="creators.html" class="is-active" aria-current="page">For Creators</a>
           <a href="campaigns.html">Campaigns</a>
           <a href="index.html#how-it-works">How it Works</a>
         </nav>
 
-        <div class="header-actions">
-          <a class="header-login" href="index.html#brief">Brands</a>
+        <div class="nav-actions">
+          <button class="btn-text" type="button" data-open-access>Log In</button>
           <a
             class="btn btn-cyan btn-sm"
             href="https://forms.gle/CUitj8LUdULQovqw7"
             target="_blank"
             rel="noopener noreferrer"
-          >Join as Creator ↗</a>
+          >Get Started ↗</a>
           <button
-            class="nav-toggle"
+            class="mobile-toggle"
+            id="mobile-toggle"
             type="button"
+            aria-label="Toggle Menu"
             aria-expanded="false"
-            aria-controls="primary-nav"
-            data-nav-toggle
-          >Menu</button>
+            aria-controls="mobile-drawer"
+          >☰</button>
         </div>
+      </div>
+
+      <div class="mobile-drawer" id="mobile-drawer">
+        <a href="brands.html">For Brands</a>
+        <a href="creators.html" aria-current="page">For Creators</a>
+        <a href="campaigns.html">Campaigns</a>
+        <a href="index.html#how-it-works">How it Works</a>
+        <a
+          class="btn btn-cyan"
+          href="https://forms.gle/CUitj8LUdULQovqw7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Join as Creator ↗</a>
+        <button class="btn btn-outline" type="button" data-open-access>Log In</button>
       </div>
     </header>
 
-    <main id="main">
-      <section class="sub-hero">
-        <div class="container">
-          <span class="eyebrow-neon">For Creators &amp; Talent</span>
-          <h1 class="sub-hero-title">Work with top brands <span class="italic-cyan">directly.</span></h1>
-          <p class="section-lead" style="max-width: 56ch; margin-bottom: 26px;">
-            Apply once via our official Google Form. We match verified creators across tech, AI, fashion, fitness, beauty, and travel with real brand briefs.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 14px;">
-            <a
-              class="btn btn-cyan"
-              href="https://forms.gle/CUitj8LUdULQovqw7"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Open Creator Application Form ↗</a>
-            <a class="btn btn-outline" href="#roster">Meet Our Creators</a>
-          </div>
-        </div>
-      </section>
+    <main>
+      <canvas id="flow-light-strips" class="flow-light-canvas" aria-hidden="true"></canvas>
 
-      <!-- FULL 8 CREATOR ROSTER SHOWCASE -->
-      <section class="section section--glow" id="roster">
+      <!-- OBSIDIAN SUB-HERO -->
+      <section class="subhero-obsidian">
         <div class="container">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow-neon">Our Collective</span>
-              <h2 class="section-title">Star Creators &amp; <span class="italic-cyan">Featured Roster.</span></h2>
-            </div>
-            <p class="section-lead">
-              Amlendra Kumar and Sandesh Agrawal lead our featured roster alongside creators across high-engagement niches.
+          <div class="subhero-inner">
+            <span class="eyebrow-neon">For Creators &amp; Talent</span>
+            <h1 class="subhero-title">
+              Managed Talent.
+              <span class="hero-word-brands">
+                Best Brand Deals.
+                <svg class="hero-pink-brush" viewBox="0 0 380 28" fill="none" aria-hidden="true">
+                  <path d="M8 20 C110 6 250 4 370 16" stroke="#FA049C" stroke-width="9" stroke-linecap="round"/>
+                  <path d="M180 12 C250 11 320 14 366 20" stroke="#FA049C" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </h1>
+            <p class="subhero-lead">
+              We manage multiple vetted creators—partnering strictly with strong storytellers who create genuine trust—and connect them with the right brands so both get the best deal.
             </p>
-          </div>
-
-          <div class="stars-grid">
-            <article class="star-card">
-              <div class="star-avatar-wrap">
-                <img class="star-avatar" src="assets/creators_real/amlendra.in.jpg" alt="Amlendra Kumar" width="108" height="108">
-              </div>
-              <div class="star-info">
-                <span class="star-pill"><b>★</b> Star Creator</span>
-                <h3>Amlendra Kumar <span class="verified-badge">✓</span></h3>
-                <a class="creator-handle" href="https://www.instagram.com/amlendra.in/" target="_blank" rel="noopener noreferrer">@amlendra.in ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">626K Followers</span>
-                  <span class="meta-pill">AI &amp; Apps</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="star-card star-card--pink">
-              <div class="star-avatar-wrap">
-                <img class="star-avatar" src="assets/creators_real/sandeshyaar.jpg" alt="Sandesh Agrawal" width="108" height="108">
-              </div>
-              <div class="star-info">
-                <span class="star-pill"><b>★</b> Star Creator</span>
-                <h3>Sandesh Agrawal <span class="verified-badge">✓</span></h3>
-                <a class="creator-handle" href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer">@sandeshyaar ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">88K Followers</span>
-                  <span class="meta-pill">Tech &amp; AI</span>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="roster-grid">
-            <article class="creator-card">
-              <img class="creator-thumb" src="assets/creators_real/shubham_joshii.jpg" alt="Shubham Joshi" width="72" height="72" loading="lazy">
-              <div class="creator-card-info">
-                <h3>Shubham Joshi <span class="verified-badge">✓</span></h3>
-                <a class="creator-handle" href="https://www.instagram.com/shubham_joshii/" target="_blank" rel="noopener noreferrer">@shubham_joshii ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">50K</span>
-                  <span class="meta-pill">Travel</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="creator-card">
-              <img class="creator-thumb" src="assets/creators_real/v4rnikaa.jpg" alt="Varnika" width="72" height="72" loading="lazy">
-              <div class="creator-card-info">
-                <h3>Varnika <span class="verified-badge">✓</span></h3>
-                <a class="creator-handle" href="https://www.instagram.com/v4rnikaa/reels/" target="_blank" rel="noopener noreferrer">@v4rnikaa ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">45.3K</span>
-                  <span class="meta-pill">Fashion</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="creator-card">
-              <img class="creator-thumb" src="assets/creators_real/shrey_.aaaa_face.jpg" alt="Shree" width="72" height="72" loading="lazy">
-              <div class="creator-card-info">
-                <h3>Shree <span class="verified-badge">✓</span></h3>
-                <a class="creator-handle" href="https://www.instagram.com/shrey_.aaaa/" target="_blank" rel="noopener noreferrer">@shrey_.aaaa ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">30.1K</span>
-                  <span class="meta-pill">Beauty</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="creator-card">
-              <img class="creator-thumb" src="assets/creators_real/paraamjain.jpg" alt="Param Jain" width="72" height="72" loading="lazy">
-              <div class="creator-card-info">
-                <h3>Param Jain <span class="verified-badge">✓</span></h3>
-                <a class="creator-handle" href="https://www.instagram.com/paraamjain/" target="_blank" rel="noopener noreferrer">@paraamjain ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">28.8K</span>
-                  <span class="meta-pill">Travel</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="creator-card">
-              <img class="creator-thumb" src="assets/creators_real/aryann.aesthetics_face.jpg" alt="Aryan H Choudharry" width="72" height="72" loading="lazy">
-              <div class="creator-card-info">
-                <h3>Aryan H Choudharry <span class="verified-badge">✓</span></h3>
-                <a class="creator-handle" href="https://www.instagram.com/aryann.aesthetics/" target="_blank" rel="noopener noreferrer">@aryann.aesthetics ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">24.9K</span>
-                  <span class="meta-pill">Fitness</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="creator-card">
-              <img class="creator-thumb" src="assets/creators_real/d1vyya._face.jpg" alt="Divya Vashishtha" width="72" height="72" loading="lazy">
-              <div class="creator-card-info">
-                <h3>Divya Vashishtha <span class="verified-badge">✓</span></h3>
-                <a class="creator-handle" href="https://www.instagram.com/d1vyya._/" target="_blank" rel="noopener noreferrer">@d1vyya._ ↗</a>
-                <div class="creator-meta-row">
-                  <span class="meta-followers">18.7K</span>
-                  <span class="meta-pill">Model</span>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-divider" id="apply">
-        <div class="container">
-          <div class="path-panel path-panel--cyan" style="max-width: 780px; margin: 0 auto; text-align: center;">
-            <div>
-              <span class="eyebrow-neon">Verified Roster Application</span>
-              <h3>Ready to join the collective?</h3>
-              <p>Apply once via our official Google Form. When matched to a campaign, we connect directly to share details and discuss terms.</p>
-            </div>
-            <div>
+            <div class="subhero-cta-row">
               <a
                 class="btn btn-cyan"
                 href="https://forms.gle/CUitj8LUdULQovqw7"
                 target="_blank"
                 rel="noopener noreferrer"
-              >Open Creator Google Form ↗</a>
+              >Open Creator Intake Form ↗</a>
+              <a class="btn btn-outline" href="#roster">Meet Our Collective ↓</a>
             </div>
           </div>
         </div>
       </section>
+
+      <div class="obsidian-to-white-bridge" aria-hidden="true"></div>
+
+      <!-- CLEAN WHITE STAGE: FULL PLAYING-CARD CREATOR ROSTER -->
+      <div class="light-canvas-stage" data-surface="light">
+        <section class="section" id="roster">
+          <div class="container">
+            <div class="editorial-header">
+              <div class="editorial-title-wrap">
+                <span class="eyebrow-light">
+                  <span class="eyebrow-star" aria-hidden="true">★</span>
+                  Verified Talent Collective
+                </span>
+                <h2>Featured <span class="text-cyan-ink">Creators.</span></h2>
+              </div>
+              <p class="editorial-lead">
+                We only manage quality creators with real audience rapport—connecting them directly with full brand campaigns.
+              </p>
+            </div>
+
+            <!-- RENDERED LIVE FROM BRANDS-CONFIG IN FULL COLOR -->
+            <div class="stars-deck-grid" id="stars-deck" aria-label="Golden Star Creators"></div>
+            <div class="roster-deck-grid" id="roster-deck" aria-label="Featured Creators Deck"></div>
+          </div>
+        </section>
+
+        <section class="section workflow-section-light">
+          <div class="container">
+            <div class="editorial-header">
+              <div class="editorial-title-wrap">
+                <h2>Why Creators Work <span class="text-pink-underline">With MOLDIN.</span></h2>
+              </div>
+            </div>
+
+            <div class="workflow-track">
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num">01</span>
+                  <span class="step-tag">Curation</span>
+                </div>
+                <h3>Only Good Creators</h3>
+                <p>
+                  We stay selective on talent quality so brands trust our collective for major launches—bringing higher-caliber campaigns to everyone inside.
+                </p>
+              </article>
+
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num step-num-pink">02</span>
+                  <span class="step-tag">Management</span>
+                </div>
+                <h3>Full Campaign Coordination</h3>
+                <p>
+                  We manage multiple creators across coordinated brand waves—handling briefs, hooks, scheduling, and brand alignment seamlessly.
+                </p>
+              </article>
+
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num">03</span>
+                  <span class="step-tag">Alignment</span>
+                </div>
+                <h3>Stronger Brand Deals</h3>
+                <p>
+                  We connect our managed talent directly with growing consumer and tech brands and align campaign details individually so both sides win.
+                </p>
+              </article>
+            </div>
+
+            <div class="light-cta-strip" id="apply">
+              <div>
+                <strong>Join our managed creator collective.</strong>
+                <span>Takes 2 minutes via our official Google Form—we review profiles directly.</span>
+              </div>
+              <div class="light-cta-actions">
+                <a
+                  class="btn btn-dark-solid"
+                  href="https://forms.gle/CUitj8LUdULQovqw7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >Apply via Google Form ↗</a>
+                <a class="btn btn-cyan-solid" href="brands.html">For Brands →</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="white-to-obsidian-bridge" aria-hidden="true"></div>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <div>
-          <a class="wordmark" href="index.html">MOLDIN.india<sup>®</sup></a>
-          <p class="footer-note">Connecting verified creators with modern brands—cleanly and transparently.</p>
+      <div class="container">
+        <div class="footer-row">
+          <div>
+            <a class="brand-logo" href="index.html">MOLDIN<span class="brand-dot">.india</span><sup>®</sup></a>
+            <p class="footer-note">
+              Full-scale brand-creator campaign partners. Managing quality talent &amp; complete campaigns.
+            </p>
+          </div>
+          <nav class="footer-links" aria-label="Footer Links">
+            <a href="brands.html">For Brands</a>
+            <a href="creators.html">For Creators</a>
+            <a href="campaigns.html">Campaigns</a>
+            <a
+              href="https://forms.gle/CUitj8LUdULQovqw7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Join Form ↗</a>
+          </nav>
         </div>
-
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="brands.html">For Brands</a>
-          <a href="creators.html">For Creators</a>
-          <a href="campaigns.html">Campaigns</a>
-          <a href="https://forms.gle/CUitj8LUdULQovqw7" target="_blank" rel="noopener noreferrer">Join Form ↗</a>
-        </nav>
+        <div class="footer-bottom">
+          <span>© 2026 MOLDIN.india — Managed Creator Collective &amp; Campaign Desk</span>
+          <a href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer">
+            @sandeshyaar ↗
+          </a>
+        </div>
       </div>
     </footer>
 
-    <script type="module" src="main.js?v=9.0"></script>
+    <dialog class="moldin-dialog" id="access-modal" aria-labelledby="access-title">
+      <div class="dialog-head">
+        <span class="eyebrow-neon">Direct Access</span>
+        <button class="dialog-close" type="button" data-close-access aria-label="Close">✕</button>
+      </div>
+      <h3 id="access-title">Continue with <span class="text-cyan">MOLDIN.india®</span></h3>
+      <p>
+        Creators register once via Google Form; brands jump straight to WhatsApp or DM.
+      </p>
+      <div class="dialog-actions">
+        <a
+          class="btn btn-cyan"
+          href="https://forms.gle/CUitj8LUdULQovqw7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Creator Intake Form ↗</a>
+        <a class="btn btn-outline" href="brands.html#brief" data-close-access>Brand Inquiry</a>
+      </div>
+    </dialog>
+
+    <script type="module" src="main.js"></script>
   </body>
 </html>

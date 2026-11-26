@@ -81,7 +81,7 @@ export const initPlayingCardsRoster = () => {
                 alt="${escapeHtml(creator.name)} — MOLDIN Golden Star Creator"
                 width="512"
                 height="512"
-                loading="lazy"
+                decoding="async"
                 data-fallback="${escapeHtml(creator.fallbackPortrait)}"
               >
             </div>
@@ -137,7 +137,7 @@ export const initPlayingCardsRoster = () => {
               alt="${escapeHtml(creator.name)} — ${escapeHtml(creator.niche)} Creator"
               width="512"
               height="512"
-              loading="lazy"
+              decoding="async"
               data-fallback="${escapeHtml(creator.fallbackPortrait)}"
             >
           </div>
@@ -396,13 +396,14 @@ export const initAccessDialog = () => {
 };
 
 /**
- * Binds optional brand brief form (on subpages like brands.html).
+ * Binds brand campaign brief form on For Brands page (zero pricing assumptions, instant WhatsApp/DM export).
  */
 export const initBriefForm = () => {
   const form = document.getElementById('brand-brief-form');
   const resultBox = document.getElementById('brief-result');
   const summaryText = document.getElementById('brief-summary-text');
   const copyBtn = document.getElementById('copy-brief-btn');
+  const waSendBtn = document.getElementById('brief-wa-btn');
   const feedback = document.getElementById('copy-feedback');
   if (!form || !resultBox || !summaryText) return;
 
@@ -411,30 +412,44 @@ export const initBriefForm = () => {
     const data = new FormData(form);
     const brand = String(data.get('brand') || '').trim();
     const contact = String(data.get('contact') || '').trim();
+    const website = String(data.get('website') || '').trim();
+    const scope = String(data.get('scope') || '').trim();
     const goal = String(data.get('goal') || '').trim();
-    const scope = String(data.get('budget') || '').trim();
 
     if (!brand || !contact) return;
 
-    summaryText.textContent = [
-      'MOLDIN Full-Campaign Brief',
+    const lines = [
+      'MOLDIN.india Full-Campaign Brief',
       `Brand: ${brand}`,
+      website ? `Handle / Site: ${website}` : '',
       `Contact: ${contact}`,
-      `Scale: ${scope || 'Full Multi-Creator Wave'}`,
-      `Goal: ${goal || 'End-to-End Campaign Takeover'}`,
-    ].join('\n');
+      `Focus: ${scope || 'Full Multi-Creator Campaign'}`,
+      `Notes: ${goal || 'Managed end-to-end creator rollout'}`,
+    ].filter(Boolean);
 
+    summaryText.textContent = lines.join('\n');
     resultBox.hidden = false;
     resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
+
+  if (waSendBtn) {
+    waSendBtn.addEventListener('click', () => {
+      const encoded = encodeURIComponent(summaryText.textContent || MOLDIN_CONTACT.defaultWhatsappGreeting);
+      const digits = (MOLDIN_CONTACT.whatsappDigits || '').replace(/\D/g, '');
+      const url = digits
+        ? `https://wa.me/${digits}?text=${encoded}`
+        : `https://api.whatsapp.com/send?text=${encoded}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  }
 
   if (copyBtn) {
     copyBtn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(summaryText.textContent);
-        if (feedback) feedback.textContent = 'Copied brief! Paste via DM or WhatsApp.';
+        if (feedback) feedback.textContent = 'Copied brief! Paste directly in WhatsApp or IG DM.';
       } catch {
-        if (feedback) feedback.textContent = 'Select and copy the summary above.';
+        if (feedback) feedback.textContent = 'Select and copy the brief text above.';
       }
     });
   }

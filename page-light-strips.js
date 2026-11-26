@@ -162,9 +162,9 @@ const drawAmbientLightHalos = (ctx, w, viewH, scrollY, bounds) => {
  */
 export const initPageLightStrips = () => {
   const canvas = document.getElementById('flow-light-strips');
-  const hero = document.getElementById('hero-stage');
+  const hero = document.getElementById('hero-stage') || document.querySelector('.subhero-obsidian');
   const lightStage = document.querySelector('.light-canvas-stage');
-  const faq = document.getElementById('faq');
+  const faq = document.getElementById('faq') || document.querySelector('.site-footer');
   if (!canvas || !hero || !lightStage || !faq) return;
 
   const ctx = canvas.getContext('2d');

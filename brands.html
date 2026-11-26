@@ -1,173 +1,273 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MOLDIN.india For Brands — End-to-end creator campaigns, curated talent casting, and synchronized brand launches.">
-    <title>For Brands — MOLDIN.india®</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Brands — MOLDIN.india® | Full-Campaign Creator Partner</title>
+    <meta
+      name="description"
+      content="MOLDIN.india® manages multiple quality creators end to end—running complete brand campaigns and connecting strong creators with brands so both get the best deal."
+    >
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=9.0">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="site-header">
+      <div class="nav-inner">
+        <a class="brand-logo" href="index.html" aria-label="MOLDIN.india home">
+          MOLDIN<span class="brand-dot">.india</span><sup>®</sup>
+        </a>
 
-    <header class="site-header site-header--solid" data-site-header>
-      <div class="header-inner">
-        <a class="wordmark" href="index.html">MOLDIN.india<sup>®</sup></a>
-
-        <nav class="nav-links" id="primary-nav" aria-label="Primary navigation" data-nav-links>
-          <a href="brands.html" aria-current="page">For Brands</a>
+        <nav class="nav-center" aria-label="Primary Navigation">
+          <a href="brands.html" class="is-active" aria-current="page">For Brands</a>
           <a href="creators.html">For Creators</a>
           <a href="campaigns.html">Campaigns</a>
           <a href="index.html#how-it-works">How it Works</a>
         </nav>
 
-        <div class="header-actions">
-          <a class="header-login" href="creators.html">Creators</a>
-          <a class="btn btn-cyan btn-sm" href="#brief">Start Brief ↗</a>
+        <div class="nav-actions">
+          <button class="btn-text" type="button" data-open-access>Log In</button>
+          <a
+            class="btn btn-cyan btn-sm"
+            href="https://forms.gle/CUitj8LUdULQovqw7"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Get Started ↗</a>
           <button
-            class="nav-toggle"
+            class="mobile-toggle"
+            id="mobile-toggle"
             type="button"
+            aria-label="Toggle Menu"
             aria-expanded="false"
-            aria-controls="primary-nav"
-            data-nav-toggle
-          >Menu</button>
+            aria-controls="mobile-drawer"
+          >☰</button>
         </div>
+      </div>
+
+      <div class="mobile-drawer" id="mobile-drawer">
+        <a href="brands.html" aria-current="page">For Brands</a>
+        <a href="creators.html">For Creators</a>
+        <a href="campaigns.html">Campaigns</a>
+        <a href="index.html#how-it-works">How it Works</a>
+        <a
+          class="btn btn-cyan"
+          href="https://forms.gle/CUitj8LUdULQovqw7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Join as Creator ↗</a>
+        <button class="btn btn-outline" type="button" data-open-access>Log In</button>
       </div>
     </header>
 
-    <main id="main">
-      <section class="sub-hero">
-        <div class="container">
-          <span class="eyebrow-neon eyebrow-neon--pink">For Brands &amp; Growth Teams</span>
-          <h1 class="sub-hero-title">We run your entire <span class="italic-cyan">creator campaign.</span></h1>
-          <p class="section-lead" style="max-width: 56ch; margin-bottom: 26px;">
-            From creative strategy and multi-creator casting to script supervision and coordinated brand launches—we handle every piece end to end.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 14px;">
-            <a class="btn btn-cyan" href="#brief">Brief a Campaign ↗</a>
-            <a class="btn btn-outline" href="campaigns.html">Explore Formats</a>
-          </div>
-        </div>
-      </section>
+    <main>
+      <canvas id="flow-light-strips" class="flow-light-canvas" aria-hidden="true"></canvas>
 
-      <section class="section">
+      <!-- OBSIDIAN SUB-HERO -->
+      <section class="subhero-obsidian">
         <div class="container">
-          <div class="section-head">
-            <div>
-              <span class="eyebrow-neon">What we coordinate</span>
-              <h2 class="section-title">Three high-impact <span class="italic-cyan">tracks.</span></h2>
+          <div class="subhero-inner">
+            <span class="eyebrow-neon eyebrow-neon--pink">For Brands &amp; Growth Teams</span>
+            <h1 class="subhero-title">
+              We Run Your Entire
+              <span class="hero-word-brands">
+                Creator Campaign.
+                <svg class="hero-pink-brush" viewBox="0 0 380 28" fill="none" aria-hidden="true">
+                  <path d="M8 20 C110 6 250 4 370 16" stroke="#FA049C" stroke-width="9" stroke-linecap="round"/>
+                  <path d="M180 12 C250 11 320 14 366 20" stroke="#FA049C" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </h1>
+            <p class="subhero-lead">
+              We manage multiple strong, audience-trusted creators and connect them directly with brands—handling full campaign execution end to end so both your brand and our creators get the best deal.
+            </p>
+            <div class="subhero-cta-row">
+              <button class="btn btn-cyan" type="button" data-open-whatsapp>DM on WhatsApp ↗</button>
+              <a class="btn btn-outline" href="#brief">Share Campaign Goal ↓</a>
             </div>
           </div>
-
-          <div class="steps-grid">
-            <article class="glass-card">
-              <div class="step-num-glow">01</div>
-              <h3>UGC Ad Batches</h3>
-              <p>High-retention vertical product reels built around clean hooks, demonstrations, and paid-ad whitelisting readiness.</p>
-            </article>
-
-            <article class="glass-card">
-              <div class="step-num-glow">02</div>
-              <h3>Creator Drops</h3>
-              <p>Coordinated waves across Tech, AI, Fashion, Fitness, and Lifestyle with authentic comment-vetted audiences.</p>
-            </article>
-
-            <article class="glass-card">
-              <div class="step-num-glow">03</div>
-              <h3>Product Seeding</h3>
-              <p>Direct product dispatch and light creative angle guidance designed to generate genuine organic creator buzz.</p>
-            </article>
-          </div>
         </div>
       </section>
 
-      <section class="section section--glow section-divider" id="brief">
-        <div class="container faq-brief-grid">
-          <div>
-            <span class="eyebrow-neon">End-to-End Execution</span>
-            <h2 class="section-title" style="margin-bottom: 16px;">Full campaign <span class="italic-pink">ownership.</span></h2>
-            <p class="section-lead" style="margin-bottom: 18px;">
-              Instead of managing scattered creators one reel at a time, partner with MOLDIN to execute the complete launch wave from brief to live posts.
-            </p>
-            <ul class="path-bullets">
-              <li>Unified casting across high-trust Indian creator niches</li>
-              <li>Every hook, draft, and integration reviewed before publishing</li>
-              <li>Clean schedule tracking from onboarding to live campaign links</li>
-            </ul>
-          </div>
+      <div class="obsidian-to-white-bridge" aria-hidden="true"></div>
 
-          <div class="brief-panel">
-            <h3>Start a Brand Brief</h3>
-            <p>Outline your goals below and get matched creator fits privately.</p>
-
-            <form class="brief-form" data-brief-form>
-              <div class="field-row">
-                <div class="field">
-                  <label for="b-brand">Brand / Product</label>
-                  <input id="b-brand" name="brand" type="text" placeholder="Your Brand" required>
-                </div>
-                <div class="field">
-                  <label for="b-website">Website or @Handle</label>
-                  <input id="b-website" name="website" type="text" placeholder="yourbrand.in">
-                </div>
+      <!-- CLEAN WHITE STAGE WITH NEON STRIP TEXTURE -->
+      <div class="light-canvas-stage" data-surface="light">
+        <section class="section">
+          <div class="container">
+            <div class="editorial-header">
+              <div class="editorial-title-wrap">
+                <span class="eyebrow-light">Full-Campaign Model</span>
+                <h2>Managed Creators. <span class="text-cyan-ink">Complete Execution.</span></h2>
               </div>
-
-              <div class="field">
-                <label>Format</label>
-                <div class="brief-chips">
-                  <label class="chip-option">
-                    <input type="checkbox" name="focus" value="Creator Reels">
-                    <span>Creator Reels</span>
-                  </label>
-                  <label class="chip-option">
-                    <input type="checkbox" name="focus" value="UGC for Ads">
-                    <span>UGC Ads</span>
-                  </label>
-                  <label class="chip-option">
-                    <input type="checkbox" name="focus" value="Tech / App Demo">
-                    <span>Tech / App</span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="field-row">
-                <div class="field">
-                  <label for="b-scope">Campaign Scale</label>
-                  <select id="b-scope" name="scope" required>
-                    <option value="">Select scope</option>
-                    <option value="Full Campaign Wave (15–30 reels)">Full Campaign Wave (15–30 reels)</option>
-                    <option value="Brand Rollout (40+ reels)">Brand Rollout (40+ reels)</option>
-                    <option value="Large-Scale Takeover (100+ reels)">Large-Scale Takeover (100+ reels)</option>
-                  </select>
-                </div>
-                <div class="field">
-                  <label for="b-contact">Email or WhatsApp</label>
-                  <input id="b-contact" name="contact" type="text" placeholder="you@brand.in" required>
-                </div>
-              </div>
-
-              <div class="field">
-                <label for="b-notes">Notes (optional)</label>
-                <textarea id="b-notes" name="notes" placeholder="Launch timing, niches, or usage rights..."></textarea>
-              </div>
-
-              <button class="btn btn-cyan" type="submit">Prepare Brief Summary ↗</button>
-            </form>
-
-            <div class="brief-result" data-brief-result hidden>
-              <strong>Your structured brief is ready</strong>
-              <p style="margin: 0; font-size: 0.9rem; color: var(--text-soft);">
-                Copy your brief below and send directly via DM to <a href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer" style="color: var(--cyan); text-decoration: underline; font-weight: 700;">@sandeshyaar</a>.
+              <p class="editorial-lead">
+                Only high-quality creators curated and managed together—built to own your whole brand rollout rather than isolated posts.
               </p>
-              <pre class="brief-summary-box" data-brief-summary></pre>
-              <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                <button class="btn btn-cyan btn-sm" type="button" data-copy-brief>Copy Brief</button>
-                <a class="btn btn-outline btn-sm" href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer">Send via DM ↗</a>
-                <button class="btn btn-outline btn-sm" type="button" data-edit-brief>Edit</button>
+            </div>
+
+            <div class="workflow-track">
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num">01</span>
+                  <span class="step-tag">Managed Roster</span>
+                </div>
+                <h3>Only Good Creators</h3>
+                <p>
+                  We carefully manage multiple vetted creators who craft authentic content with real audience trust across tech, AI, fashion, fitness, beauty, and travel.
+                </p>
+              </article>
+
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num step-num-pink">02</span>
+                  <span class="step-tag">Takeover</span>
+                </div>
+                <h3>Whole-Campaign Rollout</h3>
+                <p>
+                  Creative angles, script alignment, draft supervision, and coordinated multi-creator launch timelines managed cleanly under one roof.
+                </p>
+              </article>
+
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num">03</span>
+                  <span class="step-tag">Alignment</span>
+                </div>
+                <h3>Best Deal for Both Sides</h3>
+                <p>
+                  We align creator strengths directly with brand campaign objectives so every partnership stays fair, impactful, and high-trust.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- INTERACTIVE BRAND BRIEF COMPOSER -->
+        <section class="section past-campaigns-section" id="brief">
+          <div class="container">
+            <div class="panel-obsidian">
+              <div class="brief-layout">
+                <div>
+                  <span class="eyebrow-neon">Direct Campaign Desk</span>
+                  <h2>Take Over Your <span class="text-cyan">Next Launch.</span></h2>
+                  <p>
+                    Outline your brand and product goals below to generate an instant WhatsApp or Instagram DM brief—or tap WhatsApp directly anytime.
+                  </p>
+                  <ul class="brief-points">
+                    <li>Multi-creator strategy, casting &amp; rollout managed end to end</li>
+                    <li>Quality-vetted creators matched across relevant brand categories</li>
+                    <li>Every creative draft reviewed prior to publishing</li>
+                  </ul>
+                </div>
+
+                <form class="brief-form" id="brand-brief-form">
+                  <div class="field-row">
+                    <div class="field">
+                      <label for="b-brand">Brand or Product</label>
+                      <input id="b-brand" name="brand" type="text" placeholder="Your brand name" required>
+                    </div>
+                    <div class="field">
+                      <label for="b-website">Website or @Handle</label>
+                      <input id="b-website" name="website" type="text" placeholder="yourbrand.in">
+                    </div>
+                  </div>
+
+                  <div class="field-row">
+                    <div class="field">
+                      <label for="b-scope">Campaign Type</label>
+                      <select id="b-scope" name="scope" required>
+                        <option value="">Select campaign focus</option>
+                        <option value="Full Product Launch Wave">Full Product Launch Wave</option>
+                        <option value="Multi-Creator Brand Rollout">Multi-Creator Brand Rollout</option>
+                        <option value="Tech & AI Creator Campaign">Tech &amp; AI Creator Campaign</option>
+                        <option value="Fashion, Beauty & Lifestyle Campaign">Fashion, Beauty &amp; Lifestyle</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="b-contact">WhatsApp or Instagram Handle</label>
+                      <input id="b-contact" name="contact" type="text" placeholder="Your number or @handle" required>
+                    </div>
+                  </div>
+
+                  <div class="field">
+                    <label for="b-goal">Campaign Idea &amp; Timeline</label>
+                    <textarea
+                      id="b-goal"
+                      name="goal"
+                      rows="3"
+                      placeholder="Tell us about your product, goals, and launch timeline..."
+                    ></textarea>
+                  </div>
+
+                  <button class="btn btn-cyan" type="submit">Prepare Instant Brief ↗</button>
+
+                  <div class="brief-result" id="brief-result" hidden>
+                    <strong>Brief Ready to Send</strong>
+                    <pre class="brief-summary-text" id="brief-summary-text"></pre>
+                    <div class="dialog-actions">
+                      <button class="btn btn-cyan btn-sm" type="button" id="brief-wa-btn">Open WhatsApp ↗</button>
+                      <button class="btn btn-outline btn-sm" type="button" id="copy-brief-btn">Copy Brief</button>
+                      <a
+                        class="btn btn-outline btn-sm"
+                        href="https://www.instagram.com/sandeshyaar/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >DM @sandeshyaar ↗</a>
+                    </div>
+                    <p class="wa-status-msg" id="copy-feedback" aria-live="polite"></p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="white-to-obsidian-bridge" aria-hidden="true"></div>
+
+      <!-- COMPACT WHATSAPP FINALE -->
+      <section class="neon-faq-finale" id="faq">
+        <div class="finale-glow finale-glow-tl" aria-hidden="true"></div>
+        <div class="finale-glow finale-glow-br" aria-hidden="true"></div>
+
+        <div class="container">
+          <div class="finale-grid" id="collab">
+            <div class="finale-faq-col">
+              <span class="eyebrow-neon">BRAND COLLABS</span>
+              <h2 class="finale-heading">Skip Long Forms. <span class="text-cyan">Talk Direct.</span></h2>
+              <p class="collab-sub" style="max-width: 44ch;">
+                Whether you’re launching a new product or scaling creator presence across India, message us on WhatsApp and we’ll organize the full campaign.
+              </p>
+              <button class="btn btn-cyan btn-wa-hero" type="button" data-open-whatsapp>
+                <span>WhatsApp Me ↗</span>
+              </button>
+              <p class="reply-status">
+                <span class="status-online-dot" aria-hidden="true"></span>
+                Typically replies in a few minutes
+              </p>
+            </div>
+
+            <div class="finale-whatsapp-col" style="border-left: 0; grid-template-columns: 1fr;">
+              <div class="whatsapp-phone-stage">
+                <img
+                  class="wa-phone-img"
+                  src="assets/hero/whatsapp-phone.webp"
+                  alt="Neon WhatsApp collab preview on dark obsidian stone pedestal"
+                  width="896"
+                  height="1200"
+                  decoding="async"
+                >
+                <button class="wa-speech-bubble" type="button" data-open-whatsapp>
+                  <span>DM us on<br><strong>WhatsApp</strong></span>
+                  <svg class="wa-send-plane" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M21 3L10 14M21 3L14.5 21L10 14L3 9.5L21 3Z" fill="#00E8F8"/>
+                  </svg>
+                </button>
               </div>
             </div>
           </div>
@@ -176,21 +276,84 @@
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <div>
-          <a class="wordmark" href="index.html">MOLDIN.india<sup>®</sup></a>
-          <p class="footer-note">Connecting verified creators with modern brands—cleanly and transparently.</p>
+      <div class="container">
+        <div class="footer-row">
+          <div>
+            <a class="brand-logo" href="index.html">MOLDIN<span class="brand-dot">.india</span><sup>®</sup></a>
+            <p class="footer-note">
+              Full-scale brand-creator campaign partners. End-to-end execution across curated Indian talent.
+            </p>
+          </div>
+          <nav class="footer-links" aria-label="Footer Links">
+            <a href="brands.html">For Brands</a>
+            <a href="creators.html">For Creators</a>
+            <a href="campaigns.html">Campaigns</a>
+            <a
+              href="https://forms.gle/CUitj8LUdULQovqw7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Join Form ↗</a>
+          </nav>
         </div>
-
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="brands.html">For Brands</a>
-          <a href="creators.html">For Creators</a>
-          <a href="campaigns.html">Campaigns</a>
-          <a href="https://forms.gle/CUitj8LUdULQovqw7" target="_blank" rel="noopener noreferrer">Join Form ↗</a>
-        </nav>
+        <div class="footer-bottom">
+          <span>© 2026 MOLDIN.india — Managed Creator Collective &amp; Campaign Desk</span>
+          <a href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer">
+            @sandeshyaar ↗
+          </a>
+        </div>
       </div>
     </footer>
 
-    <script type="module" src="main.js?v=9.0"></script>
+    <dialog class="moldin-dialog" id="access-modal" aria-labelledby="access-title">
+      <div class="dialog-head">
+        <span class="eyebrow-neon">Direct Access</span>
+        <button class="dialog-close" type="button" data-close-access aria-label="Close">✕</button>
+      </div>
+      <h3 id="access-title">Continue with <span class="text-cyan">MOLDIN.india®</span></h3>
+      <p>
+        We skip bloated creator dashboards. Creators register once via Google Form; brands jump straight to WhatsApp or DM.
+      </p>
+      <div class="dialog-actions">
+        <a
+          class="btn btn-cyan"
+          href="https://forms.gle/CUitj8LUdULQovqw7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Creator Intake Form ↗</a>
+        <a class="btn btn-outline" href="#brief" data-close-access>Message Brand Desk</a>
+      </div>
+    </dialog>
+
+    <dialog class="moldin-dialog" id="whatsapp-modal" aria-labelledby="wa-modal-title">
+      <div class="dialog-head">
+        <span class="eyebrow-neon">Direct Collab Desk</span>
+        <button class="dialog-close" type="button" data-close-whatsapp aria-label="Close">✕</button>
+      </div>
+      <h3 id="wa-modal-title">DM us on <span class="text-cyan">WhatsApp</span></h3>
+      <p>Drop two lines below and open WhatsApp pre-filled — or copy straight into your thread.</p>
+      <form class="wa-modal-form" id="wa-collab-form">
+        <div class="wa-field">
+          <label for="wa-brand">Brand or Product</label>
+          <input id="wa-brand" type="text" placeholder="e.g. D2C Brand / SaaS AI tool">
+        </div>
+        <div class="wa-field">
+          <label for="wa-goal">Campaign Idea</label>
+          <textarea id="wa-goal" rows="2" placeholder="e.g. Full creator launch wave"></textarea>
+        </div>
+        <div class="dialog-actions">
+          <button class="btn btn-cyan" type="submit">Open WhatsApp ↗</button>
+          <button class="btn btn-outline" type="button" id="wa-copy-btn">Copy Note</button>
+          <a
+            class="btn btn-outline"
+            href="https://www.instagram.com/sandeshyaar/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >IG DM @sandeshyaar ↗</a>
+        </div>
+        <p class="wa-status-msg" id="wa-status-msg" aria-live="polite"></p>
+      </form>
+    </dialog>
+
+    <script type="module" src="main.js"></script>
   </body>
 </html>

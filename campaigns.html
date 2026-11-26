@@ -1,100 +1,346 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MOLDIN.india Campaigns & Collaboration Formats — Curated creator waves built for modern brands.">
-    <title>Campaigns — MOLDIN.india® | Collaboration Formats</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campaigns — MOLDIN.india® | Full-Scale Creator Campaigns</title>
+    <meta
+      name="description"
+      content="MOLDIN.india® executes full-scale brand campaigns across managed Indian creators—featured past rollouts include Nonstop Energy (100+ reels) and SunoSunao.ai (40+ reels)."
+    >
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=9.0">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header" id="site-header">
+      <div class="nav-inner">
+        <a class="brand-logo" href="index.html" aria-label="MOLDIN.india home">
+          MOLDIN<span class="brand-dot">.india</span><sup>®</sup>
+        </a>
 
-    <header class="site-header site-header--solid" data-site-header>
-      <div class="header-inner">
-        <a class="wordmark" href="index.html">MOLDIN.india<sup>®</sup></a>
-
-        <nav class="nav-links" id="primary-nav" aria-label="Primary navigation" data-nav-links>
+        <nav class="nav-center" aria-label="Primary Navigation">
           <a href="brands.html">For Brands</a>
           <a href="creators.html">For Creators</a>
-          <a href="campaigns.html" aria-current="page">Campaigns</a>
+          <a href="campaigns.html" class="is-active" aria-current="page">Campaigns</a>
           <a href="index.html#how-it-works">How it Works</a>
         </nav>
 
-        <div class="header-actions">
-          <a class="header-login" href="creators.html">Roster</a>
-          <a class="btn btn-cyan btn-sm" href="index.html#brief">Launch Wave ↗</a>
+        <div class="nav-actions">
+          <button class="btn-text" type="button" data-open-access>Log In</button>
+          <a
+            class="btn btn-cyan btn-sm"
+            href="https://forms.gle/CUitj8LUdULQovqw7"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Get Started ↗</a>
           <button
-            class="nav-toggle"
+            class="mobile-toggle"
+            id="mobile-toggle"
             type="button"
+            aria-label="Toggle Menu"
             aria-expanded="false"
-            aria-controls="primary-nav"
-            data-nav-toggle
-          >Menu</button>
+            aria-controls="mobile-drawer"
+          >☰</button>
         </div>
+      </div>
+
+      <div class="mobile-drawer" id="mobile-drawer">
+        <a href="brands.html">For Brands</a>
+        <a href="creators.html">For Creators</a>
+        <a href="campaigns.html" aria-current="page">Campaigns</a>
+        <a href="index.html#how-it-works">How it Works</a>
+        <a
+          class="btn btn-cyan"
+          href="https://forms.gle/CUitj8LUdULQovqw7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Join as Creator ↗</a>
+        <button class="btn btn-outline" type="button" data-open-access>Log In</button>
       </div>
     </header>
 
-    <main id="main">
-      <section class="sub-hero">
+    <main>
+      <canvas id="flow-light-strips" class="flow-light-canvas" aria-hidden="true"></canvas>
+
+      <!-- OBSIDIAN SUB-HERO -->
+      <section class="subhero-obsidian">
         <div class="container">
-          <span class="eyebrow-neon eyebrow-neon--pink">Campaign Formats</span>
-          <h1 class="sub-hero-title">Campaigns built for <span class="italic-pink">full brand scale.</span></h1>
-          <p class="section-lead" style="max-width: 56ch; margin-bottom: 26px;">
-            We manage end-to-end creator waves—pairing curated talent across niches to take over your entire campaign rollout.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 14px;">
-            <a class="btn btn-cyan" href="index.html#collab">Launch a Campaign ↗</a>
-            <a class="btn btn-outline" href="creators.html">Meet Our 8 Creators</a>
+          <div class="subhero-inner">
+            <span class="eyebrow-neon eyebrow-neon--pink">Campaign Execution</span>
+            <h1 class="subhero-title">
+              Full Campaigns Built
+              <span class="hero-word-brands">
+                for Scale.
+                <svg class="hero-pink-brush" viewBox="0 0 380 28" fill="none" aria-hidden="true">
+                  <path d="M8 20 C110 6 250 4 370 16" stroke="#FA049C" stroke-width="9" stroke-linecap="round"/>
+                  <path d="M180 12 C250 11 320 14 366 20" stroke="#FA049C" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </h1>
+            <p class="subhero-lead">
+              We take over entire brand campaigns—managing multiple quality-vetted creators together to connect strong storytellers directly with brands so both sides get the best deal.
+            </p>
+            <div class="subhero-cta-row">
+              <button class="btn btn-cyan" type="button" data-open-whatsapp>Launch on WhatsApp ↗</button>
+              <a class="btn btn-outline" href="creators.html">View Managed Roster ↓</a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section">
+      <div class="obsidian-to-white-bridge" aria-hidden="true"></div>
+
+      <!-- CLEAN WHITE STAGE: PAST CAMPAIGNS + CAMPAIGN FORMATS -->
+      <div class="light-canvas-stage" data-surface="light">
+        <section class="section past-campaigns-section" id="past-campaigns">
+          <div class="container">
+            <div class="editorial-header">
+              <div class="editorial-title-wrap">
+                <span class="eyebrow-light">Past Campaigns</span>
+                <h2>Delivered <span class="text-cyan-ink">at Scale.</span></h2>
+              </div>
+              <p class="editorial-lead">
+                Complete multi-creator rollouts coordinated cleanly from first hook to live reels.
+              </p>
+            </div>
+
+            <div class="past-campaigns-grid">
+              <article class="past-campaign-card past-campaign-card--pink">
+                <div class="past-logo-wrap">
+                  <img
+                    class="past-brand-logo"
+                    src="assets/brands/nonstop.png"
+                    alt="Nonstop Energy direct brand logo"
+                    width="96"
+                    height="96"
+                    decoding="async"
+                  >
+                </div>
+                <div class="past-campaign-info">
+                  <span class="past-brand-kicker">Brand Campaign</span>
+                  <h3>Nonstop Energy</h3>
+                  <div class="past-metric-row">
+                    <strong class="past-metric-value">100+</strong>
+                    <span class="past-metric-label">Reels Posted</span>
+                  </div>
+                  <p class="past-campaign-sub">Multi-Creator Full Campaign Execution</p>
+                </div>
+              </article>
+
+              <article class="past-campaign-card past-campaign-card--cyan">
+                <div class="past-logo-wrap">
+                  <img
+                    class="past-brand-logo past-brand-logo--inset"
+                    src="assets/brands/sunosunao.png"
+                    alt="SunoSunao.ai direct brand logo"
+                    width="96"
+                    height="96"
+                    decoding="async"
+                  >
+                </div>
+                <div class="past-campaign-info">
+                  <span class="past-brand-kicker">Brand Campaign</span>
+                  <h3>SunoSunao.ai</h3>
+                  <div class="past-metric-row">
+                    <strong class="past-metric-value">40+</strong>
+                    <span class="past-metric-label">Reels Posted</span>
+                  </div>
+                  <p class="past-campaign-sub">Full-Scale Creator Campaign Delivery</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section workflow-section-light">
+          <div class="container">
+            <div class="editorial-header">
+              <div class="editorial-title-wrap">
+                <h2>Categories Where Our <span class="text-pink-underline">Creators Lead.</span></h2>
+              </div>
+            </div>
+
+            <div class="workflow-track">
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num">01</span>
+                  <span class="step-tag">Tech &amp; AI</span>
+                </div>
+                <h3>Apps, AI &amp; Software Waves</h3>
+                <p>
+                  Clear product demos, workflow reels, and credible launches led by managed tech voices including Amlendra Kumar &amp; Sandesh Agrawal.
+                </p>
+              </article>
+
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num step-num-pink">02</span>
+                  <span class="step-tag">Lifestyle</span>
+                </div>
+                <h3>Fashion, Beauty &amp; Modeling</h3>
+                <p>
+                  High-save styling edits, skincare storytelling, and curated lookbooks crafted across strong fashion and beauty creators.
+                </p>
+              </article>
+
+              <article class="workflow-card-light">
+                <div class="step-badge-row">
+                  <span class="step-num">03</span>
+                  <span class="step-tag">Culture</span>
+                </div>
+                <h3>Fitness, Travel &amp; Youth Energy</h3>
+                <p>
+                  Dynamic real-world stories uniting outdoor, fitness, and travel creators behind one cohesive multi-reel brand presence.
+                </p>
+              </article>
+            </div>
+
+            <div class="light-cta-strip">
+              <div>
+                <strong>Ready for MOLDIN to run your entire campaign?</strong>
+                <span>Talk directly with our campaign desk via WhatsApp or share a brief.</span>
+              </div>
+              <div class="light-cta-actions">
+                <button class="btn btn-dark-solid" type="button" data-open-whatsapp>WhatsApp Me ↗</button>
+                <a class="btn btn-cyan-solid" href="brands.html#brief">Share Campaign Brief →</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="white-to-obsidian-bridge" aria-hidden="true"></div>
+
+      <!-- COMPACT WHATSAPP FINALE -->
+      <section class="neon-faq-finale" id="faq">
+        <div class="finale-glow finale-glow-tl" aria-hidden="true"></div>
+        <div class="finale-glow finale-glow-br" aria-hidden="true"></div>
+
         <div class="container">
-          <div class="steps-grid">
-            <article class="glass-card">
-              <div class="step-num-glow">01</div>
-              <h3>Tech &amp; AI Walkthroughs</h3>
-              <p>Hands-on 60-second software explainers and workflow demos with high-trust tech voices including Amlendra Kumar &amp; Sandesh Agrawal.</p>
-            </article>
+          <div class="finale-grid" id="collab">
+            <div class="finale-faq-col">
+              <span class="eyebrow-neon">FULL-CAMPAIGN DESK</span>
+              <h2 class="finale-heading">Have a Brand <span class="text-cyan">Collab?</span></h2>
+              <p class="collab-sub" style="max-width: 44ch;">
+                Skip lengthy agency onboarding. Message us on WhatsApp and our team handles the whole multi-creator rollout.
+              </p>
+              <button class="btn btn-cyan btn-wa-hero" type="button" data-open-whatsapp>
+                <span>WhatsApp Me ↗</span>
+              </button>
+              <p class="reply-status">
+                <span class="status-online-dot" aria-hidden="true"></span>
+                Typically replies in a few minutes
+              </p>
+            </div>
 
-            <article class="glass-card">
-              <div class="step-num-glow">02</div>
-              <h3>Fashion &amp; Beauty UGC</h3>
-              <p>Styling reels, aesthetic unboxings, and routine demos tailored for both organic feeds and Meta ad whitelisting.</p>
-            </article>
-
-            <article class="glass-card">
-              <div class="step-num-glow">03</div>
-              <h3>Travel, Fitness &amp; Culture</h3>
-              <p>Natural outdoor lifestyle integration across real travel, sports, and everyday creator voices.</p>
-            </article>
+            <div class="finale-whatsapp-col" style="border-left: 0; grid-template-columns: 1fr;">
+              <div class="whatsapp-phone-stage">
+                <img
+                  class="wa-phone-img"
+                  src="assets/hero/whatsapp-phone.webp"
+                  alt="Neon WhatsApp collab preview on dark obsidian stone pedestal"
+                  width="896"
+                  height="1200"
+                  decoding="async"
+                >
+                <button class="wa-speech-bubble" type="button" data-open-whatsapp>
+                  <span>DM us on<br><strong>WhatsApp</strong></span>
+                  <svg class="wa-send-plane" width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M21 3L10 14M21 3L14.5 21L10 14L3 9.5L21 3Z" fill="#00E8F8"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <div class="container footer-inner">
-        <div>
-          <a class="wordmark" href="index.html">MOLDIN.india<sup>®</sup></a>
-          <p class="footer-note">Connecting verified creators with modern brands—cleanly and transparently.</p>
+      <div class="container">
+        <div class="footer-row">
+          <div>
+            <a class="brand-logo" href="index.html">MOLDIN<span class="brand-dot">.india</span><sup>®</sup></a>
+            <p class="footer-note">
+              Full-scale brand-creator campaign partners. End-to-end execution across curated Indian talent.
+            </p>
+          </div>
+          <nav class="footer-links" aria-label="Footer Links">
+            <a href="brands.html">For Brands</a>
+            <a href="creators.html">For Creators</a>
+            <a href="campaigns.html">Campaigns</a>
+            <a
+              href="https://forms.gle/CUitj8LUdULQovqw7"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Join Form ↗</a>
+          </nav>
         </div>
-
-        <nav class="footer-links" aria-label="Footer navigation">
-          <a href="brands.html">For Brands</a>
-          <a href="creators.html">For Creators</a>
-          <a href="campaigns.html">Campaigns</a>
-          <a href="https://forms.gle/CUitj8LUdULQovqw7" target="_blank" rel="noopener noreferrer">Join Form ↗</a>
-        </nav>
+        <div class="footer-bottom">
+          <span>© 2026 MOLDIN.india — Managed Creator Collective &amp; Campaign Desk</span>
+          <a href="https://www.instagram.com/sandeshyaar/" target="_blank" rel="noopener noreferrer">
+            @sandeshyaar ↗
+          </a>
+        </div>
       </div>
     </footer>
 
-    <script type="module" src="main.js?v=9.0"></script>
+    <dialog class="moldin-dialog" id="access-modal" aria-labelledby="access-title">
+      <div class="dialog-head">
+        <span class="eyebrow-neon">Direct Access</span>
+        <button class="dialog-close" type="button" data-close-access aria-label="Close">✕</button>
+      </div>
+      <h3 id="access-title">Continue with <span class="text-cyan">MOLDIN.india®</span></h3>
+      <p>
+        We manage multiple quality creators and handle whole brand campaigns cleanly end to end.
+      </p>
+      <div class="dialog-actions">
+        <a
+          class="btn btn-cyan"
+          href="https://forms.gle/CUitj8LUdULQovqw7"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Creator Intake Form ↗</a>
+        <a class="btn btn-outline" href="brands.html#brief" data-close-access>Brand Brief</a>
+      </div>
+    </dialog>
+
+    <dialog class="moldin-dialog" id="whatsapp-modal" aria-labelledby="wa-modal-title">
+      <div class="dialog-head">
+        <span class="eyebrow-neon">Direct Collab Desk</span>
+        <button class="dialog-close" type="button" data-close-whatsapp aria-label="Close">✕</button>
+      </div>
+      <h3 id="wa-modal-title">DM us on <span class="text-cyan">WhatsApp</span></h3>
+      <p>Drop two lines below and open WhatsApp pre-filled — or copy straight into your thread.</p>
+      <form class="wa-modal-form" id="wa-collab-form">
+        <div class="wa-field">
+          <label for="wa-brand">Brand or Product</label>
+          <input id="wa-brand" type="text" placeholder="e.g. D2C Brand / Consumer App">
+        </div>
+        <div class="wa-field">
+          <label for="wa-goal">Campaign Idea</label>
+          <textarea id="wa-goal" rows="2" placeholder="e.g. Full campaign launch wave"></textarea>
+        </div>
+        <div class="dialog-actions">
+          <button class="btn btn-cyan" type="submit">Open WhatsApp ↗</button>
+          <button class="btn btn-outline" type="button" id="wa-copy-btn">Copy Note</button>
+          <a
+            class="btn btn-outline"
+            href="https://www.instagram.com/sandeshyaar/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >IG DM @sandeshyaar ↗</a>
+        </div>
+        <p class="wa-status-msg" id="wa-status-msg" aria-live="polite"></p>
+      </form>
+    </dialog>
+
+    <script type="module" src="main.js"></script>
   </body>
 </html>
