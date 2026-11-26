@@ -241,7 +241,7 @@ const drawAmbientNeonArcs = (ctx, w, h, timeSec) => {
   ctx.fillStyle = bgGrad;
   ctx.fillRect(0, 0, w, h);
 
-  // Full-canvas additive ambient glows (zero center seam at any viewport width)
+  // Full-canvas ambient glows drawn first, then melted cleanly to #02040a at bottom edge
   const leftCx = -w * 0.03;
   const leftCy = h * 0.67;
   const leftR = Math.min(w * 0.44, Math.max(w * 0.225, h * 0.34));
@@ -253,24 +253,6 @@ const drawAmbientNeonArcs = (ctx, w, h, timeSec) => {
   leftAura.addColorStop(1, 'rgba(0, 0, 0, 0)');
   ctx.fillStyle = leftAura;
   ctx.fillRect(0, 0, w, h);
-
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(leftCx, leftCy, leftR, -0.45 * Math.PI, 0.34 * Math.PI);
-  ctx.strokeStyle = 'rgba(0, 232, 248, 0.85)';
-  ctx.lineWidth = 2.6;
-  ctx.shadowColor = '#00e8f8';
-  ctx.shadowBlur = 22;
-  ctx.stroke();
-
-  const cometL = -0.35 * Math.PI + ((timeSec * 0.32) % 0.72) * Math.PI;
-  ctx.beginPath();
-  ctx.arc(leftCx, leftCy, leftR, cometL, cometL + 0.24);
-  ctx.strokeStyle = 'rgba(220, 255, 255, 0.96)';
-  ctx.lineWidth = 3.8;
-  ctx.shadowBlur = 28;
-  ctx.stroke();
-  ctx.restore();
 
   const rightCx = w * 1.07;
   const rightCy = h * 0.61;
@@ -284,13 +266,45 @@ const drawAmbientNeonArcs = (ctx, w, h, timeSec) => {
   ctx.fillStyle = rightAura;
   ctx.fillRect(0, 0, w, h);
 
+  const blAura = ctx.createRadialGradient(w * 0.06, h * 0.84, 8, w * 0.06, h * 0.84, w * 0.2);
+  blAura.addColorStop(0, 'rgba(250, 4, 156, 0.32)');
+  blAura.addColorStop(0.55, 'rgba(160, 12, 130, 0.11)');
+  blAura.addColorStop(1, 'rgba(0, 0, 0, 0)');
+  ctx.fillStyle = blAura;
+  ctx.fillRect(0, 0, w, h);
+
+  // Melt blurred glow haze seamlessly into pure #02040a at bottom edge before crisp side rails
+  const bottomMelt = ctx.createLinearGradient(0, h - Math.min(130, h * 0.16), 0, h);
+  bottomMelt.addColorStop(0, 'rgba(2, 4, 10, 0)');
+  bottomMelt.addColorStop(0.6, 'rgba(2, 4, 10, 0.72)');
+  bottomMelt.addColorStop(1, 'rgba(2, 4, 10, 1)');
+  ctx.fillStyle = bottomMelt;
+  ctx.fillRect(0, h - Math.min(130, h * 0.16), w, Math.min(130, h * 0.16));
+
+  // Crisp left cyan & right pink rim rails drawn AFTER melt so strips stay 100% continuous across edge
   ctx.save();
   ctx.beginPath();
-  ctx.arc(rightCx, rightCy, rightR, 0.68 * Math.PI, 1.38 * Math.PI);
+  ctx.arc(leftCx, leftCy, leftR, -0.45 * Math.PI, 0.44 * Math.PI);
+  ctx.strokeStyle = 'rgba(0, 232, 248, 0.88)';
+  ctx.lineWidth = 2.8;
+  ctx.shadowColor = '#00e8f8';
+  ctx.shadowBlur = 20;
+  ctx.stroke();
+
+  const cometL = -0.35 * Math.PI + ((timeSec * 0.32) % 0.78) * Math.PI;
+  ctx.beginPath();
+  ctx.arc(leftCx, leftCy, leftR, cometL, cometL + 0.24);
+  ctx.strokeStyle = 'rgba(220, 255, 255, 0.96)';
+  ctx.lineWidth = 3.8;
+  ctx.shadowBlur = 26;
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(rightCx, rightCy, rightR, 0.56 * Math.PI, 1.38 * Math.PI);
   ctx.strokeStyle = 'rgba(250, 4, 156, 0.9)';
   ctx.lineWidth = 2.8;
   ctx.shadowColor = '#fa049c';
-  ctx.shadowBlur = 24;
+  ctx.shadowBlur = 22;
   ctx.stroke();
 
   const cometR = 0.74 * Math.PI + ((timeSec * 0.28 + 0.3) % 0.58) * Math.PI;
@@ -298,16 +312,9 @@ const drawAmbientNeonArcs = (ctx, w, h, timeSec) => {
   ctx.arc(rightCx, rightCy, rightR, cometR, cometR + 0.22);
   ctx.strokeStyle = 'rgba(255, 210, 245, 0.95)';
   ctx.lineWidth = 4;
-  ctx.shadowBlur = 30;
+  ctx.shadowBlur = 28;
   ctx.stroke();
   ctx.restore();
-
-  const blAura = ctx.createRadialGradient(w * 0.06, h * 0.95, 10, w * 0.06, h * 0.95, w * 0.26);
-  blAura.addColorStop(0, 'rgba(250, 4, 156, 0.36)');
-  blAura.addColorStop(0.55, 'rgba(160, 12, 130, 0.12)');
-  blAura.addColorStop(1, 'rgba(0, 0, 0, 0)');
-  ctx.fillStyle = blAura;
-  ctx.fillRect(0, 0, w, h);
 };
 
 /**

@@ -318,22 +318,20 @@ h3 {
    1. HERO STAGE (Separated Cutout + Moving Physics 3D Brand Rings)
    ========================================================================== */
 
-.hero-exact {
-  position: relative;
-  background: #02040a;
-  overflow: hidden;
+.flow-light-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.hero-exact::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 44px;
+.hero-exact {
+  position: relative;
   z-index: 3;
-  background: linear-gradient(180deg, rgba(2, 4, 10, 0) 0%, #02040a 100%);
-  pointer-events: none;
+  background: #02040a;
+  overflow: hidden;
 }
 
 .hero-stage-exact {
@@ -374,6 +372,8 @@ h3 {
   z-index: 3;
   pointer-events: none;
   user-select: none;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 84%, transparent 99%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 84%, transparent 99%);
   filter: drop-shadow(0 0 36px rgba(0, 232, 248, 0.14));
 }
 
@@ -444,35 +444,31 @@ h3 {
 }
 
 /* ==========================================================================
-   2. SMOOTH OBSIDIAN -> PURE WHITE GRADIENT BRIDGE
+   2. SMOOTH OBSIDIAN -> PURE WHITE GRADIENT BRIDGE (Ultra-Smooth Dissolve)
    ========================================================================== */
 
 .obsidian-to-white-bridge {
   position: relative;
-  height: clamp(120px, 12vw, 195px);
+  height: clamp(290px, 28vw, 440px);
   margin-top: -2px;
+  margin-bottom: -2px;
   background: linear-gradient(
     180deg,
     #02040a 0%,
-    #0a0d16 20%,
-    #252c3b 42%,
-    #7b8496 66%,
-    #dfe4ee 84%,
+    #04070f 10%,
+    #0a0f1b 20%,
+    #141c2d 30%,
+    #253045 41%,
+    #3d4a62 52%,
+    #5f6b82 62%,
+    #8893a7 72%,
+    #b2bac8 81%,
+    #d5dae3 89%,
+    #edf0f5 95%,
+    #fafbfd 98%,
     #ffffff 100%
   );
   pointer-events: none;
-}
-
-.obsidian-to-white-bridge::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    55% 80% at 50% 0%,
-    rgba(0, 232, 248, 0.09) 0%,
-    rgba(250, 4, 156, 0.04) 40%,
-    transparent 75%
-  );
 }
 
 /* ==========================================================================
@@ -483,6 +479,11 @@ h3 {
   position: relative;
   background: var(--white);
   color: var(--ink-dark);
+}
+
+.light-canvas-stage .container {
+  position: relative;
+  z-index: 4;
 }
 
 .section {
@@ -936,7 +937,7 @@ h3 {
 
 .workflow-section-light {
   padding-top: 1.8rem;
-  padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
+  padding-bottom: clamp(4.2rem, 7vw, 6.2rem);
 }
 
 .workflow-track {
@@ -1050,14 +1051,24 @@ h3 {
    ========================================================================== */
 
 .white-to-obsidian-bridge {
-  height: clamp(100px, 10vw, 155px);
+  position: relative;
+  height: clamp(290px, 28vw, 440px);
+  margin-top: -2px;
   margin-bottom: -2px;
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #e2e6ef 24%,
-    #3d4557 52%,
-    #0c101b 78%,
+    #fafbfd 3%,
+    #edf0f5 7%,
+    #d5dae3 13%,
+    #b2bac8 21%,
+    #8893a7 30%,
+    #5f6b82 40%,
+    #3d4a62 50%,
+    #253045 61%,
+    #141c2d 71%,
+    #0a0f1b 81%,
+    #04070f 90%,
     #02040a 100%
   );
   pointer-events: none;
@@ -1067,23 +1078,31 @@ h3 {
   position: relative;
   background: #02040a;
   color: #ffffff;
-  padding: clamp(3.5rem, 6vw, 5.8rem) 0 clamp(3.2rem, 5vw, 5rem);
-  overflow: hidden;
+  padding: clamp(3rem, 5.5vw, 5rem) 0 clamp(3.2rem, 5vw, 5rem);
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.neon-faq-finale .container {
+  position: relative;
+  z-index: 4;
 }
 
 .finale-glow {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
+  -webkit-mask-image: radial-gradient(circle, #000 58%, transparent 95%);
+  mask-image: radial-gradient(circle, #000 58%, transparent 95%);
 }
 
 .finale-glow-tl {
-  top: -190px;
-  left: -170px;
-  width: 420px;
-  height: 420px;
+  top: -120px;
+  left: -165px;
+  width: 400px;
+  height: 400px;
   border: 2.5px solid rgba(0, 232, 248, 0.72);
-  box-shadow: 0 0 65px rgba(0, 232, 248, 0.35), inset 0 0 50px rgba(0, 232, 248, 0.16);
+  box-shadow: 0 0 55px rgba(0, 232, 248, 0.28), inset 0 0 42px rgba(0, 232, 248, 0.14);
 }
 
 .finale-glow-br {
@@ -1592,6 +1611,8 @@ h3 {
    ========================================================================== */
 
 .site-footer {
+  position: relative;
+  z-index: 3;
   background: #02040a;
   color: rgba(240, 244, 252, 0.75);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -1752,9 +1773,15 @@ h3 {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 44px;
+  height: 120px;
   z-index: 3;
-  background: linear-gradient(180deg, rgba(2, 4, 10, 0) 0%, #02040a 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(2, 4, 10, 0) 0%,
+    rgba(2, 4, 10, 0.42) 48%,
+    rgba(2, 4, 10, 0.86) 80%,
+    #02040a 100%
+  );
   pointer-events: none;
 }
 

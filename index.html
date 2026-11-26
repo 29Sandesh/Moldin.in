@@ -67,6 +67,8 @@
     </header>
 
     <main>
+      <canvas id="flow-light-strips" class="flow-light-canvas" aria-hidden="true"></canvas>
+
       <!-- 1. HERO STAGE: SEPARATED CREATOR CUTOUT + CONFIGURABLE 3D MOVING BRAND STRIPS -->
       <section class="hero-exact" id="top">
         <div class="hero-stage-exact" id="hero-stage">
@@ -343,7 +345,7 @@
                   alt="Neon cyan WhatsApp preview on angled smartphone over dark stone pedestal"
                   width="896"
                   height="1200"
-                  loading="lazy"
+                  decoding="async"
                 >
                 <button class="wa-speech-bubble" type="button" data-open-whatsapp>
                   <span>DM us on<br><strong>WhatsApp</strong></span>

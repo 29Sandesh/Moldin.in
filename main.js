@@ -6,6 +6,7 @@
 
 import { FEATURED_CREATORS, MOLDIN_CONTACT } from './brands-config.js';
 import { initHeroRibbons } from './hero-ribbons.js';
+import { initPageLightStrips } from './page-light-strips.js';
 
 /**
  * Generates clean SVG vector crown markup tailored for King (Golden/Charcoal) or Queen cards.
@@ -222,13 +223,25 @@ export const initHeader = () => {
 
   const syncHeaderContrast = () => {
     const lightZones = document.querySelectorAll('[data-surface="light"]');
-    const yCheck = header.getBoundingClientRect().bottom * 0.65;
+    const bridgeZones = document.querySelectorAll('.obsidian-to-white-bridge');
+    const yCheck = header.getBoundingClientRect().bottom * 0.72;
     let overLight = false;
     for (const zone of lightZones) {
       const rect = zone.getBoundingClientRect();
       if (rect.top <= yCheck && rect.bottom >= yCheck) {
         overLight = true;
         break;
+      }
+    }
+    if (!overLight) {
+      for (const b of bridgeZones) {
+        const rect = b.getBoundingClientRect();
+        // Switch smoothly in lower bright half of top bridge
+        const midpoint = rect.top + rect.height * 0.56;
+        if (midpoint <= yCheck && rect.bottom >= yCheck) {
+          overLight = true;
+          break;
+        }
       }
     }
     header.classList.toggle('is-light', overLight);
@@ -430,6 +443,7 @@ export const initBriefForm = () => {
 document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initHeroRibbons();
+  initPageLightStrips();
   initPlayingCardsRoster();
   initFaqAccordion();
   initWhatsappCollab();
