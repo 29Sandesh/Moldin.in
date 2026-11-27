@@ -166,10 +166,19 @@
     </header>
 
     <main>
-      <!-- 1. HERO STAGE: SEPARATED CUTOUT + CONFIGURABLE 3D MOVING BRAND STRIPS -->
+      <!-- 1. HERO STAGE: EDITORIAL HEADING BEHIND CUTOUT + CONFIGURABLE 3D MOVING BRAND STRIPS -->
       <section class="hero-exact" id="top">
         <div class="hero-stage-exact" id="hero-stage">
           <canvas id="hero-bg-canvas" class="hero-canvas-layer hero-canvas-bg" aria-hidden="true"></canvas>
+
+          <div class="hero-back-title-layer">
+            <h1 class="hero-headline-editorial">
+              <span class="hero-line-kicker">WE CONNECT</span>
+              <span class="hero-line-creators">CREATORS</span>
+              <span class="hero-line-brands">WITH BRANDS.</span>
+            </h1>
+          </div>
+
           <canvas id="hero-rings-canvas" class="hero-canvas-layer hero-canvas-rings" aria-hidden="true"></canvas>
 
           <img
@@ -179,23 +188,10 @@
             width="1672"
             height="941"
             fetchpriority="high"
+            decoding="sync"
           >
 
-          <div class="hero-overlay-content">
-            <h1 class="hero-headline-exact">
-              <span class="hero-headline-top">We Connect</span>
-              <span class="hero-headline-bottom">
-                <span class="hero-word-creators">Creators</span>
-                <span class="hero-word-brands">
-                  With Brands.
-                  <svg class="hero-pink-brush" viewBox="0 0 380 28" fill="none" aria-hidden="true">
-                    <path d="M8 20 C110 6 250 4 370 16" stroke="#FA049C" stroke-width="9" stroke-linecap="round"/>
-                    <path d="M180 12 C250 11 320 14 366 20" stroke="#FA049C" stroke-width="4" stroke-linecap="round"/>
-                  </svg>
-                </span>
-              </span>
-            </h1>
-
+          <div class="hero-cta-layer">
             <div class="hero-cta-exact">
               <button class="btn btn-cyan" type="button" data-open-start>Creator &amp; Brand ↗</button>
               <a class="btn btn-outline" href="#collab">Partner as Brand</a>
@@ -313,6 +309,7 @@
                     alt="Nonstop Energy direct brand logo"
                     width="96"
                     height="96"
+                    loading="lazy"
                     decoding="async"
                   >
                 </div>
@@ -335,6 +332,7 @@
                     alt="SunoSunao.ai direct brand logo"
                     width="96"
                     height="96"
+                    loading="lazy"
                     decoding="async"
                   >
                 </div>
@@ -495,6 +493,7 @@
                   alt="Neon cyan WhatsApp preview on angled smartphone over dark stone pedestal"
                   width="896"
                   height="1200"
+                  loading="lazy"
                   decoding="async"
                 >
                 <a

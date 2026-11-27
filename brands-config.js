@@ -21,33 +21,30 @@ export const MOLDIN_CONTACT = Object.freeze({
 });
 
 /**
- * Editable 3D kinetic glass ribbon orbits rendered behind & around the hero creator cutout.
+ * Editable 3D kinetic glass ribbon orbits rendered behind the hero creator cutout.
  * Modify `brands`, `speed`, `tiltDeg`, or `glowColors` anytime.
  */
 export const HERO_BRAND_RINGS = [
   {
     id: 'upper-primary-ring',
     label: 'Primary Upper Neon Ring',
-    // Edit these brands freely — changes update the live moving 3D glass ribbon automatically
+    // Clean, spacious marquee showcase of iconic consumer brands
     brands: [
       { name: 'boAt', badgeType: 'boat', accent: '#ffffff' },
       { name: 'Coca-Cola', badgeType: 'coca-cola', accent: '#ffffff' },
       { name: 'Netflix', badgeType: 'netflix', accent: '#e50914' },
       { name: 'Spotify', badgeType: 'spotify', accent: '#1ed760' },
-      { name: 'Dove', badgeType: 'dove', accent: '#ffffff' },
-      { name: 'boAt', badgeType: 'boat', accent: '#ffffff' },
-      { name: 'Coca-Cola', badgeType: 'coca-cola', accent: '#ffffff' },
       { name: 'PUMA', badgeType: 'puma', accent: '#ffffff' },
     ],
     // Physics & 3D orbit geometry
-    centerYRatio: 0.575,
-    radiusXRatio: 0.402,
-    radiusYRatio: 0.088,
-    radiusZRatio: 0.145,
-    bandHeightRatio: 0.125,
-    tiltZDeg: 4.5,
+    centerYRatio: 0.59,
+    radiusXRatio: 0.405,
+    radiusYRatio: 0.084,
+    radiusZRatio: 0.142,
+    bandHeightRatio: 0.122,
+    tiltZDeg: 4.2,
     tiltXDeg: 18,
-    // Angular velocity (radians/sec) — positive sweeps strips inward from right-to-left across front face
+    // Angular velocity (radians/sec) — positive sweeps strips smoothly left-to-right
     angularSpeed: 0.145,
     rimLeft: '#00e8f8',
     rimMid: '#8a3ffc',
@@ -55,24 +52,23 @@ export const HERO_BRAND_RINGS = [
   },
   {
     id: 'lower-counter-ring',
-    label: 'Secondary Lower Crossed Ring',
-    // Edit these brands freely
+    label: 'Secondary Lower Client Ring',
+    // Active campaign & partner brands including SunoSunao.ai and Nonstop Energy
     brands: [
-      { name: 'PUMA', badgeType: 'puma', accent: '#ffffff' },
-      { name: 'Spotify', badgeType: 'spotify', accent: '#1ed760' },
-      { name: 'Dove', badgeType: 'dove', accent: '#ffffff' },
-      { name: 'boAt', badgeType: 'boat', accent: '#ffffff' },
-      { name: 'Netflix', badgeType: 'netflix', accent: '#e50914' },
-      { name: 'Coca-Cola', badgeType: 'coca-cola', accent: '#ffffff' },
+      { name: 'SunoSunao.ai', badgeType: 'sunosunao', accent: '#00e8f8' },
+      { name: 'Nonstop Energy', badgeType: 'nonstop', accent: '#fa049c' },
+      { name: 'Mokobara', badgeType: 'mokobara', accent: '#ffffff' },
+      { name: 'Ultrahuman', badgeType: 'ultrahuman', accent: '#00e8f8' },
+      { name: 'PromptFlow', badgeType: 'promptflow', accent: '#c4b5fd' },
     ],
-    centerYRatio: 0.725,
+    centerYRatio: 0.74,
     radiusXRatio: 0.398,
     radiusYRatio: 0.072,
-    radiusZRatio: 0.135,
+    radiusZRatio: 0.132,
     bandHeightRatio: 0.112,
-    tiltZDeg: -7.5,
+    tiltZDeg: -6.8,
     tiltXDeg: 16,
-    // Opposite spin direction for genuine crossed dual-ring physics
+    // Counter-rotation for dynamic dual-ring motion
     angularSpeed: -0.115,
     rimLeft: '#5f68ff',
     rimMid: '#fa049c',

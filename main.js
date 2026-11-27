@@ -80,6 +80,7 @@ export const initPlayingCardsRoster = () => {
                 alt="${escapeHtml(creator.name)} — MOLDIN Golden Star Creator"
                 width="512"
                 height="512"
+                loading="lazy"
                 decoding="async"
                 data-fallback="${escapeHtml(creator.fallbackPortrait)}"
               >
@@ -136,6 +137,7 @@ export const initPlayingCardsRoster = () => {
               alt="${escapeHtml(creator.name)} — ${escapeHtml(creator.niche)} Creator"
               width="512"
               height="512"
+              loading="lazy"
               decoding="async"
               data-fallback="${escapeHtml(creator.fallbackPortrait)}"
             >
@@ -173,20 +175,35 @@ export const initPlayingCardsRoster = () => {
     });
   });
 
-  // Subtle physical playing-card 3D tilt hover & metallic highlight reflection
+  // Subtle physical playing-card 3D tilt hover & metallic highlight reflection (desktop fine pointer only)
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!reducedMotion) {
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (!reducedMotion && finePointer) {
     document.querySelectorAll('.tilt-card').forEach((card) => {
-      card.addEventListener('pointermove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
-        const y = (e.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
-        card.style.setProperty('--rx', `${(-y * 7).toFixed(2)}deg`);
-        card.style.setProperty('--ry', `${(x * 8).toFixed(2)}deg`);
-        card.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`);
-        card.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`);
-      });
+      let framePending = false;
+      let lastEvt = null;
+      card.addEventListener(
+        'pointermove',
+        (e) => {
+          lastEvt = e;
+          if (framePending) return;
+          framePending = true;
+          requestAnimationFrame(() => {
+            framePending = false;
+            if (!lastEvt) return;
+            const rect = card.getBoundingClientRect();
+            const x = (lastEvt.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
+            const y = (lastEvt.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
+            card.style.setProperty('--rx', `${(-y * 7).toFixed(2)}deg`);
+            card.style.setProperty('--ry', `${(x * 8).toFixed(2)}deg`);
+            card.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`);
+            card.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`);
+          });
+        },
+        { passive: true },
+      );
       card.addEventListener('pointerleave', () => {
+        lastEvt = null;
         card.style.setProperty('--rx', '0deg');
         card.style.setProperty('--ry', '0deg');
       });
@@ -247,9 +264,19 @@ export const initHeader = () => {
     header.classList.toggle('is-scrolled', window.scrollY > 28);
   };
 
+  let headerTicking = false;
+  const scheduleHeaderSync = () => {
+    if (headerTicking) return;
+    headerTicking = true;
+    requestAnimationFrame(() => {
+      headerTicking = false;
+      syncHeaderContrast();
+    });
+  };
+
   syncHeaderContrast();
-  window.addEventListener('scroll', syncHeaderContrast, { passive: true });
-  window.addEventListener('resize', syncHeaderContrast, { passive: true });
+  window.addEventListener('scroll', scheduleHeaderSync, { passive: true });
+  window.addEventListener('resize', scheduleHeaderSync, { passive: true });
 };
 
 /**

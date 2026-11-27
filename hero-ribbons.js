@@ -1,14 +1,15 @@
 /**
- * @fileoverview 3D kinetic neon glass brand ribbons, glowing ambient planet arcs,
- * and running edge light-strips for the MOLDIN.india® hero stage.
- * Reads all brand entries directly from HERO_BRAND_RINGS in ./brands-config.js.
+ * @fileoverview Hyper-optimized 3D kinetic neon glass brand ribbons, pre-cached ambient
+ * planet arcs, and batched rim lasers for the MOLDIN.india® hero stage.
+ * Automatically pauses when scrolled offscreen or backgrounded for instant 60fps UX.
  */
 
 import { HERO_BRAND_RINGS } from './brands-config.js';
 
 /**
  * Draw crisp custom vector brand badge centered inside a texture cell, falling back
- * to bold stylized wordmark for any user-supplied brand string.
+ * to clean geometric wordmark typography for any user-supplied brand string.
+ * Runs once during startup atlas generation (zero per-frame overhead).
  * @param {CanvasRenderingContext2D} ctx
  * @param {{ name: string, badgeType?: string, accent?: string }} brand
  * @param {number} cx
@@ -20,7 +21,7 @@ const drawBrandArtwork = (ctx, brand, cx, cy, cellW, cellH) => {
   ctx.save();
   ctx.translate(cx, cy);
   const type = (brand.badgeType || brand.name || '').toLowerCase().trim();
-  const s = Math.min(cellH / 120, cellW / 245);
+  const s = Math.min(cellH / 120, cellW / 290);
   ctx.scale(s, s);
 
   if (type === 'boat') {
@@ -45,8 +46,6 @@ const drawBrandArtwork = (ctx, brand, cx, cy, cellW, cellH) => {
     ctx.textAlign = 'center';
     ctx.fillText('Coca-Cola', 0, 2);
   } else if (type === 'netflix') {
-    ctx.shadowColor = 'rgba(229, 9, 20, 0.55)';
-    ctx.shadowBlur = 12;
     ctx.fillStyle = '#b20710';
     ctx.fillRect(-19, -30, 12, 60);
     ctx.fillRect(7, -30, 12, 60);
@@ -59,13 +58,10 @@ const drawBrandArtwork = (ctx, brand, cx, cy, cellW, cellH) => {
     ctx.closePath();
     ctx.fill();
   } else if (type === 'spotify') {
-    ctx.shadowColor = 'rgba(30, 215, 96, 0.45)';
-    ctx.shadowBlur = 14;
     ctx.fillStyle = '#1ed760';
     ctx.beginPath();
     ctx.arc(0, 0, 28, 0, Math.PI * 2);
     ctx.fill();
-    ctx.shadowBlur = 0;
     ctx.strokeStyle = '#07120c';
     ctx.lineCap = 'round';
     ctx.lineWidth = 5;
@@ -102,10 +98,70 @@ const drawBrandArtwork = (ctx, brand, cx, cy, cellW, cellH) => {
     ctx.quadraticCurveTo(48, -12, 34, -4);
     ctx.lineTo(24, -14);
     ctx.fill();
+  } else if (type === 'sunosunao') {
+    // Sleek cyan soundwave emblem + clean studio wordmark
+    const barHeights = [14, 28, 42, 24, 16];
+    const barColors = ['#fa049c', '#a855f7', '#00e8f8', '#38bdf8', '#00e8f8'];
+    for (let i = 0; i < barHeights.length; i += 1) {
+      ctx.fillStyle = barColors[i];
+      const bh = barHeights[i];
+      ctx.fillRect(-108 + i * 7, -bh * 0.5, 4.5, bh);
+    }
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 32px "Outfit", "Inter", sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    const baseTxt = 'SunoSunao';
+    const baseW = ctx.measureText(baseTxt).width;
+    ctx.fillText(baseTxt, -68, 1);
+    ctx.fillStyle = '#00e8f8';
+    ctx.fillText('.ai', -68 + baseW + 1, 1);
+  } else if (type === 'nonstop') {
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '900 35px "Outfit", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('NON°STOP', 0, -5);
+    ctx.fillStyle = '#fa049c';
+    ctx.font = '800 13px "Outfit", sans-serif';
+    ctx.fillText('E N E R G Y', 0, 21);
+  } else if (type === 'mokobara') {
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 33px "Outfit", "Inter", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('MOKOBARA', 0, 1);
+  } else if (type === 'ultrahuman') {
+    ctx.strokeStyle = '#00e8f8';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.arc(-96, 0, 12, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 30px "Outfit", "Inter", sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('ULTRAHUMAN', -76, 1);
+  } else if (type === 'promptflow') {
+    ctx.fillStyle = '#c4b5fd';
+    ctx.beginPath();
+    ctx.moveTo(-88, -16);
+    ctx.lineTo(-102, 2);
+    ctx.lineTo(-91, 2);
+    ctx.lineTo(-97, 18);
+    ctx.lineTo(-78, -2);
+    ctx.lineTo(-89, -2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 33px "Outfit", "Inter", sans-serif';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('PromptFlow', -70, 1);
   } else {
     ctx.fillStyle = brand.accent || '#ffffff';
     const label = String(brand.name || 'BRAND');
-    const fontSize = label.length > 9 ? 32 : label.length > 6 ? 38 : 44;
+    const fontSize = label.length > 10 ? 30 : label.length > 7 ? 35 : 40;
     ctx.font = `800 ${fontSize}px "Outfit", "Inter", sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
@@ -115,20 +171,22 @@ const drawBrandArtwork = (ctx, brand, cx, cy, cellW, cellH) => {
 };
 
 /**
- * Pre-renders an offscreen high-resolution seamless texture atlas for one orbital brand ring.
+ * Pre-renders an offscreen spacious seamless texture atlas for one orbital brand ring.
+ * Uses wider 340px spacing so brand logos stay uncluttered and crisp across front arcs.
  * @param {object} ringConfig
  * @returns {HTMLCanvasElement}
  */
 const buildRingTextureAtlas = (ringConfig) => {
   const sourceBrands = ringConfig.brands?.length ? ringConfig.brands : [{ name: 'MOLDIN' }];
-  // Automatically repeat configured brands to keep >= 10 even belt slots so logos stay crisp & un-stretched
   const brands = [];
-  while (brands.length < 10) {
+  // Two clean repetitions (~10 wide slots around 360deg -> ~4 crisp logos visible across front)
+  const targetSlots = sourceBrands.length >= 6 ? sourceBrands.length : sourceBrands.length * 2;
+  while (brands.length < targetSlots) {
     brands.push(...sourceBrands);
   }
   const count = brands.length;
-  const cellW = 240;
-  const atlasH = 150;
+  const cellW = 340;
+  const atlasH = 148;
   const atlasW = count * cellW;
   const canvas = document.createElement('canvas');
   canvas.width = atlasW;
@@ -138,101 +196,68 @@ const buildRingTextureAtlas = (ringConfig) => {
   for (let i = 0; i < count; i += 1) {
     const xStart = i * cellW;
     drawBrandArtwork(ctx, brands[i], xStart + cellW * 0.5, atlasH * 0.5, cellW, atlasH);
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.34)';
-    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.24)';
+    ctx.lineWidth = 1.6;
     ctx.beginPath();
-    ctx.moveTo(xStart + cellW - 1, atlasH * 0.24);
-    ctx.lineTo(xStart + cellW - 1, atlasH * 0.76);
+    ctx.moveTo(xStart + cellW - 1, atlasH * 0.26);
+    ctx.lineTo(xStart + cellW - 1, atlasH * 0.74);
     ctx.stroke();
   }
   return canvas;
 };
 
 /**
- * Hex string (#rrggbb) -> [r, g, b].
- * @param {string} hex
- * @returns {[number, number, number]}
- */
-const hexToRgb = (hex) => {
-  const clean = (hex || '#ffffff').replace('#', '');
-  const full = clean.length === 3 ? clean.replace(/(.)/g, '$1$1') : clean;
-  const num = Number.parseInt(full, 16);
-  return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
-};
-
-/**
- * Interpolates 3-stop neon color gradient across normalized u ∈ [0, 1].
- * @param {string} c0
- * @param {string} c1
- * @param {string} c2
- * @param {number} t
- * @returns {string}
- */
-const sampleTriColor = (c0, c1, c2, t) => {
-  const a = hexToRgb(t < 0.5 ? c0 : c1);
-  const b = hexToRgb(t < 0.5 ? c1 : c2);
-  const u = Math.max(0, Math.min(1, t < 0.5 ? t * 2 : (t - 0.5) * 2));
-  const r = Math.round(a[0] + (b[0] - a[0]) * u);
-  const g = Math.round(a[1] + (b[1] - a[1]) * u);
-  const bl = Math.round(a[2] + (b[2] - a[2]) * u);
-  return `rgb(${r}, ${g}, ${bl})`;
-};
-
-/**
  * Computes 3D parametric point on a tilted curved ribbon orbit with smooth S-saddle curl.
  * Parameter t ∈ [0, 1):
- * - t ∈ [0, 0.5] maps front half cleanly LEFT-TO-RIGHT (theta goes π -> 0 so x ascends strictly)
+ * - t ∈ [0, 0.5] maps front half cleanly LEFT-TO-RIGHT (theta goes π -> 0)
  * - t ∈ [0.5, 1] maps back half cleanly RIGHT-TO-LEFT (theta goes 0 -> -π)
- * @param {object} ring
- * @param {number} t Cycle fraction in [0, 1)
- * @param {number} w Viewport canvas CSS width
- * @param {number} h Viewport canvas CSS height
- * @param {number} mouseX Normalized [-1, 1] pointer X offset
- * @param {number} mouseY Normalized [-1, 1] pointer Y offset
  */
 const evaluateOrbitPoint = (ring, t, w, h, mouseX, mouseY) => {
-  // Theta walks clockwise from π (far-left) through π/2 (center-front) -> 0 (far-right) -> -π/2 (back) -> -π
   const theta = Math.PI - t * Math.PI * 2;
-  const cx = w * 0.502 + mouseX * 12;
-  const cy = h * ring.centerYRatio + mouseY * 8;
+  const cx = w * 0.502 + mouseX * 10;
+  const cy = h * ring.centerYRatio + mouseY * 6;
   const rx = w * ring.radiusXRatio;
   const ry = h * ring.radiusYRatio;
-  const rz = w * ring.radiusZRatio;
+  const rz = h * ring.radiusZRatio;
   const tiltZ = ((ring.tiltZDeg || 0) * Math.PI) / 180;
 
   const cosT = Math.cos(theta);
   const sinT = Math.sin(theta);
 
   const localX = rx * cosT;
-  const wingCurl = -ry * 0.42 * Math.cos(2 * theta);
+  const wingCurl = -ry * 0.4 * Math.cos(2 * theta);
   const localY = -ry * sinT + wingCurl;
   const depthZ = rz * sinT;
 
-  const x = cx + localX * Math.cos(tiltZ) - localY * Math.sin(tiltZ);
-  const y = cy + localX * Math.sin(tiltZ) + localY * Math.cos(tiltZ);
+  const cosZ = Math.cos(tiltZ);
+  const sinZ = Math.sin(tiltZ);
+  const x = cx + localX * cosZ - localY * sinZ;
+  const y = cy + localX * sinZ + localY * cosZ;
 
-  const perspective = 1 + (depthZ / Math.max(1, w)) * 0.24;
-  const baseBandH = Math.max(48, Math.min(h * ring.bandHeightRatio, w * 0.088));
+  const perspective = 1 + (depthZ / Math.max(1, w)) * 0.22;
+  const baseBandH = Math.max(46, Math.min(h * ring.bandHeightRatio, w * 0.086));
 
   return {
     x,
     y,
-    z: depthZ,
     height: baseBandH * perspective,
     facing: sinT,
   };
 };
 
 /**
- * Renders glowing left cyan dome arc, right pink dome arc, and bottom-left bloom
- * seamlessly across full canvas width (zero clipping seams) plus traveling comet light strips.
- * @param {CanvasRenderingContext2D} ctx
+ * Builds an offscreen cache of the obsidian radial backdrop, neon edge glows,
+ * and static glowing orbital arcs once per resize (eliminates heavy per-frame radial fills & blur).
  * @param {number} w
  * @param {number} h
- * @param {number} timeSec
+ * @param {number} dpr
  */
-const drawAmbientNeonArcs = (ctx, w, h, timeSec) => {
-  ctx.clearRect(0, 0, w, h);
+const buildStaticBackgroundCache = (w, h, dpr) => {
+  const cache = document.createElement('canvas');
+  cache.width = Math.round(w * dpr);
+  cache.height = Math.round(h * dpr);
+  const ctx = cache.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
   const bgGrad = ctx.createRadialGradient(w * 0.5, h * 0.52, w * 0.04, w * 0.5, h * 0.5, w * 0.78);
   bgGrad.addColorStop(0, '#070b14');
@@ -241,7 +266,6 @@ const drawAmbientNeonArcs = (ctx, w, h, timeSec) => {
   ctx.fillStyle = bgGrad;
   ctx.fillRect(0, 0, w, h);
 
-  // Full-canvas ambient glows drawn first, then melted cleanly to #02040a at bottom edge
   const leftCx = -w * 0.03;
   const leftCy = h * 0.67;
   const leftR = Math.min(w * 0.44, Math.max(w * 0.225, h * 0.34));
@@ -267,204 +291,224 @@ const drawAmbientNeonArcs = (ctx, w, h, timeSec) => {
   ctx.fillRect(0, 0, w, h);
 
   const blAura = ctx.createRadialGradient(w * 0.06, h * 0.84, 8, w * 0.06, h * 0.84, w * 0.2);
-  blAura.addColorStop(0, 'rgba(250, 4, 156, 0.32)');
-  blAura.addColorStop(0.55, 'rgba(160, 12, 130, 0.11)');
+  blAura.addColorStop(0, 'rgba(250, 4, 156, 0.30)');
+  blAura.addColorStop(0.55, 'rgba(160, 12, 130, 0.10)');
   blAura.addColorStop(1, 'rgba(0, 0, 0, 0)');
   ctx.fillStyle = blAura;
   ctx.fillRect(0, 0, w, h);
 
-  // Smooth ambient melt along bottom perimeter so Hero blends cleanly into the transition mist
-  const bottomMelt = ctx.createLinearGradient(0, h - Math.min(115, h * 0.14), 0, h);
-  bottomMelt.addColorStop(0, 'rgba(2, 4, 10, 0)');
-  bottomMelt.addColorStop(0.58, 'rgba(2, 4, 10, 0.72)');
-  bottomMelt.addColorStop(1, 'rgba(2, 4, 10, 1)');
-  ctx.fillStyle = bottomMelt;
-  ctx.fillRect(0, h - Math.min(115, h * 0.14), w, Math.min(115, h * 0.14));
-
-  // Crisp left cyan & right pink rim rails curving organically around the Hero frame
-  ctx.save();
+  // Soft outer + crisp inner neon edge rails (layered alpha instead of costly shadowBlur)
+  ctx.lineCap = 'round';
   ctx.beginPath();
   ctx.arc(leftCx, leftCy, leftR, -0.45 * Math.PI, 0.34 * Math.PI);
-  ctx.strokeStyle = 'rgba(0, 232, 248, 0.88)';
-  ctx.lineWidth = 2.8;
-  ctx.shadowColor = '#00e8f8';
-  ctx.shadowBlur = 20;
+  ctx.strokeStyle = 'rgba(0, 232, 248, 0.16)';
+  ctx.lineWidth = 10;
   ctx.stroke();
-
-  const cometL = -0.35 * Math.PI + ((timeSec * 0.32) % 0.7) * Math.PI;
-  ctx.beginPath();
-  ctx.arc(leftCx, leftCy, leftR, cometL, cometL + 0.24);
-  ctx.strokeStyle = 'rgba(220, 255, 255, 0.96)';
-  ctx.lineWidth = 3.8;
-  ctx.shadowBlur = 26;
+  ctx.strokeStyle = 'rgba(0, 232, 248, 0.86)';
+  ctx.lineWidth = 2.4;
   ctx.stroke();
 
   ctx.beginPath();
   ctx.arc(rightCx, rightCy, rightR, 0.68 * Math.PI, 1.38 * Math.PI);
-  ctx.strokeStyle = 'rgba(250, 4, 156, 0.9)';
-  ctx.lineWidth = 2.8;
-  ctx.shadowColor = '#fa049c';
-  ctx.shadowBlur = 22;
+  ctx.strokeStyle = 'rgba(250, 4, 156, 0.16)';
+  ctx.lineWidth = 10;
+  ctx.stroke();
+  ctx.strokeStyle = 'rgba(250, 4, 156, 0.88)';
+  ctx.lineWidth = 2.4;
+  ctx.stroke();
+
+  const meltH = Math.min(115, h * 0.14);
+  const bottomMelt = ctx.createLinearGradient(0, h - meltH, 0, h);
+  bottomMelt.addColorStop(0, 'rgba(2, 4, 10, 0)');
+  bottomMelt.addColorStop(0.58, 'rgba(2, 4, 10, 0.72)');
+  bottomMelt.addColorStop(1, 'rgba(2, 4, 10, 1)');
+  ctx.fillStyle = bottomMelt;
+  ctx.fillRect(0, h - meltH, w, meltH);
+
+  return { canvas: cache, leftCx, leftCy, leftR, rightCx, rightCy, rightR };
+};
+
+/**
+ * Draws lightweight cached background + fast animated edge glints (zero shadowBlur).
+ */
+const drawAmbientNeonFrame = (ctx, cacheObj, w, h, timeSec) => {
+  ctx.drawImage(cacheObj.canvas, 0, 0, w, h);
+
+  const { leftCx, leftCy, leftR, rightCx, rightCy, rightR } = cacheObj;
+  ctx.lineCap = 'round';
+
+  const cometL = -0.35 * Math.PI + ((timeSec * 0.32) % 0.7) * Math.PI;
+  ctx.beginPath();
+  ctx.arc(leftCx, leftCy, leftR, cometL, cometL + 0.24);
+  ctx.strokeStyle = 'rgba(0, 232, 248, 0.32)';
+  ctx.lineWidth = 9;
+  ctx.stroke();
+  ctx.strokeStyle = 'rgba(220, 255, 255, 0.92)';
+  ctx.lineWidth = 3;
   ctx.stroke();
 
   const cometR = 0.74 * Math.PI + ((timeSec * 0.28 + 0.3) % 0.58) * Math.PI;
   ctx.beginPath();
   ctx.arc(rightCx, rightCy, rightR, cometR, cometR + 0.22);
-  ctx.strokeStyle = 'rgba(255, 210, 245, 0.95)';
-  ctx.lineWidth = 4;
-  ctx.shadowBlur = 28;
+  ctx.strokeStyle = 'rgba(250, 4, 156, 0.32)';
+  ctx.lineWidth = 9;
   ctx.stroke();
-  ctx.restore();
+  ctx.strokeStyle = 'rgba(255, 220, 248, 0.92)';
+  ctx.lineWidth = 3;
+  ctx.stroke();
 };
 
 /**
- * Helper to draw a slice of atlas onto the canvas handling seamless wrap across atlas.width edges.
- * Ensures brand wordmarks always render cleanly left-to-right on the front strip surface!
+ * Draws a contiguous glass polygon spanning index range [iStart, iEnd] in ONE GPU draw call.
  */
-const drawWrappedAtlasSlice = (ctx, atlas, uStart, uSpan, destX, destY, destW, destH) => {
+const fillBeltPolygon = (ctx, pts, startIdx, endIdx, fillStyle) => {
+  if (endIdx <= startIdx) return;
+  ctx.beginPath();
+  ctx.moveTo(pts[startIdx].x, pts[startIdx].y - pts[startIdx].height * 0.5);
+  for (let i = startIdx + 1; i <= endIdx; i += 1) {
+    ctx.lineTo(pts[i].x, pts[i].y - pts[i].height * 0.5);
+  }
+  for (let i = endIdx; i >= startIdx; i -= 1) {
+    ctx.lineTo(pts[i].x, pts[i].y + pts[i].height * 0.5);
+  }
+  ctx.closePath();
+  ctx.fillStyle = fillStyle;
+  ctx.fill();
+};
+
+/**
+ * Draws an atlas slice handling clean seamless wrap across atlas width edges.
+ */
+const drawWrappedAtlasSlice = (ctx, atlas, uStart, uSpan, destY, destW, destH) => {
   const aw = atlas.width;
   const ah = atlas.height;
   const rawSx = ((uStart % 1) + 1) % 1 * aw;
   const sw = Math.max(0.5, uSpan * aw);
 
   if (rawSx + sw <= aw) {
-    ctx.drawImage(atlas, rawSx, 0, sw, ah, destX, destY, destW, destH);
+    ctx.drawImage(atlas, rawSx, 0, sw, ah, 0, destY, destW, destH);
   } else {
     const firstPart = aw - rawSx;
     const frac = firstPart / sw;
-    ctx.drawImage(atlas, rawSx, 0, firstPart, ah, destX, destY, destW * frac, destH);
-    ctx.drawImage(atlas, 0, 0, sw - firstPart, ah, destX + destW * frac, destY, destW * (1 - frac), destH);
+    ctx.drawImage(atlas, rawSx, 0, firstPart, ah, 0, destY, destW * frac, destH);
+    ctx.drawImage(atlas, 0, 0, sw - firstPart, ah, destW * frac, destY, destW * (1 - frac), destH);
   }
 };
 
 /**
- * Draws one closed 3D orbital frosted neon glass ribbon (back pass first, then luminous front pass)
- * with strictly readable left-to-right brand logos smoothly flowing around the 3D strip.
- * @param {CanvasRenderingContext2D} ctx
- * @param {object} ring
- * @param {HTMLCanvasElement} atlas
- * @param {number} w
- * @param {number} h
- * @param {number} phase
- * @param {number} timeSec
- * @param {number} mouseX
- * @param {number} mouseY
+ * Batches top/bottom neon rails + soft outer bloom in just 4 stroke calls total (zero shadowBlur).
  */
-const drawKineticGlassRing = (ctx, ring, atlas, w, h, phase, timeSec, mouseX, mouseY) => {
-  const SEGMENTS = 200;
-  const pts = [];
+const strokeBatchedRails = (ctx, pts, startIdx, endIdx, strokeGrad, isFront, pulsePhase) => {
+  if (endIdx <= startIdx) return;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+
+  for (const sign of [-0.5, 0.5]) {
+    ctx.beginPath();
+    ctx.moveTo(pts[startIdx].x, pts[startIdx].y + pts[startIdx].height * sign);
+    for (let i = startIdx + 1; i <= endIdx; i += 1) {
+      ctx.lineTo(pts[i].x, pts[i].y + pts[i].height * sign);
+    }
+
+    if (isFront) {
+      ctx.globalAlpha = 0.2;
+      ctx.strokeStyle = strokeGrad;
+      ctx.lineWidth = 5.5;
+      ctx.stroke();
+
+      ctx.globalAlpha = 0.86;
+      ctx.lineWidth = 1.65;
+      ctx.stroke();
+
+      // Subtle traveling bright glint over 5 consecutive segments
+      const span = endIdx - startIdx;
+      const glintLen = 5;
+      if (span > glintLen + 2) {
+        const gIdx = startIdx + (Math.floor(pulsePhase * span) % (span - glintLen));
+        ctx.beginPath();
+        ctx.moveTo(pts[gIdx].x, pts[gIdx].y + pts[gIdx].height * sign);
+        for (let k = 1; k <= glintLen; k += 1) {
+          ctx.lineTo(pts[gIdx + k].x, pts[gIdx + k].y + pts[gIdx + k].height * sign);
+        }
+        ctx.globalAlpha = 0.92;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = 2.4;
+        ctx.stroke();
+      }
+    } else {
+      ctx.globalAlpha = 0.24;
+      ctx.strokeStyle = strokeGrad;
+      ctx.lineWidth = 1.1;
+      ctx.stroke();
+    }
+  }
+  ctx.globalAlpha = 1;
+};
+
+/**
+ * Draws one closed 3D orbital frosted neon glass ribbon with minimal GPU draw calls.
+ */
+const drawKineticGlassRing = (ctx, ring, atlas, railGrad, w, h, dpr, phase, timeSec, mouseX, mouseY) => {
+  const SEGMENTS = 96;
+  const halfSeg = SEGMENTS / 2;
+  const pts = new Array(SEGMENTS + 1);
   for (let i = 0; i <= SEGMENTS; i += 1) {
-    pts.push(evaluateOrbitPoint(ring, i / SEGMENTS, w, h, mouseX, mouseY));
+    pts[i] = evaluateOrbitPoint(ring, i / SEGMENTS, w, h, mouseX, mouseY);
   }
 
-  for (const passFront of [false, true]) {
-    for (let i = 0; i < SEGMENTS; i += 1) {
+  // Pass 1: Back half (indices halfSeg..SEGMENTS), then Pass 2: Front half (indices 0..halfSeg)
+  for (const isFront of [false, true]) {
+    const startIdx = isFront ? 0 : halfSeg;
+    const endIdx = isFront ? halfSeg : SEGMENTS;
+
+    fillBeltPolygon(
+      ctx,
+      pts,
+      startIdx,
+      endIdx,
+      isFront ? 'rgba(11, 16, 30, 0.72)' : 'rgba(7, 10, 20, 0.42)',
+    );
+
+    const uSpan = 1 / SEGMENTS;
+    for (let i = startIdx; i < endIdx; i += 1) {
       const p0 = pts[i];
       const p1 = pts[i + 1];
-      const isFront = (p0.facing + p1.facing) * 0.5 >= 0;
-      if (isFront !== passFront) continue;
-
       const minX = Math.min(p0.x, p1.x);
       const maxX = Math.max(p0.x, p1.x);
       const segW = maxX - minX;
-      if (segW < 0.25) continue;
+      if (segW < 0.4) continue;
 
-      const leftPt = p0.x <= p1.x ? p0 : p1;
-      const rightPt = p0.x <= p1.x ? p1 : p0;
-      const h0 = leftPt.height;
-      const h1 = rightPt.height;
-      const yTop0 = leftPt.y - h0 * 0.5;
-      const yTop1 = rightPt.y - h1 * 0.5;
-      const slope = (yTop1 - yTop0) / segW;
+      const uStart = i * uSpan + phase;
 
-      const uNormX = Math.max(0, Math.min(1, ((minX + maxX) * 0.5 - w * 0.08) / (w * 0.84)));
-      const edgeGlow = Math.pow(Math.abs(uNormX * 2 - 1), 1.6);
-      const rimCol = sampleTriColor(ring.rimLeft, ring.rimMid, ring.rimRight, uNormX);
-
-      // 1. Frosted dark obsidian glass body segment
-      ctx.save();
-      ctx.beginPath();
-      ctx.moveTo(minX, yTop0);
-      ctx.lineTo(maxX + 0.9, yTop1);
-      ctx.lineTo(maxX + 0.9, yTop1 + h1);
-      ctx.lineTo(minX, yTop0 + h0);
-      ctx.closePath();
-
-      if (passFront) {
-        const glassAlpha = 0.62 + edgeGlow * 0.24;
-        ctx.fillStyle = `rgba(11, 15, 29, ${glassAlpha.toFixed(3)})`;
+      if (isFront) {
+        const frontRatio = i / halfSeg;
+        const turnFade = Math.min(0.98, Math.sin(frontRatio * Math.PI) * 1.4 + 0.16);
+        const slope = (p1.y - p1.height * 0.5 - (p0.y - p0.height * 0.5)) / (p1.x - p0.x);
+        ctx.globalAlpha = Math.max(0.2, turnFade);
+        ctx.setTransform(dpr, dpr * slope, 0, dpr, dpr * p0.x, dpr * (p0.y - p0.height * 0.5));
+        drawWrappedAtlasSlice(ctx, atlas, uStart, uSpan, p0.height * 0.13, segW + 0.85, p0.height * 0.74);
       } else {
-        ctx.fillStyle = 'rgba(7, 10, 20, 0.44)';
-      }
-      ctx.fill();
-
-      if (passFront && edgeGlow > 0.28) {
-        ctx.fillStyle = rimCol;
-        ctx.globalAlpha = 0.14 * edgeGlow;
-        ctx.fill();
-      }
-      ctx.restore();
-
-      // 2. Projected brand strip atlas moving smoothly inward around the 3D glass belt
-      const uStart = i / SEGMENTS + phase;
-      const uSpan = 1 / SEGMENTS;
-
-      if (passFront) {
-        const frontArcRatio = i / (SEGMENTS * 0.5);
-        const turnFade = Math.min(1, Math.sin(frontArcRatio * Math.PI) * 1.45 + 0.15);
-        ctx.save();
-        ctx.globalAlpha = Math.max(0.22, Math.min(0.98, turnFade));
-        ctx.transform(1, slope, 0, 1, minX, yTop0);
-        drawWrappedAtlasSlice(ctx, atlas, uStart, uSpan, 0, h0 * 0.13, segW + 0.85, h0 * 0.74);
-        ctx.restore();
-      } else if (edgeGlow > 0.42) {
-        // Back wall runs right-to-left (p0.x > p1.x), so mirror X around p0.x cleanly for seamless physical depth
-        ctx.save();
-        ctx.globalAlpha = 0.16 * edgeGlow;
-        const revSlope = (p1.y - p1.height * 0.5 - (p0.y - p0.height * 0.5)) / (p1.x - p0.x);
-        ctx.transform(-1, -revSlope, 0, 1, p0.x, p0.y - p0.height * 0.5);
-        drawWrappedAtlasSlice(ctx, atlas, uStart, uSpan, 0, h0 * 0.16, segW + 0.85, h0 * 0.68);
-        ctx.restore();
-      }
-    }
-
-    // 3. Luminous neon rim light rails + kinetic edge laser pulses
-    for (const isTop of [true, false]) {
-      for (let i = 0; i < SEGMENTS; i += 1) {
-        const p0 = pts[i];
-        const p1 = pts[i + 1];
-        const isFront = (p0.facing + p1.facing) * 0.5 >= 0;
-        if (isFront !== passFront) continue;
-
-        const sign = isTop ? -0.5 : 0.5;
-        const y0 = p0.y + p0.height * sign;
-        const y1 = p1.y + p1.height * sign;
-        const uNorm = Math.max(0, Math.min(1, ((p0.x + p1.x) * 0.5 - w * 0.08) / (w * 0.84)));
-        const rimCol = sampleTriColor(ring.rimLeft, ring.rimMid, ring.rimRight, uNorm);
-
-        const pulseWave = Math.sin((i / SEGMENTS) * Math.PI * 6 - timeSec * (passFront ? 3.2 : -2.4));
-        const boost = pulseWave > 0.78 ? (pulseWave - 0.78) / 0.22 : 0;
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.moveTo(p0.x, y0);
-        ctx.lineTo(p1.x, y1);
-        ctx.strokeStyle = boost > 0.25 ? '#ffffff' : rimCol;
-        ctx.globalAlpha = passFront ? Math.min(1, 0.54 + boost * 0.46) : 0.22;
-        ctx.lineWidth = passFront ? 1.8 + boost * 1.9 : 1.0;
-        if (passFront) {
-          ctx.shadowColor = rimCol;
-          ctx.shadowBlur = 8 + boost * 14;
+        const uNormX = Math.max(0, Math.min(1, ((minX + maxX) * 0.5 - w * 0.08) / (w * 0.84)));
+        const edgeGlow = Math.pow(Math.abs(uNormX * 2 - 1), 1.6);
+        if (edgeGlow > 0.45) {
+          const revSlope = (p1.y - p1.height * 0.5 - (p0.y - p0.height * 0.5)) / (p1.x - p0.x);
+          ctx.globalAlpha = 0.14 * edgeGlow;
+          ctx.setTransform(-dpr, -dpr * revSlope, 0, dpr, dpr * p0.x, dpr * (p0.y - p0.height * 0.5));
+          drawWrappedAtlasSlice(ctx, atlas, uStart, uSpan, p0.height * 0.16, segW + 0.85, p0.height * 0.68);
         }
-        ctx.stroke();
-        ctx.restore();
       }
     }
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.globalAlpha = 1;
+
+    const pulsePhase = Math.abs((timeSec * (ring.angularSpeed >= 0 ? 0.22 : -0.18)) % 1);
+    strokeBatchedRails(ctx, pts, startIdx, endIdx, railGrad, isFront, pulsePhase);
   }
 };
 
 /**
- * Bootstraps the real-physics 3D orbital brand strips and ambient neon arc engine.
+ * Bootstraps the hyper-fast 3D orbital brand strips and ambient neon engine.
  */
 export const initHeroRibbons = () => {
   const stage = document.getElementById('hero-stage');
@@ -472,11 +516,12 @@ export const initHeroRibbons = () => {
   const ringsCanvas = document.getElementById('hero-rings-canvas');
   if (!stage || !bgCanvas || !ringsCanvas) return;
 
-  const bgCtx = bgCanvas.getContext('2d');
+  const bgCtx = bgCanvas.getContext('2d', { alpha: false });
   const ringsCtx = ringsCanvas.getContext('2d');
   if (!bgCtx || !ringsCtx) return;
 
   const atlases = new Map();
+  const railGrads = new Map();
   for (const ring of HERO_BRAND_RINGS) {
     atlases.set(ring.id, buildRingTextureAtlas(ring));
   }
@@ -484,16 +529,32 @@ export const initHeroRibbons = () => {
   let cssW = 0;
   let cssH = 0;
   let dpr = 1;
+  let stageLeft = 0;
+  let stageTop = 0;
+  let bgCache = null;
+
   let targetMouseX = 0;
   let targetMouseY = 0;
   let smoothMouseX = 0;
   let smoothMouseY = 0;
 
+  const buildRingGradients = () => {
+    for (const ring of HERO_BRAND_RINGS) {
+      const grad = ringsCtx.createLinearGradient(cssW * 0.08, 0, cssW * 0.92, 0);
+      grad.addColorStop(0, ring.rimLeft || '#00e8f8');
+      grad.addColorStop(0.5, ring.rimMid || '#8a3ffc');
+      grad.addColorStop(1, ring.rimRight || '#fa049c');
+      railGrads.set(ring.id, grad);
+    }
+  };
+
   const resize = () => {
     const rect = stage.getBoundingClientRect();
     cssW = Math.max(320, Math.round(rect.width));
     cssH = Math.max(480, Math.round(rect.height));
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    stageLeft = rect.left;
+    stageTop = rect.top + window.scrollY;
+    dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
     for (const c of [bgCanvas, ringsCanvas]) {
       c.width = Math.round(cssW * dpr);
@@ -503,6 +564,9 @@ export const initHeroRibbons = () => {
     }
     bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ringsCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    bgCache = buildStaticBackgroundCache(cssW, cssH, dpr);
+    buildRingGradients();
   };
 
   resize();
@@ -511,9 +575,9 @@ export const initHeroRibbons = () => {
   stage.addEventListener(
     'pointermove',
     (e) => {
-      const rect = stage.getBoundingClientRect();
-      targetMouseX = ((e.clientX - rect.left) / Math.max(1, rect.width) - 0.5) * 2;
-      targetMouseY = ((e.clientY - rect.top) / Math.max(1, rect.height) - 0.5) * 2;
+      const localY = e.clientY + window.scrollY - stageTop;
+      targetMouseX = ((e.clientX - stageLeft) / cssW - 0.5) * 2;
+      targetMouseY = (localY / cssH - 0.5) * 2;
     },
     { passive: true },
   );
@@ -528,37 +592,73 @@ export const initHeroRibbons = () => {
   );
 
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const startTime = performance.now();
+  let elapsedSec = reducedMotion ? 1.2 : 0;
+  let lastNow = performance.now();
+  let isHeroVisible = true;
+  let rafId = 0;
 
   const renderFrame = (now) => {
-    const timeSec = reducedMotion ? 1.2 : (now - startTime) * 0.001;
-    smoothMouseX += (targetMouseX - smoothMouseX) * 0.06;
-    smoothMouseY += (targetMouseY - smoothMouseY) * 0.06;
+    rafId = 0;
+    const dt = Math.min(0.05, Math.max(0, (now - lastNow) * 0.001));
+    lastNow = now;
+    if (!reducedMotion) elapsedSec += dt;
 
-    drawAmbientNeonArcs(bgCtx, cssW, cssH, timeSec);
+    smoothMouseX += (targetMouseX - smoothMouseX) * 0.08;
+    smoothMouseY += (targetMouseY - smoothMouseY) * 0.08;
+
+    if (bgCache) {
+      drawAmbientNeonFrame(bgCtx, bgCache, cssW, cssH, elapsedSec);
+    }
 
     ringsCtx.clearRect(0, 0, cssW, cssH);
     for (const ring of HERO_BRAND_RINGS) {
       const atlas = atlases.get(ring.id);
-      if (!atlas) continue;
-      const phase = timeSec * (ring.angularSpeed / (Math.PI * 2));
+      const railGrad = railGrads.get(ring.id);
+      if (!atlas || !railGrad) continue;
+      const phase = elapsedSec * (ring.angularSpeed / (Math.PI * 2));
       drawKineticGlassRing(
         ringsCtx,
         ring,
         atlas,
+        railGrad,
         cssW,
         cssH,
+        dpr,
         phase,
-        timeSec,
+        elapsedSec,
         smoothMouseX,
         smoothMouseY,
       );
     }
 
-    if (!reducedMotion) {
-      requestAnimationFrame(renderFrame);
+    if (!reducedMotion && isHeroVisible && !document.hidden) {
+      rafId = requestAnimationFrame(renderFrame);
     }
   };
 
-  requestAnimationFrame(renderFrame);
+  const syncAnimationState = () => {
+    const shouldRun = isHeroVisible && !document.hidden && !reducedMotion;
+    if (shouldRun && !rafId) {
+      lastNow = performance.now();
+      rafId = requestAnimationFrame(renderFrame);
+    } else if (!shouldRun && rafId) {
+      cancelAnimationFrame(rafId);
+      rafId = 0;
+    }
+  };
+
+  if (typeof IntersectionObserver !== 'undefined') {
+    const io = new IntersectionObserver(
+      (entries) => {
+        isHeroVisible = Boolean(entries[0]?.isIntersecting);
+        syncAnimationState();
+      },
+      { threshold: 0.01 },
+    );
+    io.observe(stage);
+  }
+
+  document.addEventListener('visibilitychange', syncAnimationState);
+  syncAnimationState();
+  if (reducedMotion) renderFrame(performance.now());
 };
