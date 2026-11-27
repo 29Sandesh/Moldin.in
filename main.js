@@ -47,7 +47,58 @@ const escapeHtml = (value) =>
     .replace(/"/g, '&quot;');
 
 /**
- * Populates the 2 Golden Star King cards and 6 King/Queen playing cards from FEATURED_CREATORS.
+ * Attaches shared image-fallback swapping and physical 3D hover tilt to rendered playing cards.
+ * @param {ParentNode} root
+ */
+const attachCardInteractions = (root) => {
+  root.querySelectorAll('img[data-fallback]').forEach((img) => {
+    img.addEventListener('error', () => {
+      const fb = img.dataset.fallback;
+      if (fb && !img.src.endsWith(fb)) {
+        img.src = fb;
+      }
+    });
+  });
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
+  if (!reducedMotion && finePointer) {
+    root.querySelectorAll('.tilt-card').forEach((card) => {
+      if (card.dataset.tiltBound === '1') return;
+      card.dataset.tiltBound = '1';
+      let framePending = false;
+      let lastEvt = null;
+      card.addEventListener(
+        'pointermove',
+        (e) => {
+          lastEvt = e;
+          if (framePending) return;
+          framePending = true;
+          requestAnimationFrame(() => {
+            framePending = false;
+            if (!lastEvt) return;
+            const rect = card.getBoundingClientRect();
+            const x = (lastEvt.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
+            const y = (lastEvt.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
+            card.style.setProperty('--rx', `${(-y * 7).toFixed(2)}deg`);
+            card.style.setProperty('--ry', `${(x * 8).toFixed(2)}deg`);
+            card.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`);
+            card.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`);
+          });
+        },
+        { passive: true },
+      );
+      card.addEventListener('pointerleave', () => {
+        lastEvt = null;
+        card.style.setProperty('--rx', '0deg');
+        card.style.setProperty('--ry', '0deg');
+      });
+    });
+  }
+};
+
+/**
+ * Populates the homepage playing-card sections (2 horizontal Golden Stars + 6 roster cards).
  */
 export const initPlayingCardsRoster = () => {
   const starsContainer = document.getElementById('stars-deck');
@@ -165,50 +216,71 @@ export const initPlayingCardsRoster = () => {
       .join('');
   }
 
-  // Fallback swap if an image asset fails to decode
-  document.querySelectorAll('img[data-fallback]').forEach((img) => {
-    img.addEventListener('error', () => {
-      const fb = img.dataset.fallback;
-      if (fb && !img.src.endsWith(fb)) {
-        img.src = fb;
-      }
-    });
-  });
+  attachCardInteractions(document);
+};
 
-  // Subtle physical playing-card 3D tilt hover & metallic highlight reflection (desktop fine pointer only)
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finePointer = window.matchMedia('(pointer: fine)').matches;
-  if (!reducedMotion && finePointer) {
-    document.querySelectorAll('.tilt-card').forEach((card) => {
-      let framePending = false;
-      let lastEvt = null;
-      card.addEventListener(
-        'pointermove',
-        (e) => {
-          lastEvt = e;
-          if (framePending) return;
-          framePending = true;
-          requestAnimationFrame(() => {
-            framePending = false;
-            if (!lastEvt) return;
-            const rect = card.getBoundingClientRect();
-            const x = (lastEvt.clientX - rect.left) / Math.max(1, rect.width) - 0.5;
-            const y = (lastEvt.clientY - rect.top) / Math.max(1, rect.height) - 0.5;
-            card.style.setProperty('--rx', `${(-y * 7).toFixed(2)}deg`);
-            card.style.setProperty('--ry', `${(x * 8).toFixed(2)}deg`);
-            card.style.setProperty('--mx', `${((x + 0.5) * 100).toFixed(1)}%`);
-            card.style.setProperty('--my', `${((y + 0.5) * 100).toFixed(1)}%`);
-          });
-        },
-        { passive: true },
-      );
-      card.addEventListener('pointerleave', () => {
-        lastEvt = null;
-        card.style.setProperty('--rx', '0deg');
-        card.style.setProperty('--ry', '0deg');
-      });
-    });
-  }
+/**
+ * Populates the uniform physical-proportion (5:7) real playing-card deck exclusively on creators.html.
+ * Renders all 8 creators identically with face portraits—only Golden Star players get gold card colors.
+ */
+export const initCreatorPageDeck = () => {
+  const realDeck = document.getElementById('creators-real-deck');
+  if (!realDeck) return;
+
+  realDeck.innerHTML = FEATURED_CREATORS.map((creator) => {
+    const isGold = creator.tier === 'star';
+    const cardToneClass = isGold
+      ? 'real-poker-card--gold'
+      : `real-poker-card--classic suit-${escapeHtml(creator.suitColor)}`;
+    return `
+      <article
+        class="real-poker-card tilt-card ${cardToneClass}"
+        data-creator-id="${escapeHtml(creator.id)}"
+      >
+        <div class="real-card-corner real-card-corner-tl" aria-hidden="true">
+          <span class="real-rank">${escapeHtml(creator.rank)}</span>
+          <span class="real-suit">${escapeHtml(creator.suit)}</span>
+        </div>
+        <div class="real-card-corner real-card-corner-br" aria-hidden="true">
+          <span class="real-rank">${escapeHtml(creator.rank)}</span>
+          <span class="real-suit">${escapeHtml(creator.suit)}</span>
+        </div>
+
+        <div class="real-card-inner-frame">
+          <div class="real-card-face-window">
+            ${buildCrownSvg(creator.rank === 'Q' ? 'Q' : 'K')}
+            <img
+              class="real-card-portrait"
+              src="${escapeHtml(creator.portrait)}"
+              alt="${escapeHtml(creator.name)} — ${escapeHtml(creator.niche)}"
+              width="512"
+              height="512"
+              loading="lazy"
+              decoding="async"
+              data-fallback="${escapeHtml(creator.fallbackPortrait)}"
+            >
+          </div>
+
+          <div class="real-card-nameplate">
+            <h3>
+              <span>${escapeHtml(creator.name)}</span>
+              <span class="verified-check" title="Verified" aria-label="Verified">✓</span>
+            </h3>
+            <div class="real-card-sub">
+              <a
+                class="real-card-handle"
+                href="${escapeHtml(creator.url)}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >@${escapeHtml(creator.handle)} ↗</a>
+              <span class="real-card-tag">${escapeHtml(creator.niche)}</span>
+            </div>
+          </div>
+        </div>
+      </article>`;
+  }).join('');
+
+  attachCardInteractions(realDeck);
 };
 
 /**
@@ -458,6 +530,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeader();
   initHeroRibbons();
   initPlayingCardsRoster();
+  initCreatorPageDeck();
   initFaqAccordion();
   initWhatsappCollab();
   initAccessDialog();
