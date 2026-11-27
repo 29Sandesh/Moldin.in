@@ -99,9 +99,9 @@ const drawBrandArtwork = (ctx, brand, cx, cy, cellW, cellH) => {
     ctx.lineTo(24, -14);
     ctx.fill();
   } else if (type === 'sunosunao') {
-    // Sleek cyan soundwave emblem + clean studio wordmark
+    // Sleek neon-blue + gold soundwave emblem + clean studio wordmark
     const barHeights = [14, 28, 42, 24, 16];
-    const barColors = ['#fa049c', '#a855f7', '#00e8f8', '#38bdf8', '#00e8f8'];
+    const barColors = ['#e6b84c', '#f5d061', '#00e8f8', '#38dfff', '#00e8f8'];
     for (let i = 0; i < barHeights.length; i += 1) {
       ctx.fillStyle = barColors[i];
       const bh = barHeights[i];
@@ -122,7 +122,7 @@ const drawBrandArtwork = (ctx, brand, cx, cy, cellW, cellH) => {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText('NON°STOP', 0, -5);
-    ctx.fillStyle = '#fa049c';
+    ctx.fillStyle = '#f5c451';
     ctx.font = '800 13px "Outfit", sans-serif';
     ctx.fillText('E N E R G Y', 0, 21);
   } else if (type === 'mokobara') {
@@ -143,7 +143,7 @@ const drawBrandArtwork = (ctx, brand, cx, cy, cellW, cellH) => {
     ctx.textBaseline = 'middle';
     ctx.fillText('ULTRAHUMAN', -76, 1);
   } else if (type === 'promptflow') {
-    ctx.fillStyle = '#c4b5fd';
+    ctx.fillStyle = '#f5c451';
     ctx.beginPath();
     ctx.moveTo(-88, -16);
     ctx.lineTo(-102, 2);
@@ -246,8 +246,8 @@ const evaluateOrbitPoint = (ring, t, w, h, mouseX, mouseY) => {
 };
 
 /**
- * Builds an offscreen cache of the obsidian radial backdrop, neon edge glows,
- * and static glowing orbital arcs once per resize (eliminates heavy per-frame radial fills & blur).
+ * Builds an offscreen cache of the pure pitch-black (#000000) backdrop with restrained
+ * Neon Blue & Gold ambient light glows cleanly away from the sitting cushion perimeter.
  * @param {number} w
  * @param {number} h
  * @param {number} dpr
@@ -259,103 +259,42 @@ const buildStaticBackgroundCache = (w, h, dpr) => {
   const ctx = cache.getContext('2d');
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-  const bgGrad = ctx.createRadialGradient(w * 0.5, h * 0.52, w * 0.04, w * 0.5, h * 0.5, w * 0.78);
-  bgGrad.addColorStop(0, '#070b14');
-  bgGrad.addColorStop(0.58, '#03050b');
-  bgGrad.addColorStop(1, '#02040a');
-  ctx.fillStyle = bgGrad;
+  // Pure pitch-black obsidian canvas (#000000) with crisp contrast
+  ctx.fillStyle = '#000000';
   ctx.fillRect(0, 0, w, h);
 
-  const leftCx = -w * 0.03;
-  const leftCy = h * 0.67;
-  const leftR = Math.min(w * 0.44, Math.max(w * 0.225, h * 0.34));
-
-  const leftAura = ctx.createRadialGradient(leftCx, leftCy, leftR * 0.55, leftCx, leftCy, leftR * 1.65);
-  leftAura.addColorStop(0, 'rgba(0, 232, 248, 0.02)');
-  leftAura.addColorStop(0.58, 'rgba(0, 175, 255, 0.22)');
-  leftAura.addColorStop(0.76, 'rgba(0, 232, 248, 0.06)');
+  // Subtle ambient Neon Blue sheen behind upper-left rings (zero stray lines near cushion)
+  const leftAura = ctx.createRadialGradient(w * 0.08, h * 0.45, 10, w * 0.08, h * 0.45, w * 0.34);
+  leftAura.addColorStop(0, 'rgba(0, 232, 248, 0.14)');
+  leftAura.addColorStop(0.55, 'rgba(0, 180, 220, 0.04)');
   leftAura.addColorStop(1, 'rgba(0, 0, 0, 0)');
   ctx.fillStyle = leftAura;
   ctx.fillRect(0, 0, w, h);
 
-  const rightCx = w * 1.07;
-  const rightCy = h * 0.61;
-  const rightR = Math.min(w * 0.48, Math.max(w * 0.275, h * 0.42));
-
-  const rightAura = ctx.createRadialGradient(rightCx, rightCy, rightR * 0.52, rightCx, rightCy, rightR * 1.65);
-  rightAura.addColorStop(0, 'rgba(250, 4, 156, 0.02)');
-  rightAura.addColorStop(0.62, 'rgba(250, 4, 156, 0.20)');
-  rightAura.addColorStop(0.8, 'rgba(130, 35, 240, 0.06)');
+  // Subtle warm Golden sheen behind upper-right rings
+  const rightAura = ctx.createRadialGradient(w * 0.92, h * 0.42, 10, w * 0.92, h * 0.42, w * 0.34);
+  rightAura.addColorStop(0, 'rgba(230, 184, 76, 0.12)');
+  rightAura.addColorStop(0.55, 'rgba(212, 160, 43, 0.035)');
   rightAura.addColorStop(1, 'rgba(0, 0, 0, 0)');
   ctx.fillStyle = rightAura;
   ctx.fillRect(0, 0, w, h);
 
-  const blAura = ctx.createRadialGradient(w * 0.06, h * 0.84, 8, w * 0.06, h * 0.84, w * 0.2);
-  blAura.addColorStop(0, 'rgba(250, 4, 156, 0.30)');
-  blAura.addColorStop(0.55, 'rgba(160, 12, 130, 0.10)');
-  blAura.addColorStop(1, 'rgba(0, 0, 0, 0)');
-  ctx.fillStyle = blAura;
-  ctx.fillRect(0, 0, w, h);
-
-  // Soft outer + crisp inner neon edge rails (layered alpha instead of costly shadowBlur)
-  ctx.lineCap = 'round';
-  ctx.beginPath();
-  ctx.arc(leftCx, leftCy, leftR, -0.45 * Math.PI, 0.34 * Math.PI);
-  ctx.strokeStyle = 'rgba(0, 232, 248, 0.16)';
-  ctx.lineWidth = 10;
-  ctx.stroke();
-  ctx.strokeStyle = 'rgba(0, 232, 248, 0.86)';
-  ctx.lineWidth = 2.4;
-  ctx.stroke();
-
-  ctx.beginPath();
-  ctx.arc(rightCx, rightCy, rightR, 0.68 * Math.PI, 1.38 * Math.PI);
-  ctx.strokeStyle = 'rgba(250, 4, 156, 0.16)';
-  ctx.lineWidth = 10;
-  ctx.stroke();
-  ctx.strokeStyle = 'rgba(250, 4, 156, 0.88)';
-  ctx.lineWidth = 2.4;
-  ctx.stroke();
-
-  const meltH = Math.min(115, h * 0.14);
+  const meltH = Math.min(90, h * 0.11);
   const bottomMelt = ctx.createLinearGradient(0, h - meltH, 0, h);
-  bottomMelt.addColorStop(0, 'rgba(2, 4, 10, 0)');
-  bottomMelt.addColorStop(0.58, 'rgba(2, 4, 10, 0.72)');
-  bottomMelt.addColorStop(1, 'rgba(2, 4, 10, 1)');
+  bottomMelt.addColorStop(0, 'rgba(0, 0, 0, 0)');
+  bottomMelt.addColorStop(0.6, 'rgba(0, 0, 0, 0.78)');
+  bottomMelt.addColorStop(1, '#000000');
   ctx.fillStyle = bottomMelt;
   ctx.fillRect(0, h - meltH, w, meltH);
 
-  return { canvas: cache, leftCx, leftCy, leftR, rightCx, rightCy, rightR };
+  return { canvas: cache };
 };
 
 /**
- * Draws lightweight cached background + fast animated edge glints (zero shadowBlur).
+ * Draws lightweight cached pitch-black backdrop (zero cushion streaks or blue tint).
  */
-const drawAmbientNeonFrame = (ctx, cacheObj, w, h, timeSec) => {
+const drawAmbientNeonFrame = (ctx, cacheObj, w, h) => {
   ctx.drawImage(cacheObj.canvas, 0, 0, w, h);
-
-  const { leftCx, leftCy, leftR, rightCx, rightCy, rightR } = cacheObj;
-  ctx.lineCap = 'round';
-
-  const cometL = -0.35 * Math.PI + ((timeSec * 0.32) % 0.7) * Math.PI;
-  ctx.beginPath();
-  ctx.arc(leftCx, leftCy, leftR, cometL, cometL + 0.24);
-  ctx.strokeStyle = 'rgba(0, 232, 248, 0.32)';
-  ctx.lineWidth = 9;
-  ctx.stroke();
-  ctx.strokeStyle = 'rgba(220, 255, 255, 0.92)';
-  ctx.lineWidth = 3;
-  ctx.stroke();
-
-  const cometR = 0.74 * Math.PI + ((timeSec * 0.28 + 0.3) % 0.58) * Math.PI;
-  ctx.beginPath();
-  ctx.arc(rightCx, rightCy, rightR, cometR, cometR + 0.22);
-  ctx.strokeStyle = 'rgba(250, 4, 156, 0.32)';
-  ctx.lineWidth = 9;
-  ctx.stroke();
-  ctx.strokeStyle = 'rgba(255, 220, 248, 0.92)';
-  ctx.lineWidth = 3;
-  ctx.stroke();
 };
 
 /**
@@ -466,7 +405,7 @@ const drawKineticGlassRing = (ctx, ring, atlas, railGrad, w, h, dpr, phase, time
       pts,
       startIdx,
       endIdx,
-      isFront ? 'rgba(11, 16, 30, 0.72)' : 'rgba(7, 10, 20, 0.42)',
+      isFront ? 'rgba(6, 6, 8, 0.84)' : 'rgba(2, 2, 3, 0.50)',
     );
 
     const uSpan = 1 / SEGMENTS;
@@ -542,8 +481,8 @@ export const initHeroRibbons = () => {
     for (const ring of HERO_BRAND_RINGS) {
       const grad = ringsCtx.createLinearGradient(cssW * 0.08, 0, cssW * 0.92, 0);
       grad.addColorStop(0, ring.rimLeft || '#00e8f8');
-      grad.addColorStop(0.5, ring.rimMid || '#8a3ffc');
-      grad.addColorStop(1, ring.rimRight || '#fa049c');
+      grad.addColorStop(0.5, ring.rimMid || '#ffffff');
+      grad.addColorStop(1, ring.rimRight || '#e6b84c');
       railGrads.set(ring.id, grad);
     }
   };
@@ -607,7 +546,7 @@ export const initHeroRibbons = () => {
     smoothMouseY += (targetMouseY - smoothMouseY) * 0.08;
 
     if (bgCache) {
-      drawAmbientNeonFrame(bgCtx, bgCache, cssW, cssH, elapsedSec);
+      drawAmbientNeonFrame(bgCtx, bgCache, cssW, cssH);
     }
 
     ringsCtx.clearRect(0, 0, cssW, cssH);
