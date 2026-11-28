@@ -18,6 +18,8 @@ export const MOLDIN_CONTACT = Object.freeze({
   whatsappDigits: '',
   defaultWhatsappGreeting:
     'Hi MOLDIN.india! We would like to launch a creator campaign. Brand & Goal:',
+  brandWhatsappGreeting:
+    'Hello MOLDIN.india team, we are reaching out as a brand interested in launching a creator collaboration campaign with you. Could you please share more details about how you execute campaigns and upcoming availability?',
 });
 
 /**

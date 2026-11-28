@@ -391,26 +391,34 @@ export const initFaqAccordion = () => {
  * Wires WhatsApp Collab buttons directly to native WhatsApp chat / Web intent ("Skip the form").
  */
 export const initWhatsappCollab = () => {
-  const waTriggers = document.querySelectorAll('[data-open-whatsapp]');
-  if (!waTriggers.length) return;
-
   const digits = (MOLDIN_CONTACT.whatsappDigits || '').replace(/\D/g, '');
-  const encoded = encodeURIComponent(MOLDIN_CONTACT.defaultWhatsappGreeting);
-  const waUrl = digits
-    ? `https://wa.me/${digits}?text=${encoded}`
-    : `https://api.whatsapp.com/send?text=${encoded}`;
+  const buildWaUrl = (message) => {
+    const encoded = encodeURIComponent(message);
+    return digits ? `https://wa.me/${digits}?text=${encoded}` : `https://api.whatsapp.com/send?text=${encoded}`;
+  };
 
-  for (const el of waTriggers) {
-    if (el.tagName === 'A') {
-      el.setAttribute('href', waUrl);
-      el.setAttribute('target', '_blank');
-      el.setAttribute('rel', 'noopener noreferrer');
-    } else {
-      el.addEventListener('click', () => {
-        window.open(waUrl, '_blank', 'noopener,noreferrer');
-      });
+  const bindTriggers = (selector, message) => {
+    const triggers = document.querySelectorAll(selector);
+    if (!triggers.length) return;
+    const url = buildWaUrl(message);
+    for (const el of triggers) {
+      if (el.tagName === 'A') {
+        el.setAttribute('href', url);
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener noreferrer');
+      } else {
+        el.addEventListener('click', () => {
+          window.open(url, '_blank', 'noopener,noreferrer');
+        });
+      }
     }
-  }
+  };
+
+  bindTriggers('[data-open-whatsapp]', MOLDIN_CONTACT.defaultWhatsappGreeting);
+  bindTriggers(
+    '[data-brand-whatsapp]',
+    MOLDIN_CONTACT.brandWhatsappGreeting || MOLDIN_CONTACT.defaultWhatsappGreeting,
+  );
 };
 
 /**
