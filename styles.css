@@ -338,8 +338,8 @@ h3 {
 .hero-stage-exact {
   position: relative;
   width: 100%;
-  height: clamp(640px, 55vw, 940px);
-  max-height: 100svh;
+  height: clamp(640px, 56vw, 940px);
+  max-height: 100dvh;
   min-height: 620px;
   overflow: hidden;
   background: #000000;
@@ -348,6 +348,7 @@ h3 {
 .hero-canvas-layer {
   position: absolute;
   inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -365,7 +366,7 @@ h3 {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: clamp(110px, 11.4vw, 185px) 1.25rem 0;
+  padding: clamp(82px, 5.8vw, 96px) 1.25rem 0;
   pointer-events: none;
   user-select: none;
 }
@@ -376,26 +377,39 @@ h3 {
 
 .hero-cutout-img {
   position: absolute;
+  display: block;
   left: 50%;
-  bottom: -2px;
+  bottom: clamp(20px, 3.6dvh, 42px);
   transform: translateX(-50%) translateZ(0);
   width: auto;
-  max-width: min(88vw, 1360px);
-  height: 86%;
+  max-width: min(98vw, 1540px);
+  height: 94%;
   object-fit: contain;
   object-position: center bottom;
   z-index: 4;
   pointer-events: none;
   user-select: none;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 84%, transparent 99%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 84%, transparent 99%);
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 70%,
+    rgba(0, 0, 0, 0.55) 85%,
+    rgba(0, 0, 0, 0) 97%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 70%,
+    rgba(0, 0, 0, 0.55) 85%,
+    rgba(0, 0, 0, 0) 97%
+  );
 }
 
 .hero-cta-layer {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: clamp(24px, 4vh, 46px);
+  bottom: clamp(46px, 7.2dvh, 78px);
   z-index: 5;
   display: flex;
   justify-content: center;
@@ -408,26 +422,27 @@ h3 {
   flex-direction: column;
   align-items: center;
   text-align: center;
+  text-wrap: balance;
   font-family: var(--font-display);
   font-weight: 900;
   text-transform: uppercase;
-  line-height: 0.9;
+  line-height: 0.89;
   letter-spacing: -0.03em;
-  width: min(1240px, 100%);
+  width: min(1380px, 100%);
 }
 
 .hero-line-kicker {
   display: block;
-  font-size: clamp(0.95rem, 1.65vw, 1.55rem);
+  font-size: clamp(1rem, 0.72rem + 0.95vw, 1.65rem);
   font-weight: 800;
   letter-spacing: 0.28em;
   color: #f5d061;
-  margin-bottom: 0.36rem;
+  margin-bottom: 0.42rem;
 }
 
 .hero-line-creators {
   display: block;
-  font-size: clamp(2.85rem, 7.1vw, 7.1rem);
+  font-size: clamp(3.9rem, 2.1rem + 6.45vw, 9.6rem);
   font-weight: 900;
   letter-spacing: -0.04em;
   color: #ffffff;
@@ -439,8 +454,8 @@ h3 {
 
 .hero-line-brands {
   display: block;
-  margin-top: 0.05em;
-  font-size: clamp(2.7rem, 6.7vw, 6.7rem);
+  margin-top: 0.04em;
+  font-size: clamp(3.65rem, 1.85rem + 5.95vw, 9rem);
   font-weight: 900;
   letter-spacing: -0.035em;
   word-spacing: 0.14em;
@@ -2893,32 +2908,49 @@ h3 {
   }
 
   .hero-stage-exact {
-    height: auto;
-    min-height: 600px;
+    height: min(82dvh, 660px);
+    min-height: 580px;
     max-height: none;
   }
 
   .hero-back-title-layer {
-    padding-top: 78px;
+    padding-top: 88px;
   }
 
   .hero-line-kicker {
-    font-size: 0.96rem;
+    font-size: clamp(0.95rem, 0.72rem + 0.8vw, 1.15rem);
     letter-spacing: 0.2em;
   }
 
   .hero-line-creators {
-    font-size: clamp(2.65rem, 12.6vw, 3.85rem);
+    font-size: clamp(3.15rem, 1.2rem + 9.8vw, 4.45rem);
   }
 
   .hero-line-brands {
-    font-size: clamp(2.45rem, 11.4vw, 3.55rem);
+    font-size: clamp(2.85rem, 1.1rem + 8.6vw, 4.05rem);
   }
 
   .hero-cutout-img {
     width: auto;
-    max-width: 146vw;
-    height: 68%;
+    max-width: none;
+    height: 82%;
+    bottom: 26px;
+  }
+
+  .hero-cta-layer {
+    bottom: 30px;
+    padding-inline: 1rem;
+  }
+
+  .hero-cta-exact {
+    gap: 0.65rem;
+    flex-wrap: nowrap;
+  }
+
+  .hero-cta-exact .btn {
+    padding: 0.78rem 1.05rem;
+    font-size: 0.86rem;
+    white-space: nowrap;
   }
 
   .hero-overlay-content {
