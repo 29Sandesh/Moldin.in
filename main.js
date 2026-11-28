@@ -446,6 +446,141 @@ export const initBlogFilters = () => {
 };
 
 /**
+ * Loads the 1,000-article JSON catalog dynamically on blogs.html for instant filtering & pagination.
+ */
+export const initBlogExplorer = async () => {
+  const root = document.getElementById('playbook-explorer');
+  const grid = document.getElementById('explorer-grid');
+  const statusEl = document.getElementById('explorer-status');
+  const searchInput = document.getElementById('exp-search');
+  const indSelect = document.getElementById('exp-industry');
+  const objSelect = document.getElementById('exp-objective');
+  const mktSelect = document.getElementById('exp-market');
+  const prevBtn = document.getElementById('exp-prev');
+  const nextBtn = document.getElementById('exp-next');
+  const pageInfo = document.getElementById('exp-page-info');
+  if (!root || !grid || !statusEl) return;
+
+  try {
+    const response = await fetch('data/blogs-catalog.json');
+    if (!response.ok) return;
+    const catalog = await response.json();
+    const allPosts = Array.isArray(catalog.posts) ? catalog.posts : [];
+    if (!allPosts.length) return;
+
+    if (indSelect && Array.isArray(catalog.industries)) {
+      for (const ind of catalog.industries) {
+        const opt = document.createElement('option');
+        opt.value = ind.slug;
+        opt.textContent = ind.name;
+        indSelect.appendChild(opt);
+      }
+    }
+    if (objSelect && Array.isArray(catalog.objectives)) {
+      for (const obj of catalog.objectives) {
+        const opt = document.createElement('option');
+        opt.value = obj.slug;
+        opt.textContent = obj.name;
+        objSelect.appendChild(opt);
+      }
+    }
+    if (mktSelect && Array.isArray(catalog.markets)) {
+      for (const mkt of catalog.markets) {
+        const opt = document.createElement('option');
+        opt.value = mkt.slug;
+        opt.textContent = mkt.label;
+        mktSelect.appendChild(opt);
+      }
+    }
+
+    const PAGE_SIZE = 12;
+    let currentPage = 1;
+    let filtered = allPosts;
+
+    const renderPage = () => {
+      const total = filtered.length;
+      const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+      if (currentPage > totalPages) currentPage = totalPages;
+      const startIdx = (currentPage - 1) * PAGE_SIZE;
+      const slice = filtered.slice(startIdx, startIdx + PAGE_SIZE);
+
+      if (!slice.length) {
+        grid.innerHTML =
+          '<p style="grid-column:1/-1;color:#52525b;padding:1rem 0;">No guides match that filter yet. Try clearing one dropdown or keyword.</p>';
+        statusEl.textContent = '0 matching playbooks';
+      } else {
+        grid.innerHTML = slice
+          .map(
+            (p) => `
+          <a class="explorer-card" href="blog/${escapeHtml(p.s)}/">
+            <div>
+              <div class="explorer-card-meta">
+                <span class="explorer-pill">${escapeHtml(p.in)}</span>
+                <span class="explorer-market-pill">${escapeHtml(p.ml)}</span>
+              </div>
+              <h3 style="margin-top:0.55rem;">${escapeHtml(p.t)}</h3>
+              <p style="margin-top:0.4rem;">${escapeHtml(p.d)}</p>
+            </div>
+            <div class="explorer-card-foot">
+              <span>${escapeHtml(String(p.r))} min read</span>
+              <span class="explorer-card-read">Read Guide →</span>
+            </div>
+          </a>`,
+          )
+          .join('');
+        statusEl.textContent = `Showing ${startIdx + 1}–${startIdx + slice.length} of ${total.toLocaleString()} Playbooks`;
+      }
+
+      if (pageInfo) pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+      if (prevBtn) prevBtn.disabled = currentPage <= 1;
+      if (nextBtn) nextBtn.disabled = currentPage >= totalPages;
+    };
+
+    const applyFilters = () => {
+      const q = (searchInput?.value || '').trim().toLowerCase();
+      const ind = indSelect?.value || '';
+      const obj = objSelect?.value || '';
+      const mkt = mktSelect?.value || '';
+
+      filtered = allPosts.filter((p) => {
+        if (ind && p.i !== ind) return false;
+        if (obj && p.o !== obj) return false;
+        if (mkt && p.m !== mkt) return false;
+        if (q) {
+          const hay = `${p.t} ${p.d} ${p.in} ${p.on} ${p.ml}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+      currentPage = 1;
+      renderPage();
+    };
+
+    searchInput?.addEventListener('input', applyFilters);
+    indSelect?.addEventListener('change', applyFilters);
+    objSelect?.addEventListener('change', applyFilters);
+    mktSelect?.addEventListener('change', applyFilters);
+    prevBtn?.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage -= 1;
+        renderPage();
+      }
+    });
+    nextBtn?.addEventListener('click', () => {
+      const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+      if (currentPage < totalPages) {
+        currentPage += 1;
+        renderPage();
+      }
+    });
+
+    renderPage();
+  } catch {
+    // Preserve static SSR fallback cards gracefully if catalog cannot load
+  }
+};
+
+/**
  * Binds dual Creator & Brand path selector modal across all pages.
  */
 export const initAccessDialog = () => {
@@ -544,4 +679,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initAccessDialog();
   initBriefForm();
   initBlogFilters();
+  initBlogExplorer();
 });
